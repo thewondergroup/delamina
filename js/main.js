@@ -71,10 +71,9 @@
   // Menu tabs (venue pages)
   var tabs = document.querySelectorAll('[data-menu-tab]');
   var panes = document.querySelectorAll('[data-menu-pane]');
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function (ev) {
-      ev.preventDefault();
+  var activate = function (t, fromClick) {
       var id = t.getAttribute('data-menu-tab');
+      if (t.hasAttribute('data-hash') && fromClick && history.replaceState) history.replaceState(null, '', '#' + id);
       tabs.forEach(function (x) { x.removeAttribute('aria-current'); });
       t.setAttribute('aria-current', 'true');
       panes.forEach(function (p) { p.hidden = p.getAttribute('data-menu-pane') !== id; });
@@ -83,8 +82,24 @@
         photo.classList.add('swap');
         setTimeout(function () { photo.src = src; photo.onload = function () { photo.classList.remove('swap'); }; }, 200);
       }
-    });
+    };
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function (ev) { ev.preventDefault(); activate(t, true); });
   });
+  // Open the menu named in the address (menu-marylebone.html#brunch)
+  var openFromHash = function () {
+    var h = location.hash.slice(1);
+    if (!h) return;
+    tabs.forEach(function (t) {
+      if (t.hasAttribute('data-hash') && t.getAttribute('data-menu-tab') === h) {
+        activate(t, false);
+        var bar = document.querySelector('.mp-head');
+        if (bar) window.scrollTo(0, bar.offsetTop + bar.offsetHeight - 80);
+      }
+    });
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 
   // Forms: placeholder handler until a form endpoint is wired up
   document.querySelectorAll('form[data-demo]').forEach(function (f) {

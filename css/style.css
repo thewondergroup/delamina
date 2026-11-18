@@ -57,9 +57,11 @@ p{margin:0}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:80px}
 .brand{font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--offwhite);display:flex;align-items:center;gap:12px}
 .brand .logo{height:40px;width:auto;display:block}
-.nav{display:flex;gap:30px;align-items:center}
-.nav a{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--offwhite);padding:6px 0;border-bottom:1px solid transparent}
-.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--offwhite)}
+.nav{display:flex;gap:clamp(16px,2vw,30px);align-items:center}
+.nav{align-self:stretch}
+.nav-item{display:flex;align-items:center;height:100%;min-height:80px}
+.nav-link{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--offwhite);padding:6px 0;border-bottom:1px solid transparent}
+.nav-item:hover .nav-link,.nav-link[aria-current="page"]{border-bottom-color:var(--offwhite)}
 .nav-toggle{display:none;background:none;border:1px solid var(--offwhite);width:48px;height:44px;cursor:pointer;align-items:center;justify-content:center;gap:5px;flex-direction:column}
 .nav-toggle span{display:block;width:20px;height:1.5px;background:var(--offwhite)}
 .mobile-nav{display:none;border-top:1px solid rgba(33,37,41,.15);background:var(--olive)}
@@ -407,3 +409,110 @@ a:hover .go b{transform:translateX(5px)}
 .foot-mark .logo{width:100%;height:auto}
 
 @media (prefers-reduced-motion:reduce){.hx-logo,.hx-tag,.hx-sub{animation:none}}
+
+/* =====================================================================
+   MEGA MENU (desktop)
+   ===================================================================== */
+.mega{display:none;position:absolute;left:0;right:0;top:100%;background:var(--offwhite);color:var(--charcoal);border-top:1px solid rgba(33,37,41,.12);box-shadow:0 30px 60px -20px rgba(33,37,41,.35);padding:36px 0 44px}
+.has-mega:hover .mega,.has-mega:focus-within .mega,.has-mega.open .mega{display:block;animation:megaIn .28s ease both}
+@keyframes megaIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.mega-grid{display:grid;gap:clamp(16px,2vw,28px)}
+.mega-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mega-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.mega-card,.mega-col{display:flex;flex-direction:column;gap:6px;min-width:0}
+.mega-img{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--sand);margin-bottom:10px}
+.mega-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.75,.2,1)}
+.mega-card:hover .mega-img img,.mega-col:hover .mega-img img{transform:scale(1.05)}
+.mega-eyebrow{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--taupe-text)}
+.mega-title{font-family:var(--mono);font-size:21px;font-weight:300;text-transform:uppercase;letter-spacing:.04em;color:var(--charcoal);line-height:1.15}
+.mega-card:hover .mega-title{color:var(--olive-dark)}
+.mega-text{font-size:14px;font-weight:300;color:var(--ink);line-height:1.5}
+.mega-links{display:flex;flex-direction:column;margin-top:8px;border-top:1px solid var(--sand)}
+.mega-links a{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:11px 0;border-bottom:1px solid var(--sand);color:var(--charcoal);transition:padding .25s,color .25s}
+.mega-links a:hover{padding-left:8px;color:var(--olive-dark)}
+.mega-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start;justify-content:center;padding:24px;background:var(--light)}
+.mega-cta .btn{color:var(--charcoal)}
+.mega-cta .btn-solid{color:var(--offwhite)}
+/* keep the header solid while a panel is open on the homepage */
+.home .site-header:has(.has-mega:hover),.home .site-header:has(.has-mega:focus-within){background:var(--olive);border-bottom-color:rgba(33,37,41,.15)}
+.home .site-header:has(.has-mega:hover) .brand,.home .site-header:has(.has-mega:focus-within) .brand{opacity:1;pointer-events:auto}
+@media (max-width:960px){.mega{display:none!important}}
+
+/* =====================================================================
+   MENU PAGES
+   ===================================================================== */
+.mp-head{background:var(--light);padding:clamp(48px,6vw,88px) 0 clamp(28px,3vw,44px)}
+.mp-head .eyebrow{display:block;margin-bottom:14px}
+.mp-head h1{font-size:clamp(32px,4.6vw,60px)}
+.mp-switch{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:28px}
+.mp-switch .lbl{font-size:14px;color:var(--taupe-text);margin-right:8px}
+.mp-tabs{position:sticky;top:80px;z-index:20;background:var(--offwhite);border-bottom:1px solid var(--sand)}
+.mp-tabs .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px}
+.mp-tabs .mtabs{border-bottom:0;margin:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.mp-tabs .mtabs::-webkit-scrollbar{display:none}
+.mp-tabs .mtab{padding:20px 0;white-space:nowrap}
+.mp-body{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(64px,8vw,120px)}
+.mp-pane{max-width:900px;margin:0 auto;scroll-margin-top:160px}
+.mp-pane>h2{font-size:clamp(28px,3.4vw,44px);font-weight:300;text-align:center}
+.mp-intro{text-align:center;color:var(--taupe-text);margin-top:10px;font-size:15px}
+.mp-note{font-size:13px;color:var(--taupe-text);line-height:1.6;margin-top:10px}
+.mp-foot{max-width:900px;margin:clamp(40px,5vw,64px) auto 0;padding-top:24px;border-top:1px solid var(--sand)}
+@media (max-width:760px){.mp-tabs .btn{display:none}}
+
+/* priced lists */
+.ml-sec{margin-top:clamp(36px,4vw,56px)}
+.ml-sec h3{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--olive-dark);padding-bottom:12px;border-bottom:1px solid var(--charcoal);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.ml-sec h3 span{font-weight:400;letter-spacing:1px;color:var(--taupe-text)}
+.ml-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--sand)}
+.ml-text{font-size:17px;line-height:1.45;color:var(--charcoal)}
+.ml-name{display:block;font-weight:500;text-transform:uppercase;letter-spacing:.04em;font-size:16px;margin-bottom:3px}
+.ml-name+span{color:var(--ink);font-size:16px}
+.ml-text small{display:block;font-size:14px;color:var(--taupe-text);margin-top:4px}
+.ml-price{font-size:17px;color:var(--charcoal);white-space:nowrap;text-align:right}
+.tg{font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:1px;color:var(--olive-dark);border:1px solid var(--olive);padding:1px 4px;margin-left:4px;vertical-align:2px;text-decoration:none;cursor:help;white-space:nowrap}
+
+/* set menus */
+.setm{text-align:center;margin-top:clamp(28px,3vw,44px)}
+.setm>h3{font-size:22px;text-transform:uppercase;letter-spacing:.06em}
+.setm-price{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--olive-dark);margin-top:8px}
+.setm-sub{font-size:14px;color:var(--taupe-text);margin-top:6px}
+.setm h4{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--olive-dark);margin:30px 0 10px}
+.setm-item{font-size:17px;line-height:1.5;color:var(--charcoal);max-width:640px;margin:10px auto 0}
+.setm-item small{color:var(--taupe-text);font-size:14px}
+.setm-or,.setm-label{font-size:13px;font-style:italic;color:var(--taupe-text);margin-top:12px}
+.setm-label{margin-top:22px}
+.setm hr{border:0;border-top:1px solid var(--sand);width:120px;margin:26px auto 18px}
+.setm-note{font-size:13px;color:var(--taupe-text);margin-top:28px}
+.setm-acc{text-align:center;border-bottom:1px solid var(--sand);margin-top:0}
+.setm-acc:first-of-type{border-top:1px solid var(--charcoal);margin-top:clamp(28px,3vw,44px)}
+.setm-acc summary{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:20px 0;cursor:pointer;list-style:none;text-align:left}
+.setm-acc summary::-webkit-details-marker{display:none}
+.setm-acc summary span{font-size:19px;text-transform:uppercase;letter-spacing:.04em;color:var(--charcoal)}
+.setm-acc summary b{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--olive-dark);white-space:nowrap}
+.setm-acc summary b::after{content:'+';display:inline-block;margin-left:14px;font-size:16px;font-weight:400;color:var(--charcoal)}
+.setm-acc[open] summary b::after{content:'–'}
+.setm-body{padding:0 0 36px}
+.setm-body h4:first-child{margin-top:8px}
+
+/* wine list */
+.wl{margin-top:clamp(28px,3vw,44px)}
+.wl-sec{margin-top:clamp(32px,4vw,52px)}
+.wl-head,.wl-row{display:grid;grid-template-columns:minmax(0,1fr) 52px 60px 60px;gap:12px;align-items:baseline}
+.wl-head{padding-bottom:12px;border-bottom:1px solid var(--charcoal)}
+.wl-head h3{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--olive-dark)}
+.wl-head span{font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--taupe-text);text-align:right}
+.wl h4{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--taupe-text);margin:22px 0 4px;font-weight:400}
+.wl-row{padding:12px 0;border-bottom:1px solid var(--sand)}
+.wl-name span{display:block;font-size:16px;color:var(--charcoal);line-height:1.4}
+.wl-name small{display:block;font-size:13px;color:var(--taupe-text);margin-top:2px}
+.wl-p{text-align:right;font-size:15px;color:var(--charcoal)}
+@media (max-width:560px){.wl-head,.wl-row{grid-template-columns:minmax(0,1fr) 38px 44px 44px;gap:8px}.wl-name span{font-size:15px}}
+
+/* menu link rows (restaurant pages, menus hub) */
+.menu-rows{border-top:1px solid var(--charcoal)}
+.menu-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--sand);font-size:19px;text-transform:uppercase;letter-spacing:.04em;color:var(--charcoal);transition:padding .3s,color .3s}
+.menu-row:hover{padding-left:10px;color:var(--olive-dark)}
+.menu-row b{font-weight:300;transition:transform .3s}
+.menu-row:hover b{transform:translateX(5px)}
+.fcard .menu-rows{margin-top:10px}
+.fcard .menu-row{font-size:16px;padding:14px 0}

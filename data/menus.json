@@ -1,0 +1,3463 @@
+{
+ "marylebone": {
+  "alc": [
+   {
+    "title": "Snacks & dips",
+    "sub": "",
+    "items": [
+     {
+      "text": "House marinated Sicilian olives",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "5.5",
+      "extra": ""
+     },
+     {
+      "text": "Crispy oyster mushrooms, truffled artichokes mousse, za’atar",
+      "tags": [
+       "VG"
+      ],
+      "price": "12.5",
+      "extra": ""
+     },
+     {
+      "text": "Smokey aubergine, tahini & zhoug, fluffy pita",
+      "tags": [
+       "VG"
+      ],
+      "price": "12",
+      "extra": ""
+     },
+     {
+      "text": "Hummus, slow-roasted spiced tomatoes, crispy onions, pita",
+      "tags": [
+       "VG"
+      ],
+      "price": "10.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Mix & match",
+    "sub": "",
+    "items": [
+     {
+      "text": "Today’s fish crudo",
+      "tags": [],
+      "price": "Daily price",
+      "extra": ""
+     },
+     {
+      "text": "Creamy burrata served on grilled pita with seasonal ingredients",
+      "tags": [],
+      "price": "Daily price",
+      "extra": ""
+     },
+     {
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "9 / 14 / 19",
+      "extra": ""
+     },
+     {
+      "text": "Grilled courgette two-ways, crispy onions, pine kernels, labneh drizzle",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "13.5",
+      "extra": ""
+     },
+     {
+      "text": "Watermelon, feta, caramelised Kalamata tapenade, toasted pumpkin seeds, mint",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "9.5",
+      "extra": ""
+     },
+     {
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, sweet potato, toasted almonds, raw tahini, black grape molasses",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "9.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Mains",
+    "sub": "",
+    "items": [
+     {
+      "text": "Today’s on the grill special",
+      "tags": [],
+      "price": "Daily price",
+      "extra": ""
+     },
+     {
+      "text": "Chicken ras-el-hanout off-the-bone grilled on charcoals, roasted sweet potato purée, barberries",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "22.5",
+      "extra": ""
+     },
+     {
+      "text": "House beef shawarma with dates & pine nuts on grilled pita, salad of garden vegetables, house pickles & herbs, tahini",
+      "tags": [
+       "DF"
+      ],
+      "price": "24.5",
+      "extra": ""
+     },
+     {
+      "text": "Lamb baharat on the grill, charred hispi cabbage, lentils, barberries & mint",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "26",
+      "extra": ""
+     },
+     {
+      "text": "Grilled tiger prawns on za’atar focaccia, vine leaf & roasted peppers chimichurri, Camone tomatoes & herb salad, Kalamata tahini",
+      "tags": [
+       "DF"
+      ],
+      "price": "26",
+      "extra": ""
+     },
+     {
+      "text": "Seared tuna, toasted sesame, rocket, cranberries, baharat & honey drizzle",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "26",
+      "extra": ""
+     },
+     {
+      "text": "Seabass chermoula butterflied then charcoal roasted, shoestring fries, herby yoghurt",
+      "tags": [
+       "GF"
+      ],
+      "price": "25",
+      "extra": ""
+     },
+     {
+      "text": "Salmon glazed and charcoal roasted with miso-tahini, cavolo nero, pickled salad",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "25.5",
+      "extra": ""
+     },
+     {
+      "text": "Salad of Rosary goats cheese rolled in rose & pul biber chilli, fresh strawberries, sweet pickled pomelo, toasted seeds & za’atar crackers, baby leaves",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "17.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "On the side",
+    "sub": "",
+    "items": [
+     {
+      "text": "Crispy rosemary potatoes, garlic-infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "7.5",
+      "extra": ""
+     },
+     {
+      "text": "Baby gem salad with barberries, chives, cashews & almonds",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "8",
+      "extra": ""
+     },
+     {
+      "text": "Grilled hispi cabbage, almonds & pumpkin seeds dukkah",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "8",
+      "extra": ""
+     }
+    ]
+   }
+  ],
+  "brunch": [
+   {
+    "title": "Brunch specials",
+    "sub": "",
+    "items": [
+     {
+      "name": "Jaffa–Tel Aviv style",
+      "text": "2 eggs – scrambled, fried or poached. Mazetim: hummus & chickpeas / tahini & rose harissa oil / smokey aubergine / labneh & za’atar / feta with honey, sesame & sumac / house Nocellara olives / sweet roasted almond spread / pita & mixed bread",
+      "tags": [
+       "V"
+      ],
+      "price": "17.5",
+      "extra": ""
+     },
+     {
+      "name": "Shakshuka classic",
+      "text": "Eggs cooked in a pan with tomatoes, peppers & onions, touch of chilli, pita",
+      "tags": [
+       "V",
+       "DF"
+      ],
+      "price": "15.5",
+      "extra": "Add chorizo/feta +3, lamb merguez +6"
+     },
+     {
+      "name": "Green shakshuka",
+      "text": "Eggs cooked in a pan with feta, spinach, leeks, peas, caramelised onions, pita",
+      "tags": [
+       "V"
+      ],
+      "price": "16",
+      "extra": "Add chorizo +3"
+     },
+     {
+      "name": "Focaccia Benedict",
+      "text": "Poached eggs, avocado with sumac, crispy pancetta or cavolo nero, harissa hollandaise, crushed barberries on rosemary & za’atar focaccia",
+      "tags": [],
+      "price": "16",
+      "extra": ""
+     },
+     {
+      "name": "Smoked salmon on French toast",
+      "text": "Scottish smoked salmon, whipped labneh, cucumber & candied preserved lemon, sumac-pickled onion",
+      "tags": [],
+      "price": "19.5",
+      "extra": ""
+     },
+     {
+      "name": "Grilled lamb merguez",
+      "text": "Hummus, pickled cucumber tzatziki, tomato roe, spicy shifka peppers",
+      "tags": [],
+      "price": "18.5",
+      "extra": ""
+     },
+     {
+      "name": "Egg shawarma",
+      "text": "Fried egg on beef shawarma with dates & pine nuts on grilled pita, tahini drizzle",
+      "tags": [
+       "DF"
+      ],
+      "price": "23.5",
+      "extra": ""
+     },
+     {
+      "name": "Chef’s burrata",
+      "text": "Creamy burrata served on grilled pita with seasonal ingredients",
+      "tags": [],
+      "price": "Daily price",
+      "extra": ""
+     },
+     {
+      "name": "Cherry, halva & pistachio French toast",
+      "text": "Whipped labneh & halva cream, fresh cherry compote, crushed pistachios",
+      "tags": [
+       "V"
+      ],
+      "price": "16",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Mazetim",
+    "sub": "5 each",
+    "items": [
+     {
+      "text": "Tahini & rose harissa oil",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Hummus & crispy chickpeas",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Feta with honey, sesame & sumac",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Labneh & za’atar",
+      "tags": [
+       "V"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Smokey aubergine",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Zhoug",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Sweet roasted almond spread",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "House pickles",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "House marinated Nocellara olives",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Mixed bread",
+      "tags": [
+       "VG"
+      ],
+      "price": "4",
+      "extra": ""
+     },
+     {
+      "text": "Pita",
+      "tags": [
+       "VG"
+      ],
+      "price": "2.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "All day house classics",
+    "sub": "",
+    "items": [
+     {
+      "text": "Chicken ras-el-hanout grilled off the bone, roasted sweet potato purée, barberries",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "22.5",
+      "extra": ""
+     },
+     {
+      "text": "Lamb baharat on the grill, charcoaled hispi cabbage, lentils, barberries & mint",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "26",
+      "extra": ""
+     },
+     {
+      "text": "Glazed & roasted salmon, miso-tahini, cavolo nero, pickled salad",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "25.5",
+      "extra": ""
+     },
+     {
+      "text": "Seared tuna, toasted sesame, rocket, cranberries, baharat & honey drizzle",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "26",
+      "extra": ""
+     },
+     {
+      "text": "Salad of Rosary goats cheese rolled in rose & pul biber chilli, fresh figs, toasted seeds & za’atar crackers, baby leaves",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "17.5",
+      "extra": ""
+     },
+     {
+      "text": "Charred cauliflower, lemon-zest infused crème fraîche, pomegranate molasses & seeds",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "9 / 14 / 19",
+      "extra": ""
+     },
+     {
+      "text": "Crispy rosemary potatoes on garlic infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "7",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Drinks by mood: celebrate",
+    "sub": "",
+    "items": [
+     {
+      "text": "Mimosa blossom",
+      "tags": [],
+      "price": "8.5",
+      "extra": ""
+     },
+     {
+      "text": "Spumante, rosewater, elderflower, crème de pêches",
+      "tags": [],
+      "price": "14",
+      "extra": ""
+     },
+     {
+      "text": "Champagne, rhubarb liqueur, strawberry cordial, strawberry powder",
+      "tags": [],
+      "price": "16",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Drinks by mood: refresh",
+    "sub": "",
+    "items": [
+     {
+      "text": "Freshly squeezed orange juice",
+      "tags": [],
+      "price": "6",
+      "extra": ""
+     },
+     {
+      "text": "Limonana",
+      "tags": [],
+      "price": "7",
+      "extra": ""
+     },
+     {
+      "text": "Lemongrass & ginger with elderflower, orange & soda",
+      "tags": [],
+      "price": "8",
+      "extra": ""
+     },
+     {
+      "text": "Peach, rose & hibiscus iced tea",
+      "tags": [],
+      "price": "7",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Drinks by mood: relax",
+    "sub": "",
+    "items": [
+     {
+      "text": "Fresh mint tea",
+      "tags": [],
+      "price": "4.5",
+      "extra": ""
+     },
+     {
+      "text": "Teas & herbal blends",
+      "tags": [],
+      "price": "4.5",
+      "extra": ""
+     },
+     {
+      "text": "Espresso coffee",
+      "tags": [],
+      "price": "4.5",
+      "extra": ""
+     }
+    ]
+   }
+  ],
+  "brunch_sub": "Weekends & bank holidays 10.30am – 3.30pm",
+  "sharing": [
+   {
+    "title": "3-course sharing menu",
+    "price": "£54 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "Starters"
+     },
+     {
+      "k": "item",
+      "text": "Crispy oyster mushrooms, truffled artichoke mousse, za’atar",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "House hummus, slow-roasted spiced tomatoes, crispy onions, fluffy pita",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, sweet potato, roasted almonds, raw tahini, black grape molasses",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Mains"
+     },
+     {
+      "k": "item",
+      "text": "Free range chicken ras-el-hanout off-the-bone grilled on charcoals, roasted sweet potatoes purée, barberries",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "House shawarma with dates & pine kernels on grilled pita, salad of house pickles, vegetables & herbs, tahini",
+      "tags": [
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Crispy rosemary potatoes on garlic-infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "label",
+      "text": "Vegetarian/vegan replacements"
+     },
+     {
+      "k": "item",
+      "text": "Grilled courgette two ways, crispy onions, pine kernels",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "or",
+      "text": "&"
+     },
+     {
+      "k": "item",
+      "text": "Glazed aubergine & vegetables hotpot, haricot beans, tahini, puffed buckwheat",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Desserts"
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest of vanilla cheesecake cream, caramelised pecans",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Chocolate & praline ganache with roasted nuts & olive oil, raspberries & salted sesame bits",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     }
+    ],
+    "notes": []
+   },
+   {
+    "title": "Classics 4-course sharing menu",
+    "price": "£59 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "Nibbles"
+     },
+     {
+      "k": "item",
+      "text": "House marinated Nocellara olives",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Crispy oyster mushrooms, truffled artichoke mousse, za’atar",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Starters"
+     },
+     {
+      "k": "item",
+      "text": "House hummus, slow-roasted spiced tomatoes, fluffy pita",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Grilled courgette two ways, crispy onions, pine kernels, labneh drizzle",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Mains"
+     },
+     {
+      "k": "item",
+      "text": "Seared tuna, toasted sesame, rocket, cranberries, baharat & honey drizzle",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "House shawarma with dates & pine kernels on grilled pita, salad of house pickles, vegetables & herbs, tahini",
+      "tags": [
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Free range chicken ras-el-hanout off-the-bone grilled on charcoals, roasted sweet potatoes purée, barberries",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Crispy rosemary potatoes on garlic-infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "label",
+      "text": "Vegetarian/vegan replacements"
+     },
+     {
+      "k": "item",
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, sweet potato, roasted almonds, raw tahini, black grape molasses",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "or",
+      "text": "&"
+     },
+     {
+      "k": "item",
+      "text": "Glazed aubergine & vegetables hotpot, haricot beans, tahini, puffed buckwheat",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Desserts"
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest of vanilla cheesecake cream, caramelised pecans",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Chocolate & praline ganache with roasted nuts & olive oil, raspberries & salted sesame bits",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     }
+    ],
+    "notes": []
+   },
+   {
+    "title": "Fish 4-course sharing menu",
+    "price": "£64 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "Nibbles"
+     },
+     {
+      "k": "item",
+      "text": "House marinated Nocellara olives",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Crispy oyster mushrooms, truffled artichoke mousse, za’atar",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Starters"
+     },
+     {
+      "k": "item",
+      "text": "House hummus, slow-roasted spiced tomatoes, fluffy pita",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Grilled courgette two ways, crispy onions, pine kernels",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Mains"
+     },
+     {
+      "k": "item",
+      "text": "Seared tuna, toasted sesame, rocket, cranberries, baharat & honey drizzle",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Glazed salmon, miso-tahini, rainbow chard, pickled salad",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Seabass chermoula butterflied on charcoals, shoestring fries, herby yoghurt",
+      "tags": [
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Crispy rosemary potatoes on garlic-infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "label",
+      "text": "Vegetarian/vegan replacements"
+     },
+     {
+      "k": "item",
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, sweet potato, roasted almonds, raw tahini, black grape molasses",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "or",
+      "text": "&"
+     },
+     {
+      "k": "item",
+      "text": "Glazed aubergine & vegetables hotpot, haricot beans, tahini, puffed buckwheat",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Desserts"
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest of vanilla cheesecake cream, caramelised pecans",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Chocolate & praline ganache with roasted nuts & olive oil, raspberries & salted sesame bits",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     }
+    ],
+    "notes": []
+   },
+   {
+    "title": "Brunch classics sharing menu I",
+    "price": "£33 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "Mazetim on arrival"
+     },
+     {
+      "k": "item",
+      "text": "House marinated Nocellara olives",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Mixed bread",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Sweet roasted almonds spread",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Tahini & rose harissa oil",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Hummus & crispy chickpeas",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Zhoug",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Smokey aubergine",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Chopped salad",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Labneh & za’atar",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Feta with honey, sesame & sumac",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Mains"
+     },
+     {
+      "k": "item",
+      "text": "Classic shakshuka: eggs cooked in a pan with tomatoes, peppers & onions, touch of chilli",
+      "tags": [
+       "V",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Green shakshuka: eggs cooked in a pan with feta, spinach, leeks, peas, caramelised onions",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Fried egg on beef shawarma with dates & pine kernels on pita, tahini",
+      "tags": [
+       "DF"
+      ]
+     },
+     {
+      "k": "label",
+      "text": "Add £6 per guest"
+     },
+     {
+      "k": "item",
+      "text": "Glazed salmon, miso-tahini, wilted rainbow chard, pickled salad",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "or",
+      "text": "or"
+     },
+     {
+      "k": "item",
+      "text": "Free range chicken ras-el-hanout off-the-bone grilled on charcoals, roasted sweet potatoes purée, barberries",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     }
+    ],
+    "notes": []
+   },
+   {
+    "title": "Brunch classics sharing menu II",
+    "price": "£39 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "Mazetim on arrival"
+     },
+     {
+      "k": "item",
+      "text": "House marinated Nocellara olives",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Mixed bread",
+      "tags": [
+       "VG"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Sweet roasted almonds spread",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Tahini & rose harissa oil",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Hummus & crispy chickpeas",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Zhoug",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Smokey aubergine",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Chopped salad",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Labneh & za’atar",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Feta with honey, sesame & sumac",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Mains"
+     },
+     {
+      "k": "item",
+      "text": "Classic shakshuka: eggs cooked in a pan with tomatoes, peppers & onions, touch of chilli",
+      "tags": [
+       "V",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Green shakshuka: eggs cooked in a pan with feta, spinach, leeks, peas, caramelised onions",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Fried egg on beef shawarma with dates & pine kernels on pita, tahini",
+      "tags": [
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Salad of Rosary goats cheese rolled in pul biber & rose petals, roasted Violina pumpkin, toasted seeds & za’atar crackers, baby leaves",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "head",
+      "text": "Desserts"
+     },
+     {
+      "k": "item",
+      "text": "Chocolate & praline ganache with roasted nuts & olive oil, raspberries & salted sesame bits",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest of vanilla cheesecake cream, caramelised pecans",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "label",
+      "text": "Add £6 per guest"
+     },
+     {
+      "k": "item",
+      "text": "Glazed salmon, miso-tahini, wilted rainbow chard, pickled salad",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "or",
+      "text": "or"
+     },
+     {
+      "k": "item",
+      "text": "Free range chicken ras-el-hanout off-the-bone grilled on charcoals, roasted sweet potatoes purée, barberries",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     }
+    ],
+    "notes": []
+   }
+  ],
+  "xmas": [
+   {
+    "title": "Christmas feast sharing menu",
+    "price": "£67 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Selection of house dips with fluffy pita",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Hummus with crispy chickpeas",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Tahini with zhoug",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Smokey aubergine",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Grilled courgette two-ways, crispy onions, pine kernels, labneh drizzle",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Seared tuna, toasted sesame, cranberries, rocket, spiced honey",
+      "tags": []
+     },
+     {
+      "k": "label",
+      "text": "Vegan option"
+     },
+     {
+      "k": "item",
+      "text": "Crispy oyster mushrooms, truffled artichoke mousse, za’atar",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Dry aged sirloin tagliata marinated with ras-el-hanout & Urfa chilli, charcoal grilled hispi cabbage, vine leaf chimichurri",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Duck breast with baharat & orange zest, wine & orange jus",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Salmon glazed & charcoal roasted, miso-tahini, cavolo nero",
+      "tags": []
+     },
+     {
+      "k": "label",
+      "text": "Vegetarian/vegan option"
+     },
+     {
+      "k": "item",
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, roasted almonds, raw tahini, black grape molasses",
+      "tags": []
+     },
+     {
+      "k": "or",
+      "text": "&"
+     },
+     {
+      "k": "item",
+      "text": "Roasted sweet potato purée topped with Rosary goats cheese, charcoal-roasted vegetables, dukkah",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Caramelised Violina pumpkin with salmoriglio & sesame drizzle",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Chocolate & praline ganache with roasted nuts & olive oil, raspberries & salted sesame bits",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest of vanilla cheesecake cream, caramelised pecans",
+      "tags": []
+     },
+     {
+      "k": "label",
+      "text": "Vegan option"
+     },
+     {
+      "k": "item",
+      "text": "Fruit roasted with thyme, basil & orange blossom on candied orange & almonds paste, roasted mixed nuts, drizzle of halva & black grape molasses",
+      "tags": []
+     }
+    ],
+    "notes": [
+     "Dishes may change due to availability and pricing. Vegetarian replacements can be adjusted to vegan."
+    ]
+   }
+  ],
+  "wine": [
+   {
+    "title": "Sparkling",
+    "styles": [
+     {
+      "title": "Fresh & lively",
+      "wines": [
+       {
+        "name": "Vino Spumante, Beppe Morchetta, Veneto, Italy, NV (VG)",
+        "note": "Delicate, peach, fine bubbles",
+        "g": "9",
+        "c": "",
+        "b": "39"
+       },
+       {
+        "name": "Rosé Crémant de Limoux, Domaine J. Laurens, Languedoc, France, NV (S)",
+        "note": "Fresh, strawberry, irresistible",
+        "g": "12",
+        "c": "",
+        "b": "55"
+       }
+      ]
+     },
+     {
+      "title": "Rich & elegant",
+      "wines": [
+       {
+        "name": "Champagne Brut, Ambassadeur, Gremillet, Champagne, France, NV",
+        "note": "Luxurious, peach, crisp",
+        "g": "18",
+        "c": "",
+        "b": "99"
+       },
+       {
+        "name": "Pol Roger Réserve Brut, Champagne, France, NV",
+        "note": "Elegant, biscuit, celebratory",
+        "g": "",
+        "c": "",
+        "b": "130"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Rosé & orange",
+    "styles": [
+     {
+      "title": "Crisp & fresh",
+      "wines": [
+       {
+        "name": "Grenache Rosé, Wild House, Western Cape, South Africa, 2025 (VG)",
+        "note": "Strawberry, pink apple, crisp",
+        "g": "",
+        "c": "",
+        "b": "39"
+       },
+       {
+        "name": "Pinot Noir Rosé, Solara, Cramele RecaŞ, Romania, NV (VG)",
+        "note": "Raspberry, floral, zesty finish",
+        "g": "9",
+        "c": "26.5",
+        "b": "46"
+       }
+      ]
+     },
+     {
+      "title": "Elegant & refined",
+      "wines": [
+       {
+        "name": "Les Deux Anges, Château L'Escarelle, Provence, France, 2025 (VG/O/S)",
+        "note": "Elegant, fresh, notes of pomelo",
+        "g": "13",
+        "c": "38.5",
+        "b": "69"
+       }
+      ]
+     },
+     {
+      "title": "Fruity & textured",
+      "wines": [
+       {
+        "name": "Grenache Gris (orange wine), Dye Bleeding, South Africa, 2025 (V/O)",
+        "note": "Light, strawberry, easy drinking",
+        "g": "10",
+        "c": "29.5",
+        "b": "51"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "White",
+    "styles": [
+     {
+      "title": "Fresh & light",
+      "wines": [
+       {
+        "name": "Viura, Castillo del Moro, Castilla, Spain, 2025 (VG)",
+        "note": "Lemon, gooseberry, fresh",
+        "g": "",
+        "c": "",
+        "b": "35"
+       },
+       {
+        "name": "Loureiro, Villa Nova, Vinho Verde, Portugal, 2025 (VG)",
+        "note": "Citrus, tropical notes, light spritz",
+        "g": "9",
+        "c": "26.5",
+        "b": "44"
+       },
+       {
+        "name": "Sauvignon Blanc, Mayfly, Marlborough, New Zealand, 2025 (VG)",
+        "note": "Peach, exotic fruits, long finish",
+        "g": "11",
+        "c": "32.5",
+        "b": "59"
+       },
+       {
+        "name": "Verdejo, Viñedos Centenarios, Cuatro Rayas, Rueda, Spain, 2024 (VG/S)",
+        "note": "Clean, floral, easy drinking",
+        "g": "",
+        "c": "",
+        "b": "49"
+       },
+       {
+        "name": "Pouilly-Fumé, Domaine de Maltaverne, Loire, France, 2025 (VG)",
+        "note": "Fresh, green apple, great summer wine",
+        "g": "",
+        "c": "",
+        "b": "73"
+       }
+      ]
+     },
+     {
+      "title": "Aromatic & fruity",
+      "wines": [
+       {
+        "name": "Chenin Blanc/Viognier, Percheron, Coastal Region, South Africa, 2025 (VG)",
+        "note": "Vibrant, peach, crisp finish",
+        "g": "",
+        "c": "",
+        "b": "39"
+       },
+       {
+        "name": "Fumé Blanc, Dalton, Galilee, Israel, 2024 (VG)",
+        "note": "Aromatic, grapefruit, refreshing",
+        "g": "10",
+        "c": "29.5",
+        "b": "54"
+       },
+       {
+        "name": "Riesling, The Daily August, August Kesseler, Rheingau, Germany, 2024 (VG)",
+        "note": "Fruity, juicy, mineral",
+        "g": "13",
+        "c": "38.5",
+        "b": "68"
+       },
+       {
+        "name": "Gavi del Comune di Gavi, Tenuta Olim Bauda, Piedmont, Italy, 2024 (VG/O)",
+        "note": "Floral, pear, delightful",
+        "g": "",
+        "c": "",
+        "b": "81"
+       }
+      ]
+     },
+     {
+      "title": "Herbal & savoury",
+      "wines": [
+       {
+        "name": "Savatiano Old Vines, Domaine Papagiannakos, Attika, Greece, 2025 (VG)",
+        "note": "Floral, Mediterranean herbs, savoury",
+        "g": "",
+        "c": "",
+        "b": "62"
+       },
+       {
+        "name": "Semillón, Copa, Itata Valley, Chile, 2023 (VG)",
+        "note": "Peach, dried fruits, long finish",
+        "g": "",
+        "c": "",
+        "b": "77"
+       }
+      ]
+     },
+     {
+      "title": "Rich & complex",
+      "wines": [
+       {
+        "name": "Pouilly-Fuissé Grande Réserve, Dom. G. Saumaize, Burgundy, France, 2023 (S)",
+        "note": "Bold, complex, oak notes",
+        "g": "17.5",
+        "c": "52",
+        "b": "87"
+       },
+       {
+        "name": "Viognier, Contours de Deponcins, F. Villard, Rhône, France, 2023 (VG/O)",
+        "note": "Powerful, stonefruit, mineral",
+        "g": "",
+        "c": "",
+        "b": "95"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Red",
+    "styles": [
+     {
+      "title": "Fresh & juicy",
+      "wines": [
+       {
+        "name": "Garnacha Ráme, Bodegas Borsao, Aragón, Spain, 2022 (V/S)",
+        "note": "Blackberry, cherry, easy drinking",
+        "g": "",
+        "c": "",
+        "b": "37"
+       },
+       {
+        "name": "Merlot Reserva, Los Espinos, Espinos y Cardos, Central Valley, Chile, 2025 (VG/S)",
+        "note": "Plum, soft, juicy",
+        "g": "",
+        "c": "",
+        "b": "43"
+       },
+       {
+        "name": "Zweigelt, Funkstille, Niederösterreich, Austria, 2024 (VG)",
+        "note": "Vibrant, berries, easy drinking",
+        "g": "11",
+        "c": "32.5",
+        "b": "52"
+       },
+       {
+        "name": "Pinot Noir Select Vineyard, Soumah, Yarra Valley, Australia, 2023 (VG)",
+        "note": "Fresh, summer berries, silky",
+        "g": "13",
+        "c": "38.5",
+        "b": "63"
+       }
+      ]
+     },
+     {
+      "title": "Concentrated & generous",
+      "wines": [
+       {
+        "name": "Quinta dos Quatro Ventos Tinto, Douro, Portugal, 2023 (VG)",
+        "note": "Bold, earthy blackberry, hints of vanilla",
+        "g": "9",
+        "c": "26.5",
+        "b": "39"
+       },
+       {
+        "name": "Malbec Tupungato, Cadus, Uco Valley, Argentina, 2023 (VG)",
+        "note": "Plum, herbal notes, mineral finish",
+        "g": "",
+        "c": "",
+        "b": "68"
+       },
+       {
+        "name": "Rioja Reserva, Bodegas Luis Cañas, Rioja, Spain, 2019 (VG/O)",
+        "note": "Dark fruits, liquorice, long finish",
+        "g": "",
+        "c": "",
+        "b": "85"
+       }
+      ]
+     },
+     {
+      "title": "Elegant & balanced",
+      "wines": [
+       {
+        "name": "Argaman Classic, Barkan, Galilee, Israel, 2023 (VG)",
+        "note": "Red fruits, cassis, hint of spice",
+        "g": "10",
+        "c": "29.5",
+        "b": "48"
+       },
+       {
+        "name": "Grenache/Carignan, Terres Fideles, Côtes du Roussillon, France, 2023 (VG/O)",
+        "note": "Rich, balanced, elegant",
+        "g": "12",
+        "c": "35.5",
+        "b": "57"
+       },
+       {
+        "name": "Barbera d’Asti Superiore, Il Cascinone d’Annona, Piemonte, Italy, 2021 (VG/S)",
+        "note": "Cherry, violet, velvety",
+        "g": "",
+        "c": "",
+        "b": "72"
+       },
+       {
+        "name": "Cabernet Franc, Chinon Rouge, Dom. de Pallus, Loire, France, 2023 (VG/O)",
+        "note": "Elegant, delicate, smoky note",
+        "g": "",
+        "c": "",
+        "b": "76"
+       }
+      ]
+     },
+     {
+      "title": "Bold & complex",
+      "wines": [
+       {
+        "name": "Cab Sauvignon/Merlot, Clos du Val, Napa Valley, USA, 2021 (VG)",
+        "note": "Bold, Bordeaux style, notes of oak",
+        "g": "18",
+        "c": "53.5",
+        "b": "89"
+       },
+       {
+        "name": "Châteauneuf-du-Pape Tradition Rouge, Château Maucoil, France, 2023 (VG/O)",
+        "note": "Beautiful, intense, generous",
+        "g": "",
+        "c": "",
+        "b": "99"
+       },
+       {
+        "name": "Saint-Emilion Grand Cru, Aux Plantes, Bordeaux, France, 2019 (VG/O)",
+        "note": "Classic, powerful, spice notes",
+        "g": "",
+        "c": "",
+        "b": "110"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "east": {
+  "alc": [
+   {
+    "title": "Snacks & dips",
+    "sub": "",
+    "items": [
+     {
+      "text": "House marinated Sicilian olives",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "5.5",
+      "extra": ""
+     },
+     {
+      "text": "Carpaccio of golden beetroot, whipped Rosary goats cheese, pistachios",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "9",
+      "extra": ""
+     },
+     {
+      "text": "Smokey aubergine, tahini & zhoug to double dip with fluffy pita",
+      "tags": [
+       "VG"
+      ],
+      "price": "12",
+      "extra": ""
+     },
+     {
+      "text": "Hummus, slow-cooked chickpeas, tomato roe, shifka peppers, pita",
+      "tags": [
+       "VG"
+      ],
+      "price": "10.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Mix & match",
+    "sub": "",
+    "items": [
+     {
+      "text": "Creamy burrata served on grilled pita with seasonal ingredients",
+      "tags": [],
+      "price": "Daily price",
+      "extra": ""
+     },
+     {
+      "text": "Feta, courgette & carrots fritters, orange peel reduction",
+      "tags": [
+       "V"
+      ],
+      "price": "9",
+      "extra": ""
+     },
+     {
+      "text": "Lettuce cups of charcoaled chicken smothered in spicy tahini, date molasses, roasted almonds, spring onion",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "6 per cup",
+      "extra": ""
+     },
+     {
+      "text": "Grilled courgette two-ways, crispy onions, pine kernels, labneh drizzle",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "13.5",
+      "extra": ""
+     },
+     {
+      "text": "Mixed mushrooms roasted with sweet & spicy paprika and cashews",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "8.5",
+      "extra": ""
+     },
+     {
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "9 / 14 / 19",
+      "extra": ""
+     },
+     {
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, sweet potato, toasted almonds, raw tahini, black grape molasses",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "14",
+      "extra": ""
+     },
+     {
+      "text": "Salad of fresh figs, grilled goats cheese, roasted hazelnuts, chicory & frisée",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "16.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Mains",
+    "sub": "",
+    "items": [
+     {
+      "text": "Angus beef koftas, purée of caramelised heritage carrots, charcoaled onions, pomegranate seeds",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "22.5",
+      "extra": ""
+     },
+     {
+      "text": "Lamb baharat on the grill, roasted shallots, mint yoghurt",
+      "tags": [
+       "GF"
+      ],
+      "price": "24.5",
+      "extra": ""
+     },
+     {
+      "text": "House beef rump shawarma with dates & pine nuts on grilled pita, salad of garden vegetables, house pickles & herbs, tahini",
+      "tags": [
+       "DF"
+      ],
+      "price": "23.5",
+      "extra": ""
+     },
+     {
+      "text": "Charcoal grilled spiced chicken thigh, roasted sweet potato purée & crispy strings, crushed barberries",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "22.5",
+      "extra": ""
+     },
+     {
+      "text": "Prawns pan-seared with herbs, charcoaled yellow peppers, crispy kale, pickled beetroot aioli",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "22.5",
+      "extra": ""
+     },
+     {
+      "text": "Seared tuna, pickled ginger vinaigrette, avocado purée, blackberries",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "24",
+      "extra": ""
+     },
+     {
+      "text": "Whole crispy seabass, sweet & spicy chilli-date molasses, pomegranate, herbs",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "25",
+      "extra": ""
+     },
+     {
+      "text": "Salmon glazed & charcoal roasted, miso-tahini, cavolo nero",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "25.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "On the side",
+    "sub": "",
+    "items": [
+     {
+      "text": "Crispy rosemary potatoes on garlic-infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "7.5",
+      "extra": ""
+     },
+     {
+      "text": "Grilled hispi cabbage, pumpkin seeds & chilli dukkah",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "8",
+      "extra": ""
+     },
+     {
+      "text": "Charcoaled sweet potato, raw tahini, salmoriglio",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "7.5",
+      "extra": ""
+     }
+    ]
+   }
+  ],
+  "weekend": [
+   {
+    "title": "Weekend brunch specials",
+    "sub": "Available until 3.30pm",
+    "items": [
+     {
+      "name": "The full Delamina",
+      "text": "2 eggs (scrambled/fried/poached) with mazetim: feta, courgette & carrot fritter / hummus & chickpeas / labneh & za’atar / feta with honey, sesame & sumac / tahini & rose harissa oil / smokey aubergine / sweet roasted almond spread / pita & mixed bread",
+      "tags": [
+       "V"
+      ],
+      "price": "17.5",
+      "extra": ""
+     },
+     {
+      "name": "Shakshuka",
+      "text": "Eggs cooked in a pan with tomatoes, peppers & onions, touch of chilli, pita",
+      "tags": [
+       "V",
+       "DF"
+      ],
+      "price": "15.5",
+      "extra": "Add chorizo/feta +3"
+     },
+     {
+      "name": "Focaccia Benedict",
+      "text": "Poached eggs, harissa hollandaise, avocado with sumac, crispy pancetta, pomegranate seeds on rosemary & za’atar focaccia (can replace pancetta with cavolo nero)",
+      "tags": [],
+      "price": "16",
+      "extra": ""
+     }
+    ]
+   }
+  ],
+  "sharing": [
+   {
+    "title": "3-course sharing menu",
+    "price": "£48 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "Starters"
+     },
+     {
+      "k": "item",
+      "text": "Hummus, slow-cooked chickpeas, grated tomato, shifka peppers, fluffy pita",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Feta, courgette & carrot fritters, orange peel reduction",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, sweet potato, roasted almonds, raw tahini, black grape molasses",
+      "tags": []
+     },
+     {
+      "k": "head",
+      "text": "Mains"
+     },
+     {
+      "k": "item",
+      "text": "House shawarma with dates & pine nuts on grilled pita, house pickles, vegetables & herbs, tahini",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Salmon glazed & charcoal roasted, miso tahini, cavolo nero",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Crispy rosemary potatoes on garlic-infused yoghurt",
+      "tags": []
+     },
+     {
+      "k": "head",
+      "text": "Desserts"
+     },
+     {
+      "k": "item",
+      "text": "Crunchy praline, choco-mocca mousse, raw chocolate tahini",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest of vanilla cheesecake cream, caramelised pecans",
+      "tags": []
+     }
+    ],
+    "notes": []
+   },
+   {
+    "title": "Classics 4-course sharing menu",
+    "price": "£57 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "Nibbles"
+     },
+     {
+      "k": "item",
+      "text": "Carpaccio of golden beetroot, whipped Rosary goats cheese, pistachios",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Hummus, slow-cooked chickpeas, grated tomato, shifka peppers, fluffy pita",
+      "tags": []
+     },
+     {
+      "k": "head",
+      "text": "Starters"
+     },
+     {
+      "k": "item",
+      "text": "Grilled courgette two-ways, crispy onions, pine kernels, labneh drizzle",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Seared tuna, pickled ginger vinaigrette, avocado purée, blackberries",
+      "tags": []
+     },
+     {
+      "k": "head",
+      "text": "Mains"
+     },
+     {
+      "k": "item",
+      "text": "Angus beef koftas, purée of caramelised heritage carrots, charcoaled onions, crispy chickpeas",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Charcoal grilled spiced chicken thigh, roasted sweet potato purée & crispy strings, crushed barberries",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Salmon glazed & charcoal roasted, miso tahini, cavolo nero",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Crispy rosemary potatoes on garlic-infused yoghurt",
+      "tags": []
+     },
+     {
+      "k": "head",
+      "text": "Desserts"
+     },
+     {
+      "k": "item",
+      "text": "Crunchy praline, choco-mocca mousse, raw chocolate tahini",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest of vanilla cheesecake cream, caramelised pecans",
+      "tags": []
+     }
+    ],
+    "notes": []
+   }
+  ],
+  "xmas": [
+   {
+    "title": "Christmas feast sharing menu",
+    "price": "£64 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "item",
+      "text": "Selection of house dips with fluffy pita",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Hummus with crispy chickpeas",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Tahini with zhoug",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Smokey aubergine",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Grilled courgette two-ways, crispy onions, pine kernels, labneh drizzle",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Seared tuna, pickled ginger vinaigrette, avocado purée, blackberries",
+      "tags": []
+     },
+     {
+      "k": "label",
+      "text": "Vegan option"
+     },
+     {
+      "k": "item",
+      "text": "Roasted mauve aubergine, black tahini, grape molasses",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Dry aged sirloin tagliata marinated with ras-el-hanout & Urfa chilli, charcoal grilled hispi cabbage, vine leaf chimichurri",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Duck breast with baharat & orange zest, wine & orange jus",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Salmon glazed & charcoal roasted, miso-tahini, cavolo nero",
+      "tags": []
+     },
+     {
+      "k": "label",
+      "text": "Vegetarian/vegan option"
+     },
+     {
+      "k": "item",
+      "text": "Tabbouleh style quinoa, fresh herbs, cranberries, roasted almonds, raw tahini, black grape molasses",
+      "tags": []
+     },
+     {
+      "k": "or",
+      "text": "&"
+     },
+     {
+      "k": "item",
+      "text": "Roasted sweet potato purée topped with Rosary goats cheese, charcoal-roasted vegetables, dukkah",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Charred cauliflower, lemon-infused crème fraîche, pomegranate molasses & seeds",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Caramelised Violina pumpkin with salmoriglio & sesame drizzle",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Crunchy praline, choco-mocca mousse, raw chocolate tahini",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Date & pistachio cake, toffee drizzle, crème fraîche",
+      "tags": []
+     },
+     {
+      "k": "label",
+      "text": "Vegan option"
+     },
+     {
+      "k": "item",
+      "text": "Parfait of mango & pomegranate, salted sesame crumble",
+      "tags": []
+     }
+    ],
+    "notes": [
+     "Dishes may change due to availability and pricing. Vegetarian replacements can be adjusted to vegan."
+    ]
+   }
+  ],
+  "wine": [
+   {
+    "title": "Sparkling",
+    "styles": [
+     {
+      "title": "Fresh & lively",
+      "wines": [
+       {
+        "name": "Vino Spumante, Beppe Morchetta, Veneto, Italy, NV (VG)",
+        "note": "Delicate, white peach, fine bubbles",
+        "g": "8.5",
+        "c": "",
+        "b": "39"
+       },
+       {
+        "name": "Pinot Noir/Chardonnay, Amaluna Sparkling Rosé, Valle Casablanca, Chile, NV (VG/O/S)",
+        "note": "Strawberry, crisp, refreshing",
+        "g": "10.5",
+        "c": "",
+        "b": "49"
+       }
+      ]
+     },
+     {
+      "title": "Rich & elegant",
+      "wines": [
+       {
+        "name": "Crémant de Bordeaux, Perles de Piote Blanc, Château de Piote, France, NV (VG/O/CS)",
+        "note": "Baked apple, creamy, fine bubbles",
+        "g": "",
+        "c": "",
+        "b": "59"
+       },
+       {
+        "name": "Champagne Grande Réserve Brut, Jean de Villaré, France, NV (VG)",
+        "note": "Brioche, citrus, mineral",
+        "g": "",
+        "c": "",
+        "b": "89"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Rosé & orange",
+    "styles": [
+     {
+      "title": "Fresh & fruity",
+      "wines": [
+       {
+        "name": "Rosé, Călușari, Recaș, Romania, 2025 (VG)",
+        "note": "Light, strawberry, crisp",
+        "g": "",
+        "c": "",
+        "b": "39"
+       },
+       {
+        "name": "Grenache/Cinsault, Domaine de la Vieille Tour Rosé, Provence, France, 2025 (VG/O)",
+        "note": "Raspberry, white peach, dry",
+        "g": "10",
+        "c": "29.5",
+        "b": "55"
+       }
+      ]
+     },
+     {
+      "title": "Textured & adventurous",
+      "wines": [
+       {
+        "name": "Skin Contact (orange wine), Funkstille, Niederösterreich, Austria, 2024 (VG/S)",
+        "note": "Grapefruit, gentle texture, soft finish",
+        "g": "10",
+        "c": "29.5",
+        "b": "50"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "White",
+    "styles": [
+     {
+      "title": "Crisp, zesty & refreshing",
+      "wines": [
+       {
+        "name": "Sauvignon Blanc Zéro - 0% ABV, Chavin, Languedoc-Roussillon, France, 2025 (VG)",
+        "note": "Citrus, stone fruit, refreshing",
+        "g": "8",
+        "c": "23.5",
+        "b": "35"
+       },
+       {
+        "name": "Viura, Castillo del Moro, Castilla, Spain, 2024 (VG)",
+        "note": "Lemon, gooseberry, fresh",
+        "g": "",
+        "c": "",
+        "b": "35"
+       },
+       {
+        "name": "Piquepoul, Pique & Mixe, Vignerons de Florensac, Languedoc, France, 2024 (VG/O)",
+        "note": "Citrus, green apple, saline",
+        "g": "8.5",
+        "c": "25",
+        "b": "44"
+       },
+       {
+        "name": "Alvarinho, Vila Nova, Vinho Verde, Portugal, 2024 (VG)",
+        "note": "White peach, citrus, crisp",
+        "g": "",
+        "c": "",
+        "b": "48"
+       },
+       {
+        "name": "Sauvignon Blanc, Earthsong, Marlborough, New Zealand, 2025 (V)",
+        "note": "Tropical fruit, citrus, bright finish",
+        "g": "12",
+        "c": "35.5",
+        "b": "65"
+       }
+      ]
+     },
+     {
+      "title": "Aromatic, floral & herbal",
+      "wines": [
+       {
+        "name": "Verdejo Aguazul, Bodegas Pisuerga, Rueda, Spain, 2024 (VG/O)",
+        "note": "Greengage, citrus, herbal",
+        "g": "",
+        "c": "",
+        "b": "52"
+       },
+       {
+        "name": "Fumé Blanc, Dalton, Galilee, Israel, 2024",
+        "note": "Grapefruit, fresh herbs, aromatic",
+        "g": "10",
+        "c": "29.5",
+        "b": "54"
+       },
+       {
+        "name": "Savatiano Old Vines, Domaine Papagiannakos, Attiki, Greece, 2024 (VG)",
+        "note": "Floral, Mediterranean herbs, savoury",
+        "g": "",
+        "c": "",
+        "b": "62"
+       },
+       {
+        "name": "Vermentino di Sardegna, Mora & Memo, Sardinia, Italy, 2023 (VG/O)",
+        "note": "Peach, citrus, wild herbs",
+        "g": "13",
+        "c": "38.5",
+        "b": "69"
+       }
+      ]
+     },
+     {
+      "title": "Rounded, ripe & textured",
+      "wines": [
+       {
+        "name": "Chenin Blanc, Revenant, Coastal Region, South Africa, 2024 (VG/S)",
+        "note": "Apricot, gentle creaminess, soft finish",
+        "g": "",
+        "c": "",
+        "b": "39"
+       },
+       {
+        "name": "Chardonnay, Manos Negras, Mendoza, Argentina, 2024 (VG/O)",
+        "note": "Stone fruit, tropical fruit, clean finish",
+        "g": "11",
+        "c": "32.5",
+        "b": "58"
+       },
+       {
+        "name": "Pinot Gris Il Campo Bianco, Giornata, California, USA, 2023 (VG/O)",
+        "note": "Citrus blossom, kumquat, saline",
+        "g": "",
+        "c": "",
+        "b": "74"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Red",
+    "styles": [
+     {
+      "title": "Juicy, fresh & silky",
+      "wines": [
+       {
+        "name": "Pinot Noir, Călușari, Recaș, Romania, 2025 (VG)",
+        "note": "Raspberry, cherry, gentle vanilla",
+        "g": "",
+        "c": "",
+        "b": "40"
+       },
+       {
+        "name": "Pinot Noir Select Vineyard, Soumah, Yarra Valley, Australia, 2023 (VG)",
+        "note": "Summer berries, fresh, silky",
+        "g": "13",
+        "c": "38.5",
+        "b": "63"
+       },
+       {
+        "name": "Carignan, Domaine des Tourelles, Bekaa Valley, Lebanon, 2022 (VG)",
+        "note": "Black cherry, liquorice, spice",
+        "g": "",
+        "c": "",
+        "b": "66"
+       },
+       {
+        "name": "Cabernet Franc, Chinon Rouge, Dom. de Pallus, Loire, France, 2023 (VG/O)",
+        "note": "Red berries, fresh herbs, subtle smoke",
+        "g": "14",
+        "c": "41.5",
+        "b": "71"
+       }
+      ]
+     },
+     {
+      "title": "Smooth, rich & generous",
+      "wines": [
+       {
+        "name": "Garnacha Monte Oton, Borsao, Aragón, Spain, 2024 (V/CS)",
+        "note": "Plum, cassis, soft tannins",
+        "g": "",
+        "c": "",
+        "b": "35"
+       },
+       {
+        "name": "Malbec, Man Meets Mountain, Mendoza, Argentina, 2024 (VG)",
+        "note": "Blackberry, spice, rounded tannins",
+        "g": "9",
+        "c": "26.5",
+        "b": "45"
+       },
+       {
+        "name": "Carmenère Gran Reserva, Tabali, Pedregoso, Cachapoal Valley, Chile, 2023 (VG)",
+        "note": "Dark fruit, chocolate, smooth tannins",
+        "g": "",
+        "c": "",
+        "b": "53"
+       },
+       {
+        "name": "Grenache/Carignan, Terres Fidèles, Côtes du Roussillon, France, 2021 (VG/O)",
+        "note": "Blackberry, wild herbs, balanced",
+        "g": "11",
+        "c": "32.5",
+        "b": "57"
+       },
+       {
+        "name": "Rioja Reserva, Bodegas Luis Cañas, Rioja, Spain, 2019 (VG/O)",
+        "note": "Dark fruit, cedar, long silky finish",
+        "g": "",
+        "c": "",
+        "b": "82"
+       }
+      ]
+     },
+     {
+      "title": "Bold, dark & structured",
+      "wines": [
+       {
+        "name": "Negroamaro, Appassimento, Tenuta Serranova, Puglia, Italy, 2023 (VG)",
+        "note": "Black cherry, coffee, rich",
+        "g": "10",
+        "c": "29.5",
+        "b": "50"
+       },
+       {
+        "name": "Cabernet Sauvignon/Malbec, Clos du Val Red Blend, Napa Valley, USA, 2021 (VG)",
+        "note": "Blackberry, chocolate, rich finish",
+        "g": "",
+        "c": "",
+        "b": "85"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "townhouse": {
+  "alc": [
+   {
+    "title": "To begin",
+    "sub": "",
+    "items": [
+     {
+      "text": "House marinated Sicilian olives",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "5.5",
+      "extra": ""
+     },
+     {
+      "text": "Crispy oyster mushrooms, truffled artichokes mousse",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "9.5",
+      "extra": ""
+     },
+     {
+      "text": "Leek, feta & sundried tomatoes croquettes",
+      "tags": [
+       "V"
+      ],
+      "price": "8",
+      "extra": ""
+     },
+     {
+      "text": "Kubaneh, tahini & zhoug, smokey aubergine, salsa",
+      "tags": [
+       "V"
+      ],
+      "price": "13",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Mix & match",
+    "sub": "",
+    "items": [
+     {
+      "text": "Burrata daily special",
+      "tags": [
+       "V"
+      ],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "text": "Hummus, tomato roe, shifka peppers, pita",
+      "tags": [
+       "VG"
+      ],
+      "price": "10.5",
+      "extra": ""
+     },
+     {
+      "text": "Watermelon, feta, caramelised Kalamata tapenade, toasted pumpkin seeds, mint",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "9.5",
+      "extra": ""
+     },
+     {
+      "text": "Courgette two-ways, crispy shallots, labneh, balsamic reduction",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "13.5",
+      "extra": ""
+     },
+     {
+      "text": "Roasted cauliflower, lemon crème fraîche, pomegranate molasses",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "9 / 14 / 19",
+      "extra": ""
+     },
+     {
+      "text": "Beef & lamb koftas, pistachio cream, barberries",
+      "tags": [
+       "GF"
+      ],
+      "price": "12",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Larger plates",
+    "sub": "",
+    "items": [
+     {
+      "text": "Grilled chicken ras-el-hanout, roasted sweet potato purée, sweet potato strings",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "22.5",
+      "extra": ""
+     },
+     {
+      "text": "Beef shawarma, house pickles, dates, pine nuts, tahini, pita",
+      "tags": [
+       "DF"
+      ],
+      "price": "24.5",
+      "extra": ""
+     },
+     {
+      "text": "Grilled lamb, green salsa, heritage carrot purée, shallots, dukkah",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "26",
+      "extra": ""
+     },
+     {
+      "text": "Seared tuna, pickled ginger vinaigrette, avocado purée, blackberries",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "26",
+      "extra": ""
+     },
+     {
+      "text": "Whole crispy seabass, sweet & spicy chilli-date molasses, pomegranate, herbs",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "25",
+      "extra": ""
+     },
+     {
+      "text": "Za’atar giant prawns, charred spring onions, crispy capers & cavolo nero, paprika aioli",
+      "tags": [
+       "DF"
+      ],
+      "price": "25.5",
+      "extra": ""
+     },
+     {
+      "text": "Charcoal roasted salmon with miso-tahini, cavolo nero, pickled salad",
+      "tags": [
+       "GF",
+       "DF"
+      ],
+      "price": "25.5",
+      "extra": ""
+     },
+     {
+      "text": "Glazed aubergine & vegetables hotpot, haricot beans, tahini, puffed buckwheat",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "18.5",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "On the side",
+    "sub": "",
+    "items": [
+     {
+      "text": "Crispy rosemary potatoes, garlic-infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ],
+      "price": "7.5",
+      "extra": ""
+     },
+     {
+      "text": "Charred hispi cabbage, pumpkin seeds & chilli dukkah",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "7.5",
+      "extra": ""
+     },
+     {
+      "text": "Gem lettuce, pomelo & barberries vinaigrette",
+      "tags": [
+       "VG",
+       "GF"
+      ],
+      "price": "7.5",
+      "extra": ""
+     },
+     {
+      "text": "Giant couscous with roasted artichokes",
+      "tags": [
+       "VG"
+      ],
+      "price": "7.5",
+      "extra": ""
+     }
+    ]
+   }
+  ],
+  "pretheatre": [
+   {
+    "title": "Pre-theatre menu",
+    "price": "£27.5 per person",
+    "sub": "Choose one from each section per person",
+    "blocks": [
+     {
+      "k": "head",
+      "text": "To share"
+     },
+     {
+      "k": "item",
+      "text": "Kubaneh, tahini & zhoug, smokey aubergine, salsa",
+      "tags": [
+       "V"
+      ],
+      "extra": "supplement £13"
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Crispy oyster mushrooms, truffled artichoke purée",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "or",
+      "text": "or"
+     },
+     {
+      "k": "item",
+      "text": "Kohlrabi carpaccio, goats cheese, pistachios",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Grilled chicken ras-el-hanout, roasted sweet potato purée",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "or",
+      "text": "or"
+     },
+     {
+      "k": "item",
+      "text": "Roasted seabass, cavolo nero, giant couscous with roasted artichoke",
+      "tags": [
+       "DF"
+      ]
+     }
+    ],
+    "notes": []
+   }
+  ],
+  "sharing": [
+   {
+    "title": "Classics sharing menu",
+    "price": "£59 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "item",
+      "text": "Kubaneh, tahini & zhoug, smokey aubergine, salsa",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Crispy oyster mushrooms, truffled artichokes",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Burrata balagan daily special",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Seared tuna, pickled ginger vinaigrette, avocado purée, blackberries",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Beef & lamb koftas, pistachio cream, barberries",
+      "tags": [
+       "GF"
+      ]
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Grilled lamb, green salsa, heritage carrot purée, shallots, dukkah",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Whole crispy seabass, chilli-date molasses, pomegranate, herbs",
+      "tags": [
+       "GF",
+       "DF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Charred hispi cabbage, pumpkin seeds & chilli dukkah",
+      "tags": [
+       "VG",
+       "GF"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Crispy rosemary potatoes, garlic-infused yoghurt",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest, vanilla cheesecake cream, caramelised pecans",
+      "tags": [
+       "V"
+      ]
+     },
+     {
+      "k": "item",
+      "text": "Chocolate mousse, olive oil, coffee & Urfa chilli shards",
+      "tags": [
+       "V",
+       "GF"
+      ]
+     }
+    ],
+    "notes": []
+   }
+  ],
+  "xmas": [
+   {
+    "title": "Christmas feast sharing menu",
+    "price": "£69 per guest",
+    "sub": "",
+    "blocks": [
+     {
+      "k": "item",
+      "text": "Kubaneh, tahini, zhoug, salsa, smokey aubergine",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Courgette two-ways, crispy shallots, labneh, balsamic reduction",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Seared tuna, pickled ginger vinaigrette, avocado purée, blackberries",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Dry aged sirloin tagliata, grilled hispi cabbage, vine leaf chimichurri",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Duck breast, wine & orange jus",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Glazed & roasted salmon, miso-tahini, cavolo nero",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Roasted cauliflower, lemon crème fraîche, pomegranate molasses",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Caramelised Violina pumpkin with salmoriglio & sesame drizzle",
+      "tags": []
+     },
+     {
+      "k": "sep"
+     },
+     {
+      "k": "item",
+      "text": "Kadayif nest, vanilla cheesecake cream, caramelised pecans",
+      "tags": []
+     },
+     {
+      "k": "item",
+      "text": "Chocolate mousse, olive oil, coffee & Urfa chilli shards",
+      "tags": []
+     }
+    ],
+    "notes": [
+     "Dishes may change due to availability and pricing. Vegetarian/vegan replacements are available."
+    ]
+   }
+  ],
+  "wine": [
+   {
+    "title": "Sparkling",
+    "styles": [
+     {
+      "title": "",
+      "wines": [
+       {
+        "name": "Spumante Brut, Beppe Morchetta, Veneto, Italy, NV (VG)",
+        "note": "Crisp, elegant, salute!",
+        "g": "",
+        "c": "",
+        "b": "39"
+       },
+       {
+        "name": "Blanc de Blancs, Pique & Mixe, Vignerons de Florensac, Languedoc, France",
+        "note": "Vibrant, citrus fruits, easy drinking",
+        "g": "11",
+        "c": "",
+        "b": "48"
+       },
+       {
+        "name": "Rosé Brut Cava, Nº 11, Cava, Spain, 2021",
+        "note": "Raspberry, fresh, soft",
+        "g": "13",
+        "c": "",
+        "b": "56"
+       },
+       {
+        "name": "Champagne, Grande Réserve Brut, Jean de Villaré, France, NV",
+        "note": "Elegant, brioche, mineral",
+        "g": "",
+        "c": "",
+        "b": "92"
+       },
+       {
+        "name": "Champagne, Cuvée Pure, Brut Nature / Zéro Dosage, Pierre Mignon, France, NV",
+        "note": "Luxurious, fine bubbles, rich flavours",
+        "g": "19",
+        "c": "",
+        "b": "114"
+       },
+       {
+        "name": "Billecart-Salmon, Brut Réserve, France, NV",
+        "note": "Wonderful, creamy, long finish",
+        "g": "",
+        "c": "",
+        "b": "149"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Rosé",
+    "styles": [
+     {
+      "title": "",
+      "wines": [
+       {
+        "name": "Grenache Rosé, Wild House, Western Cape, South Africa, 2025 (VG)",
+        "note": "Strawberry, apple, crisp",
+        "g": "9",
+        "c": "26.5",
+        "b": "38"
+       },
+       {
+        "name": "Les Deux Anges, Château L'Escarelle, Cot. Varois en Provence, 2024 (VG/O)",
+        "note": "Elegant, fresh, notes of pomelo",
+        "g": "",
+        "c": "",
+        "b": "69"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Orange",
+    "styles": [
+     {
+      "title": "",
+      "wines": [
+       {
+        "name": "Skin Contact, Funkstille, Niederösterreich, Austria, 2024 (VG)",
+        "note": "Light orange, grapefruit, soft",
+        "g": "",
+        "c": "",
+        "b": "48"
+       },
+       {
+        "name": "Garnacha Blanca/Gris, Enblanco, Altolandon, Manchuela, Spain, 2023 (VG/O)",
+        "note": "Medium-full bodied, stonefruit, easy drinking",
+        "g": "10",
+        "c": "29.5",
+        "b": "54"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Dessert",
+    "styles": [
+     {
+      "title": "",
+      "wines": [
+       {
+        "name": "Chenin Blanc, Côteaux du Layon, Domaine des Baumard, Loire, France, 2023 (VG)",
+        "note": "Fresh, stone fruits, honey notes",
+        "g": "8",
+        "c": "",
+        "b": "40"
+       },
+       {
+        "name": "Petit Manseng, Dulce Enero Ice Wine, Altolandon, Manchuela, Spain, 2023 (VG/O)",
+        "note": "Raisin, dried fig, long finish",
+        "g": "11",
+        "c": "",
+        "b": "72"
+       },
+       {
+        "name": "Mourvèdre-Late Harvest, Cline Cellars, California, USA, 2019 (VG)",
+        "note": "Chocolate, black fruits, fruity",
+        "g": "12",
+        "c": "",
+        "b": "60"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "White",
+    "styles": [
+     {
+      "title": "",
+      "wines": [
+       {
+        "name": "Viura, Castillo del Moro, Castilla, Spain, 2024 (VG)",
+        "note": "Lemon, gooseberry, fresh",
+        "g": "",
+        "c": "",
+        "b": "35"
+       },
+       {
+        "name": "Chenin Blanc, Revenant, Coastal Region, South Africa, 2024 (VG)",
+        "note": "Apricot, light, creamy finish",
+        "g": "",
+        "c": "",
+        "b": "38"
+       },
+       {
+        "name": "Catarratto, Bianco Biologico, Fabrizio Vella, Sicily, Italy, 2024 (VG/O)",
+        "note": "Tropical fruits, citrus, medium-full bodied",
+        "g": "",
+        "c": "",
+        "b": "41"
+       },
+       {
+        "name": "Piquepoul, Pique & Mixe, Vignerons de Florensac, Languedoc, 2024 (VG/O)",
+        "note": "Fruity, fresh, long finish",
+        "g": "9",
+        "c": "26.5",
+        "b": "44"
+       },
+       {
+        "name": "Alvarinho, Vila Nova, Vinho Verde, Portugal, 2024 (VG)",
+        "note": "Crisp, white peach, easy drinking",
+        "g": "",
+        "c": "",
+        "b": "48"
+       },
+       {
+        "name": "Gruner Veltliner, Funkstille, Niederösterreich, Austria, 2024 (VG) (V)",
+        "note": "Light, very dry, mineral finish",
+        "g": "",
+        "c": "",
+        "b": "51"
+       },
+       {
+        "name": "Fumé Blanc, Dalton, Galilee, Israel, 2024",
+        "note": "Medium bodied, aromatic, grapefruit",
+        "g": "10",
+        "c": "29.5",
+        "b": "54"
+       },
+       {
+        "name": "Hondarrabi Zuri Antxiola, Zudugarai, Getariako Txakolina, Spain, 2024 (O)",
+        "note": "Bone dry, green fruits, mineral",
+        "g": "",
+        "c": "",
+        "b": "57"
+       },
+       {
+        "name": "Merweh & Obeidi, Domaine des Tourelles, Bekaa Valley, Lebanon, 2023 (VG)",
+        "note": "Medium bodied, pineapple, hint of dried figs",
+        "g": "11",
+        "c": "32.5",
+        "b": "60"
+       },
+       {
+        "name": "Sauvignon Blanc, Earthsong, Marlborough, New Zealand, 2024 (VG)",
+        "note": "Tropical fruits, rich palette, crisp finish",
+        "g": "12",
+        "c": "35.5",
+        "b": "63"
+       },
+       {
+        "name": "Clairette Blanche, Avon, Daschbosch, Breedekloof, South Africa, 2021 (VG)",
+        "note": "Aromatic, bold, hint of vanilla",
+        "g": "",
+        "c": "",
+        "b": "65"
+       },
+       {
+        "name": "Vermentino di Sardegna, Mora & Memo, Sardinia, Italy, 2024 (VG/O)",
+        "note": "Peach, scent of herbs, clean finish",
+        "g": "",
+        "c": "",
+        "b": "67"
+       },
+       {
+        "name": "Riesling Terroir de Roche, Moritz-Prado, Alsace, France, 2023 (O)",
+        "note": "Nectarine, crisp, light",
+        "g": "",
+        "c": "",
+        "b": "71"
+       },
+       {
+        "name": "Pouilly-Fumé, Domaine de Maltaverne, Loire, France, 2023 (VG)",
+        "note": "Very fresh, green apple, great summer wine",
+        "g": "",
+        "c": "",
+        "b": "73"
+       },
+       {
+        "name": "Chardonnay, Psagot, Jerusalem, Israel, 2023 (VG/O)",
+        "note": "Fruity, pear, hint of oak",
+        "g": "",
+        "c": "",
+        "b": "81"
+       },
+       {
+        "name": "Furmint Dry, MM5, Mad Moser, Tokaj, Hungary, 2023 (VG/O)",
+        "note": "Medium-full bodied, apple, aromatic",
+        "g": "15",
+        "c": "44.5",
+        "b": "85"
+       },
+       {
+        "name": "Chablis, Domaine Bernard Defaix, Burgundy, France, 2023 (VG/O)",
+        "note": "Fresh, green apple, mineral notes",
+        "g": "",
+        "c": "",
+        "b": "88"
+       },
+       {
+        "name": "Viognier les Contours de Deponcins, Francois Villard, Rhône, France, 2023 (VG/O)",
+        "note": "Medium-full bodied, apricot, delicate oak",
+        "g": "",
+        "c": "",
+        "b": "98"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Red",
+    "styles": [
+     {
+      "title": "",
+      "wines": [
+       {
+        "name": "Garnacha, Ráme Selección, Bodegas Borsao, Campo de Borja, Spain, 2022 (V)",
+        "note": "Blackberry, cherry, easy drinking",
+        "g": "",
+        "c": "",
+        "b": "35"
+       },
+       {
+        "name": "Quinta dos Quatro Ventos Tinto, Bacalhoa, Douro, Portugal, 2023 (VG)",
+        "note": "Bold, earthy blackberry, hints of vanilla",
+        "g": "9",
+        "c": "26.5",
+        "b": "39"
+       },
+       {
+        "name": "Merlot/Cabernet Sauvignon, Solara Red, Cramele Recas, Romania, 2023 (VG)",
+        "note": "Bramble fruits, red currant, smooth finish",
+        "g": "",
+        "c": "",
+        "b": "41"
+       },
+       {
+        "name": "Zweigelt, Funkstille, Niederösterreich, Austria, 2024 (VG)",
+        "note": "Soft, fresh, incredibly juicy",
+        "g": "",
+        "c": "",
+        "b": "45"
+       },
+       {
+        "name": "Argaman Classic, Barkan, Galilee, Israel, 2023",
+        "note": "Red fruits, cassis, hint of spice",
+        "g": "10",
+        "c": "29.5",
+        "b": "49"
+       },
+       {
+        "name": "Carmenère Gran Reserva, Tabali, Pedregoso, Cachapoal Valley, Chile, 2023 (VG)",
+        "note": "Full bodied, chocolate notes, medium tannins",
+        "g": "",
+        "c": "",
+        "b": "53"
+       },
+       {
+        "name": "Grenache/Carignan, Terres Fideles, Côtes du Roussillon Villages, France, 2021 (VG/O)",
+        "note": "Medium-full bodied, well balanced, smooth",
+        "g": "",
+        "c": "",
+        "b": "56"
+       },
+       {
+        "name": "Merlot, Dompter la Bête, Vincent Lacoste, Bordeaux, France, 2022 (VG/O)",
+        "note": "Classic Bordeaux style, black cherry, juicy",
+        "g": "11",
+        "c": "32.5",
+        "b": "58"
+       },
+       {
+        "name": "Schioppettino, Isola Augusta, Friuli, Italy, 2022",
+        "note": "Wild strawberry, subtle spices, low tannin",
+        "g": "",
+        "c": "",
+        "b": "61"
+       },
+       {
+        "name": "Pinot Noir Select Vineyard, Soumah, Yarra Valley, Australia, 2023",
+        "note": "Fresh, summer berries, gentle minerality",
+        "g": "13",
+        "c": "38.5",
+        "b": "63"
+       },
+       {
+        "name": "Carignan, Domaine des Tourelles, Bekaa Valley, Lebanon, 2021 (VG)",
+        "note": "Medium-full bodied, dried fig, elegant tannins",
+        "g": "",
+        "c": "",
+        "b": "66"
+       },
+       {
+        "name": "Cabernet Franc, Chinon Rouge, Domaine de Pallus, Loire, France, 2023 (O)",
+        "note": "Medium bodied, delicate, smoky notes",
+        "g": "",
+        "c": "",
+        "b": "69"
+       },
+       {
+        "name": "Grenache L'Interrogant, Clos 93, Priorat, Spain, 2023 (VG/O)",
+        "note": "Plum, juicy, hint of vanilla",
+        "g": "",
+        "c": "",
+        "b": "73"
+       },
+       {
+        "name": "Argaman Alfa, Jezreel, Upper Galilee, Israel, 2021",
+        "note": "Forest fruit, rich, full-bodied",
+        "g": "",
+        "c": "",
+        "b": "78"
+       },
+       {
+        "name": "Valpolicella Superiore, Campo Prognai, Ilatium Morini, Veneto, Italy, 2018 (VG)",
+        "note": "Powerful, dark chocolate, intensive tannins",
+        "g": "",
+        "c": "",
+        "b": "82"
+       },
+       {
+        "name": "Rioja Reserva, Bodegas Luis Cañas, Rioja, Spain, 2018 (VG/O)",
+        "note": "Medium bodied, dark fruits, long silky finish",
+        "g": "15",
+        "c": "44.5",
+        "b": "85"
+       },
+       {
+        "name": "Cabernet Sauvignon/Malbec, Clos du Val Red Blend, Napa Valley, USA, 2021 (VG)",
+        "note": "Bold, Bordeaux style, notes of oak",
+        "g": "",
+        "c": "",
+        "b": "95"
+       },
+       {
+        "name": "Saint-Emilion Grand Cru, Aux Plantes, Bordeaux, France, 2019 (VG/O)",
+        "note": "Full bodied, rich, elegant finish",
+        "g": "",
+        "c": "",
+        "b": "105"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "cocktails": [
+   {
+    "title": "House cocktails",
+    "sub": "14 each",
+    "items": [
+     {
+      "name": "Tropical Mirage",
+      "text": "Banana & coconut rum, Cointreau, lemon",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Fifi Abdou III",
+      "text": "Champagne, white peach, lemon thyme, crème de pêches",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Café Florentin",
+      "text": "Clarified espresso martini, pistachio, vanilla",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "The Levantine Old Fashioned",
+      "text": "Bourbon, figs, secret spices, forest fruit essence",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Pomegroni",
+      "text": "Barberry-infused gin, pomelo Campari, Amaro Montenegro",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Red Hot Rita",
+      "text": "Olmeca Blanco, Cointreau, lime, pul biber chilli",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Coco Rumour",
+      "text": "Rum, pineapple, pepper caramel, lime, soda",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Ambrosia",
+      "text": "Pink peppercorn-infused gin, pomegranate, rose, lime",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     }
+    ]
+   },
+   {
+    "title": "Non-alcoholic",
+    "sub": "8 each",
+    "items": [
+     {
+      "name": "Purple Press",
+      "text": "Purple grape, gooseberry, elderflower & chia",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Limonana",
+      "text": "Middle Eastern lemonade, fresh mint",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Adelita",
+      "text": "Raspberry, lychee, lemon & rose syrup",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     },
+     {
+      "name": "Zest & Zing",
+      "text": "Lemongrass, ginger, elderflower, orange & soda",
+      "tags": [],
+      "price": "",
+      "extra": ""
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -69,11 +69,31 @@ LOGO = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "
 
 NAV = [
     ("restaurants", "index.html#restaurants", "Restaurants"),
+    ("menus", "menus.html", "Menus"),
     ("private-dining", "private-dining.html", "Private Dining"),
     ("whats-on", "whats-on.html", "What's On"),
     ("story", "our-story.html", "Our Story"),
     ("gifts", "gift-cards.html", "Gift Cards"),
 ]
+
+T = "images/thumb/"
+
+
+def mcard(href, img, eyebrow, title, text):
+    return f'''<a class="mega-card" href="{href}"><span class="mega-img"><img src="{T}{img}.jpg" alt="" loading="lazy"></span><span class="mega-eyebrow">{eyebrow}</span><span class="mega-title">{title}</span><span class="mega-text">{text}</span></a>'''
+
+
+def mcol(img, eyebrow, title, page, links):
+    lk = "".join(f'<a href="{page}#{h}">{l}</a>' for l, h in links)
+    return f'''<div class="mega-col"><a class="mega-img" href="{page}"><img src="{T}{img}.jpg" alt="" loading="lazy"></a><span class="mega-eyebrow">{eyebrow}</span><a class="mega-title" href="{page}">{title}</a><div class="mega-links">{lk}</div></div>'''
+
+
+MEGA = {
+    "restaurants": '<div class="mega-grid mega-3">' + mcard("marylebone.html", "mary-exterior", "Marylebone", "Delamina Marylebone", "56–58 Marylebone Lane, W1") + mcard("east.html", "east_2", "Shoreditch", "Delamina EAST", "151–153 Commercial Street, E1") + mcard("townhouse.html", "drawing", "Covent Garden", "Delamina Townhouse", "13–15 Tavistock Street, WC2") + "</div>",
+    "menus": '<div class="mega-grid mega-3">' + mcol("burrata", "Marylebone", "Delamina Marylebone", "menu-marylebone.html", [("À la carte", "a-la-carte"), ("Brunch", "brunch"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")]) + mcol("prawns-blue", "Shoreditch", "Delamina EAST", "menu-east.html", [("À la carte", "a-la-carte"), ("Weekend brunch", "weekend"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")]) + mcol("fish-table", "Covent Garden", "Delamina Townhouse", "menu-townhouse.html", [("À la carte", "a-la-carte"), ("Pre-theatre", "pre-theatre"), ("Sharing menu", "sharing"), ("Christmas", "christmas"), ("Cocktails &amp; wine", "drinks")]) + "</div>",
+    "private-dining": '<div class="mega-grid mega-4">' + mcard("private-dining.html#marylebone", "mary-interior", "Marylebone", "Up to 120 guests", "The Family Room, or both floors") + mcard("private-dining.html#shoreditch", "garden", "Shoreditch", "Up to 30 guests", "Green Room, Family Room, Garden Room") + mcard("private-dining.html#covent-garden", "snug", "Covent Garden", "Up to 50 guests", "Big Snug, Drawing Room, Arts Room") + '<div class="mega-cta"><span class="mega-title">Planning something?</span><span class="mega-text">Tell us the occasion and the numbers and we\'ll suggest the room.</span><a class="btn btn-solid btn-sm" href="private-dining.html#enquire">Make an enquiry</a><a class="btn btn-sm" href="private-dining.html#brochure">Get the brochure</a></div></div>',
+    "whats-on": '<div class="mega-grid mega-4">' + mcard("whats-on.html#christmas", "xmas-table", "Now booking", "Christmas at Delamina", "Feast menus from £64 per guest") + mcard("whats-on.html#new-year", "cheers", "31 December", "New Year\'s Eve", "See the year out at the table") + mcard("whats-on.html#brunch", "brunch", "Every weekend", "Weekend brunch", "Marylebone and EAST") + mcard("whats-on.html#pour-and-plate", "wine", "Wine dinners", "Pour &amp; Plate", "One producer, one long table") + "</div>",
+}
 
 
 def head(title, desc, body_class=""):
@@ -93,9 +113,13 @@ def head(title, desc, body_class=""):
 
 
 def header(current="", book=BOOK["mary"], announce=True):
-    links = "".join(
-        f'<a href="{h}"{" aria-current=\"page\"" if k == current else ""}>{t}</a>' for k, h, t in NAV
-    )
+    links = ""
+    for k, h, t in NAV:
+        cur = ' aria-current="page"' if k == current else ""
+        if k in MEGA:
+            links += f'<div class="nav-item has-mega"><a class="nav-link" href="{h}"{cur} aria-haspopup="true">{t}</a><div class="mega"><div class="wrap">{MEGA[k]}</div></div></div>'
+        else:
+            links += f'<div class="nav-item"><a class="nav-link" href="{h}"{cur}>{t}</a></div>'
     mlinks = "".join(f'<a href="{h}">{t}</a>' for k, h, t in NAV)
     ann = '<div class="announce">Christmas 2026 at Delamina — festive menus and parties for 8 to 120 now booking <a href="whats-on.html#christmas">See the menus</a></div>\n' if announce else ''
     return ann + f"""<header class="site-header">
@@ -192,11 +216,11 @@ def mitems(rows):
 
 def mpane(pid, hidden, blocks, note, links):
     secs = "".join(f'<div class="mblock"><h4>{t}</h4>{mitems(rows)}</div>' for t, rows in blocks)
-    lk = "".join(f'<a class="mlink" href="menus/{f}" target="_blank" rel="noopener">{label}</a>' for label, f in links)
+    lk = "".join(f'<a class="mlink" href="{f}">{label}</a>' for label, f in links)
     return f"""<div class="mpane" data-menu-pane="{pid}"{' hidden' if hidden else ''}>
       {secs}
       <p class="mnote">{note}</p>
-      <div class="mlinks"><span>Full menu (PDF)</span>{lk}</div>
+      <div class="mlinks"><span>Full menu</span>{lk}</div>
     </div>"""
 
 
@@ -241,7 +265,6 @@ home += f"""
     <a href="{BOOK['east']}" target="_blank" rel="noopener"><span class="bb-k">Book a table</span><span class="bb-v">Shoreditch</span><span class="bb-a">Delamina EAST, Commercial Street, E1</span><b aria-hidden="true">&rarr;</b></a>
     <a href="{BOOK['town']}" target="_blank" rel="noopener"><span class="bb-k">Book a table</span><span class="bb-v">Covent Garden</span><span class="bb-a">Delamina Townhouse, Tavistock Street, WC2</span><b aria-hidden="true">&rarr;</b></a>
   </nav>
-  <button class="hero-pause" type="button" aria-label="Pause background video"><span></span></button>
 </section>
 
 <section id="whats-on" class="won">
@@ -252,10 +275,10 @@ home += f"""
     </div>
     <div class="won-grid">
       {wcard('wcard-feature','whats-on.html#christmas',IMG['xmas_table'],'Now booking','Christmas at Delamina','Feast sharing menus from £64 per guest, for tables of eight up to the whole restaurant.','Festive menus &amp; parties')}
-      {wcard('','marylebone.html#menus',IMG['brunch'],'Weekends &amp; bank holidays','Weekend brunch','Shakshuka, the Jaffa–Tel Aviv breakfast and halva French toast, at Marylebone and EAST.','Brunch menu')}
-      {wcard('','townhouse.html#menus',IMG['fish_table'],'Before the show','Pre-theatre, £27.5','Two courses before the curtain at the Townhouse, moments from the Royal Opera House.','Pre-theatre menu')}
+      {wcard('','menu-marylebone.html#brunch',IMG['brunch'],'Weekends &amp; bank holidays','Weekend brunch','Shakshuka, the Jaffa–Tel Aviv breakfast and halva French toast, at Marylebone and EAST.','Brunch menu')}
+      {wcard('','menu-townhouse.html#pre-theatre',IMG['fish_table'],'Before the show','Pre-theatre, £27.5','Two courses before the curtain at the Townhouse, moments from the Royal Opera House.','Pre-theatre menu')}
       {wcard('','whats-on.html#pour-and-plate',IMG['wine'],'Wine dinners','Pour &amp; Plate','One producer, one long table, and a menu to match the bottles.','Next edition')}
-      {wcard('','whats-on.html#founders',IMG['limor_townhouse'],'With Limor &amp; Amir','Founders’ Dinners','An evening at the table with the two people behind Delamina.','Dates &amp; tickets','center 30%')}
+      {wcard('','whats-on.html#new-year',IMG['cheers'],'31 December','New Year\u2019s Eve','See the year out around the table, with a feast menu made for sharing and a glass raised at midnight.','Details &amp; booking','center 60%')}
     </div>
   </div>
 </section>
@@ -293,7 +316,7 @@ home += f"""
                 ("Grilled tiger prawns", "za’atar focaccia, vine leaf &amp; roasted pepper chimichurri", "26"),
             ]),
         ], "A selection from the Marylebone menu. Each restaurant's menu is a little different.",
-        [("Marylebone", "delamina-mary-alc.pdf"), ("EAST", "delamina-east-alc.pdf"), ("Townhouse", "delamina-town-alc.pdf")])}
+        [("Marylebone", "menu-marylebone.html#a-la-carte"), ("EAST", "menu-east.html#a-la-carte"), ("Townhouse", "menu-townhouse.html#a-la-carte")])}
         {mpane('brunch', True, [
             ("Weekends &amp; bank holidays, from 10.30am", [
                 ("Jaffa–Tel Aviv style", "two eggs, a spread of mazetim, pita &amp; mixed bread", "17.5"),
@@ -304,7 +327,7 @@ home += f"""
                 ("Cherry, halva &amp; pistachio French toast", "whipped labneh &amp; halva cream, cherry compote", "16"),
             ]),
         ], "A selection from the Marylebone brunch menu. Brunch is served at Marylebone and EAST.",
-        [("Marylebone", "delamina-mary-brunch.pdf"), ("EAST weekend", "delamina-east-weekend.pdf")])}
+        [("Marylebone", "menu-marylebone.html#brunch"), ("EAST", "menu-east.html#weekend")])}
         {mpane('pre', True, [
             ("Pre-theatre at the Townhouse · £27.5 per person", [
                 ("Crispy oyster mushrooms", "truffled artichoke purée", "to start"),
@@ -314,17 +337,17 @@ home += f"""
                 ("Kubaneh to share", "tahini &amp; zhoug, smokey aubergine, salsa", "+13"),
             ]),
         ], "Served at Delamina Townhouse, Covent Garden. Tell us your curtain time when you book.",
-        [("Townhouse pre-theatre", "delamina-town-pretheatre.pdf")])}
+        [("Townhouse pre-theatre", "menu-townhouse.html#pre-theatre")])}
         {mpane('share', True, [
             ("For the whole table", [
                 ("3-course sharing menu", "EAST £48 · Marylebone £54", "from 48"),
                 ("Classics 4-course sharing menu", "EAST £57 · Marylebone £59 · Townhouse £59", "from 57"),
                 ("Fish 4-course sharing menu", "Marylebone", "64"),
-                ("Brunch classics sharing menu", "Marylebone", "33"),
+                ("Brunch classics sharing menus", "Marylebone £33 and £39", "from 33"),
                 ("Christmas feast sharing menu", "EAST £64 · Marylebone £67 · Townhouse £69", "from 64"),
             ]),
         ], "Prices are per guest. Sharing menus are for groups and private dining.",
-        [("Marylebone", "delamina-mary-group.pdf"), ("EAST", "delamina-east-sharing.pdf"), ("Townhouse", "delamina-town-sharing.pdf")])}
+        [("Marylebone", "menu-marylebone.html#sharing"), ("EAST", "menu-east.html#sharing"), ("Townhouse", "menu-townhouse.html#sharing")])}
         {mpane('wine', True, [
             ("The list", [
                 ("Small producers", "wines chosen from around the eastern Mediterranean and beyond", ""),
@@ -332,7 +355,7 @@ home += f"""
                 ("Drinks by mood at brunch", "mimosa blossom, limonana, fresh mint tea", ""),
             ]),
         ], "Each restaurant keeps its own list.",
-        [("Marylebone", "delamina-mary-wine.pdf"), ("EAST", "delamina-east-wine.pdf"), ("Townhouse", "delamina-town-drinks.pdf")])}
+        [("Marylebone", "menu-marylebone.html#wine"), ("EAST", "menu-east.html#wine"), ("Townhouse", "menu-townhouse.html#drinks")])}
       </div>
     </div>
   </div>
@@ -385,7 +408,7 @@ home += f"""
 
 <section class="newsx">
   <div class="wrap newsx-inner">
-    <div><h2>Hear it first</h2><p>New menus, Pour &amp; Plate dates and Founders' Dinners, once or twice a month.</p></div>
+    <div><h2>Hear it first</h2><p>New menus, Pour &amp; Plate dates and first word on Christmas and New Year, once or twice a month.</p></div>
     <a class="btn btn-dark" href="{NEWSLETTER}" target="_blank" rel="noopener">Join the mailing list</a>
   </div>
 </section>
@@ -408,8 +431,6 @@ def venue_page(key, slug, area, name, title, desc, intro, hero, addr, hours, pho
     for k, s, label in (("mary", "marylebone.html", "Marylebone"), ("east", "east.html", "EAST · Shoreditch"), ("town", "townhouse.html", "Townhouse · Covent Garden")):
         cur = ' aria-current="page"' if k == key else ""
         sw += f'<a class="tab" href="{s}"{cur}>{label}</a>'
-    tabs = "".join(f'<a class="tab" href="#menus" data-menu-tab="m{i}"{" aria-current=\"true\"" if i == 0 else ""}>{m[0]}</a>' for i, m in enumerate(menus))
-    panes = "".join(menu_pane(f"m{i}", i != 0, m[1], m[2]) for i, m in enumerate(menus))
     gal = "".join(f'<img src="{g}" alt="{name}" loading="lazy">' for g in gallery)
     rm = "".join(f'<div class="card card-plain reveal"><div class="img"><img src="{im}" alt="{rn}, {name}" loading="lazy"></div><div class="body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><h3 style="font-size:24px">{rn}</h3><span class="muted small">{cap}</span></div><p style="font-weight:300;font-size:15px">{rd}</p></div></div>' for rn, cap, rd, im in rooms)
     h = head(title, desc)
@@ -443,11 +464,10 @@ def venue_page(key, slug, area, name, title, desc, intro, hero, addr, hours, pho
   <div class="wrap">
     <div class="section-head">
       <div class="stack"><span class="eyebrow">Menus</span><h2>What's cooking at {area.split(' ·')[0] if key!='east' else 'EAST'}.</h2></div>
-      <p class="lede" style="font-size:17px">Menus change with the seasons. The cauliflower and the dips never leave. The full current menus, with prices, are in the PDFs below.</p>
+      <p class="lede" style="font-size:17px">Menus change with the seasons. The cauliflower and the dips never leave.</p>
     </div>
-    <div class="menu-tabs">{tabs}</div>
-    {panes}
-    <div class="btn-row" style="margin-top:32px"><span class="mlinks-label">Full menus (PDF)</span>{"".join(f'<a class="btn btn-sm" href="menus/{f}" target="_blank" rel="noopener">{l}</a>' for l, f in menu_pdf)}</div>
+    <div class="menu-rows">{"".join(f'<a class="menu-row" href="{f}"><span>{l}</span><b aria-hidden="true">&rarr;</b></a>' for l, f in menu_pdf)}</div>
+    <div class="btn-row" style="margin-top:32px"><a class="btn btn-solid" href="{BOOK[key]}" target="_blank" rel="noopener">Book a table</a><a class="btn" href="private-dining.html#enquire">Enquire about a group</a></div>
   </div>
 </section>
 
@@ -500,7 +520,7 @@ marylebone = venue_page(
         ("Brunch", [("Saturday, Sunday & bank holidays, 10.30am – 3.15pm", [("Shakshuka, green or red (v)", ""), ("Sabich, eggs and aubergine (v)", ""), ("Brunch dips board for the table (v)", ""), ("Fresh juices, house cocktails and mocktails", "")])], "Brunch is served Saturdays, Sundays and bank holidays. Booking recommended."),
         ("Wine list", [("Eastern Mediterranean & small producers", [("Wines from Greece, Lebanon, Israel, Turkey and Cyprus", ""), ("House cocktails made with the kitchen's own herbs and spices", ""), ("Mocktails and soft drinks", "")])], "Ask the team for what's open by the glass."),
     ],
-    [("À la carte","delamina-mary-alc.pdf"),("Brunch","delamina-mary-brunch.pdf"),("Wine list","delamina-mary-wine.pdf"),("Group menus","delamina-mary-group.pdf")],
+    [("À la carte","menu-marylebone.html#a-la-carte"),("Brunch","menu-marylebone.html#brunch"),("Sharing menus","menu-marylebone.html#sharing"),("Christmas feast","menu-marylebone.html#christmas"),("Wine list","menu-marylebone.html#wine")],
     [IMG["mary_exterior"], IMG["burrata"], IMG["pour"], IMG["window_table"]],
     ("One room for the family. Both floors for everyone.", "The Family Room downstairs seats 25 to 35 around long tables. Take both floors and it's 75 seated or 120 standing — the largest space in the group."),
     [("The Green Room", "8 – 10 guests", "A snug corner for a small dinner: one table, the door closed.", IMG["green"]),
@@ -525,7 +545,7 @@ east = venue_page(
         ("Weekend menu", [("Saturday & Sunday from 11am, bank holidays too", [("Shakshuka, green or red (v)", ""), ("Sabich, eggs and aubergine (v)", ""), ("Brunch dips board for the table (v)", ""), ("Fresh juices, house cocktails and mocktails", "")])], "The weekend à la carte runs all day Saturday and Sunday."),
         ("Wine list", [("Small producers", [("A list built around small producers across the eastern Mediterranean", ""), ("House cocktails made with the kitchen's own aromatics", ""), ("Mocktails and soft drinks", "")])], "Ask the team for what's open by the glass."),
     ],
-    [("À la carte","delamina-east-alc.pdf"),("Weekend","delamina-east-weekend.pdf"),("Wine list","delamina-east-wine.pdf"),("Sharing menus","delamina-east-sharing.pdf")],
+    [("À la carte","menu-east.html#a-la-carte"),("Weekend brunch","menu-east.html#weekend"),("Sharing menus","menu-east.html#sharing"),("Christmas feast","menu-east.html#christmas"),("Wine list","menu-east.html#wine")],
     [IMG["east_1"], IMG["prawns_blue"], IMG["east_2"], IMG["table_overhead"]],
     ("Three rooms, or the whole restaurant.", "The Green Room for ten, the semi-private Family Room for fourteen, and the Garden Room for thirty. Or take the whole of EAST for a launch or a Christmas party."),
     [("The Green Room", "up to 10 guests", "One table, tucked away. Dinners, meetings, small birthdays.", IMG["green"]),
@@ -550,7 +570,7 @@ townhouse = venue_page(
         ("Lunch & pre-theatre", [("Set menu, served until 6.30pm Monday – Saturday", [("Two courses", "set price"), ("Three courses", "set price"), ("A glass of wine or a house cocktail to go with it", "")])], "Tell us your curtain time when you book and we'll have you out in good time."),
         ("Drinks", [("Wines & cocktails", [("Wines from the eastern Mediterranean and small producers", ""), ("House cocktails made with the kitchen's own aromatics", ""), ("Mocktails and soft drinks", "")])], "Ask the team for what's open by the glass."),
     ],
-    [("À la carte","delamina-town-alc.pdf"),("Lunch &amp; pre-theatre","delamina-town-pretheatre.pdf"),("Drinks","delamina-town-drinks.pdf"),("Sharing menu","delamina-town-sharing.pdf")],
+    [("À la carte","menu-townhouse.html#a-la-carte"),("Pre-theatre","menu-townhouse.html#pre-theatre"),("Sharing menu","menu-townhouse.html#sharing"),("Christmas feast","menu-townhouse.html#christmas"),("Cocktails &amp; wine","menu-townhouse.html#drinks")],
     [IMG["wine"], IMG["town_1"], IMG["limor_townhouse"], IMG["town_2"]],
     ("Three rooms upstairs, and the whole house if you want it.", "One of the few proper Georgian townhouses left in Covent Garden. The Big Snug for twenty, the Drawing Room and the Arts Room for fifty each — or exclusive hire of the whole house."),
     [("The Big Snug", "up to 20 guests", "Low light, one long table, the door closed. Birthdays and board dinners.", IMG["snug"]),
@@ -718,7 +738,7 @@ story += FOOTER
 
 
 # ---------------------------------------------------------------- WHAT'S ON
-won = head("What's On — Delamina", "Christmas 2026 at Delamina, Pour & Plate wine dinners, Founders' Dinners with Limor and Amir, and weekend brunch in Marylebone and Shoreditch.")
+won = head("What's On — Delamina", "Christmas 2026 and New Year's Eve at Delamina, Pour & Plate wine dinners, and weekend brunch in Marylebone and Shoreditch.")
 won += header("whats-on")
 won += f"""
 <main>
@@ -726,7 +746,7 @@ won += f"""
   <div class="stack">
     <span class="eyebrow">What's on</span>
     <h1>Reasons to come back.</h1>
-    <p class="lede" style="max-width:540px">Festive menus, wine dinners, evenings with the founders and the weekend brunch that never stops.</p>
+    <p class="lede" style="max-width:540px">Festive menus, New Year's Eve, wine dinners and the weekend brunch that never stops.</p>
   </div>
   <img class="hero-img" src="{IMG['xmas_dish']}" alt="A festive dish at Delamina" fetchpriority="high">
 </section>
@@ -737,7 +757,7 @@ won += f"""
       <span class="eyebrow">Now booking</span>
       <h2 style="color:var(--charcoal)">Christmas 2026</h2>
       <p style="font-weight:300;font-size:17px;max-width:560px">Festive sharing menus across all three restaurants from late November to Christmas Eve, parties from 8 to 120, and exclusive hires of the Garden Room, the Drawing Room, the Arts Room and both floors at Marylebone. Menus for every diet, drinks packages if you want them.</p>
-      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#enquire">Book a party</a><a class="btn" href="menus/delamina-mary-xmas.pdf" target="_blank" rel="noopener">Marylebone menu · £67</a><a class="btn" href="menus/delamina-east-xmas.pdf" target="_blank" rel="noopener">EAST menu · £64</a><a class="btn" href="menus/delamina-town-xmas.pdf" target="_blank" rel="noopener">Townhouse menu · £69</a></div>
+      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#enquire">Book a party</a><a class="btn" href="menu-marylebone.html#christmas">Marylebone menu · £67</a><a class="btn" href="menu-east.html#christmas">EAST menu · £64</a><a class="btn" href="menu-townhouse.html#christmas">Townhouse menu · £69</a></div>
     </div>
     <img src="{IMG['xmas_table']}" alt="A Christmas table at Delamina" loading="lazy">
   </div>
@@ -746,8 +766,8 @@ won += f"""
 <section id="pour-and-plate" class="section">
   <div class="wrap grid-3">
     <div class="tile reveal"><span class="eyebrow">Wine dinners</span><h3>Pour &amp; Plate</h3><p>Our numbered wine dinner series — one producer from around the eastern Mediterranean, one long table, a menu Limor builds around their bottles. Tickets go to the mailing list first.</p><a class="link" href="{NEWSLETTER}" target="_blank" rel="noopener">Get the next date</a></div>
-    <div id="founders" class="tile reveal"><span class="eyebrow">With Limor &amp; Amir</span><h3>Founders' Dinners</h3><p>An evening at the table with the two people behind Delamina, cooking the dishes that started it all and telling the stories behind them.</p><a class="link" href="{NEWSLETTER}" target="_blank" rel="noopener">Dates &amp; tickets</a></div>
-    <div id="brunch" class="tile reveal"><span class="eyebrow">Every weekend</span><h3>Weekend brunch</h3><p>Shakshuka, sabich, the dips board and fresh juices. Saturdays, Sundays and bank holidays at Marylebone (from 10.30am) and EAST (from 11am).</p><a class="link" href="marylebone.html#menus">Brunch menu</a></div>
+    <div id="new-year" class="tile reveal"><span class="eyebrow">31 December</span><h3>New Year's Eve</h3><p>See the year out around the table, with a feast menu made for sharing and a glass raised at midnight. Details go to the mailing list first.</p><a class="link" href="{NEWSLETTER}" target="_blank" rel="noopener">Details &amp; booking</a></div>
+    <div id="brunch" class="tile reveal"><span class="eyebrow">Every weekend</span><h3>Weekend brunch</h3><p>Shakshuka, sabich, the dips board and fresh juices. Saturdays, Sundays and bank holidays at Marylebone (from 10.30am) and EAST (from 11am).</p><a class="link" href="menu-marylebone.html#brunch">Brunch menu</a></div>
   </div>
 </section>
 
@@ -809,9 +829,177 @@ privacy += """
 """
 privacy += FOOTER
 
+# ---------------------------------------------------------------- MENU PAGES
+# Menu content lives in data/menus.json (taken from the restaurants' current menus).
+import json
+MENUS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "menus.json"), encoding="utf-8"))
+
+
+def tags_html(tags):
+    return "".join(f'<abbr class="tg" title="{TAGNAME[t]}">{t}</abbr>' for t in tags)
+
+
+TAGNAME = {"VG": "Vegan and dairy free", "V": "Vegetarian", "GF": "Gluten free", "DF": "Dairy free"}
+
+
+def r_list(secs):
+    out = ""
+    for sec in secs:
+        sub = f'<span>{sec["sub"]}</span>' if sec.get("sub") else ""
+        rows = ""
+        for it in sec["items"]:
+            name = f'<b class="ml-name">{it["name"]}</b>' if it.get("name") else ""
+            extra = f'<small>{it["extra"]}</small>' if it.get("extra") else ""
+            tg = tags_html(it.get("tags", []))
+            rows += f'<div class="ml-item"><div class="ml-text">{name}<span>{it["text"]} {tg}</span>{extra}</div><div class="ml-price">{it.get("price", "")}</div></div>'
+        out += f'<section class="ml-sec"><h3>{sec["title"]}{sub}</h3>{rows}</section>'
+    return f'<div class="ml">{out}</div>'
+
+
+def r_set_one(m):
+    body = ""
+    for b in m["blocks"]:
+        k = b["k"]
+        if k == "head":
+            body += f'<h4>{b["text"]}</h4>'
+        elif k == "sep":
+            body += '<hr>'
+        elif k == "or":
+            body += f'<p class="setm-or">{"and" if b["text"] == "&" else b["text"]}</p>'
+        elif k == "label":
+            body += f'<p class="setm-label">{b["text"]}</p>'
+        else:
+            extra = f' <small>({b["extra"]})</small>' if b.get("extra") else ""
+            body += f'<p class="setm-item">{b["text"]} {tags_html(b.get("tags", []))}{extra}</p>'
+    notes = "".join(f'<p class="setm-note">{n}</p>' for n in m.get("notes", []))
+    return body + notes
+
+
+def r_sets(menus):
+    if len(menus) == 1:
+        m = menus[0]
+        sub = f'<p class="setm-sub">{m["sub"]}</p>' if m.get("sub") else ""
+        price = f'<p class="setm-price">{m["price"]}</p>' if m.get("price") else ""
+        return f'<article class="setm"><h3>{m["title"]}</h3>{price}{sub}{r_set_one(m)}</article>'
+    out = ""
+    for i, m in enumerate(menus):
+        out += f'<details class="setm setm-acc"{" open" if i == 0 else ""}><summary><span>{m["title"]}</span><b>{m.get("price", "")}</b></summary><div class="setm-body">{r_set_one(m)}</div></details>'
+    return out
+
+
+def r_wine(cats, note=""):
+    out = ""
+    for c in cats:
+        rows = ""
+        for st in c["styles"]:
+            if st["title"]:
+                rows += f'<h4>{st["title"]}</h4>'
+            for w in st["wines"]:
+                rows += f'<div class="wl-row"><div class="wl-name"><span>{w["name"]}</span><small>{w["note"]}</small></div><div class="wl-p">{w["g"]}</div><div class="wl-p">{w["c"]}</div><div class="wl-p">{w["b"]}</div></div>'
+        out += f'<section class="wl-sec"><div class="wl-head"><h3>{c["title"]}</h3><span>Glass</span><span>Carafe</span><span>Bottle</span></div>{rows}</section>'
+    n = f'<p class="mp-note">{note}</p>' if note else ""
+    return f'<div class="wl">{out}{n}<p class="mp-note">V vegetarian · VG vegan · O organic · S sustainable · CS certified sustainable</p></div>'
+
+
+FOOD_NOTE = '<p class="mp-note">VG vegan and dairy free · V vegetarian · GF gluten free · DF dairy free</p><p class="mp-note">Our food is prepared in a kitchen where there are nuts and other allergens. Please let your server know if you have a food allergy or intolerance. A discretionary service charge is added to your bill and is fully shared between the team.</p>'
+
+
+def menu_page(key, slug, name, area, tabs, extra_note=""):
+    """tabs: list of (id, label, intro, html)"""
+    sw = ""
+    for k, pg, label in (("mary", "menu-marylebone.html", "Marylebone"), ("east", "menu-east.html", "EAST · Shoreditch"), ("town", "menu-townhouse.html", "Townhouse · Covent Garden")):
+        cur = ' aria-current="page"' if k == key else ""
+        sw += f'<a class="tab" href="{pg}"{cur}>{label}</a>'
+    tb = "".join(f'<a class="mtab" href="#{tid}" data-menu-tab="{tid}" data-hash="1"{" aria-current=\"true\"" if i == 0 else ""}>{label}</a>' for i, (tid, label, intro, html) in enumerate(tabs))
+    panes = ""
+    for i, (tid, label, intro, html) in enumerate(tabs):
+        it = f'<p class="mp-intro">{intro}</p>' if intro else ""
+        panes += f'<div class="mp-pane" id="{tid}" data-menu-pane="{tid}"{" hidden" if i else ""}><h2>{label}</h2>{it}{html}</div>'
+    h = head(f"Menus — {name}", f"The current menus at {name}, {area}: à la carte, sharing menus, Christmas and the wine list, with prices.")
+    h += header("menus", BOOK[key])
+    h += f"""
+<main class="mp">
+<section class="mp-head">
+  <div class="wrap">
+    <span class="eyebrow">Menus · {area}</span>
+    <h1>{name}</h1>
+    <div class="mp-switch"><span class="lbl">Menus for</span>{sw}</div>
+  </div>
+</section>
+<div class="mp-tabs"><div class="wrap"><div class="mtabs">{tb}</div><a class="btn btn-solid btn-sm" href="{BOOK[key]}" target="_blank" rel="noopener">Book a table</a></div></div>
+<section class="wrap mp-body">
+  {panes}
+  <div class="mp-foot">{FOOD_NOTE}{extra_note}<p class="mp-note">Menus change with the seasons, so dishes and prices may differ slightly on the day.</p></div>
+</section>
+</main>
+"""
+    return h + FOOTER
+
+
+M = MENUS["marylebone"]
+menu_marylebone = menu_page("mary", "marylebone", "Delamina Marylebone", "Marylebone", [
+    ("a-la-carte", "À la carte", "", r_list(M["alc"])),
+    ("brunch", "Brunch", M.get("brunch_sub", ""), r_list(M["brunch"])),
+    ("sharing", "Sharing menus", "For groups and private dining. Prices are per guest.", r_sets(M["sharing"])),
+    ("christmas", "Christmas", "", r_sets(M["xmas"])),
+    ("wine", "Wine", "", r_wine(M["wine"])),
+], '<p class="mp-note">We do not accept cash payment.</p>')
+
+M = MENUS["east"]
+menu_east = menu_page("east", "east", "Delamina EAST", "Shoreditch", [
+    ("a-la-carte", "À la carte", "", r_list(M["alc"])),
+    ("weekend", "Weekend brunch", "Saturdays and Sundays, served alongside the à la carte.", r_list(M["weekend"])),
+    ("sharing", "Sharing menus", "For groups and private dining. Prices are per guest.", r_sets(M["sharing"])),
+    ("christmas", "Christmas", "", r_sets(M["xmas"])),
+    ("wine", "Wine", "", r_wine(M["wine"])),
+], '<p class="mp-note">We do not accept cash payment.</p>')
+
+M = MENUS["townhouse"]
+menu_townhouse = menu_page("town", "townhouse", "Delamina Townhouse", "Covent Garden", [
+    ("a-la-carte", "À la carte", "", r_list(M["alc"])),
+    ("pre-theatre", "Pre-theatre", "", r_sets(M["pretheatre"])),
+    ("sharing", "Sharing menu", "For groups and private dining.", r_sets(M["sharing"])),
+    ("christmas", "Christmas", "", r_sets(M["xmas"])),
+    ("drinks", "Cocktails &amp; wine", "", r_list(M["cocktails"]) + '<p class="mp-note">Classic cocktails and a large selection of spirits (50ml) are also available.</p>' + r_wine(M["wine"], "Glass 125ml, carafe 375ml. Dessert wines by the 75ml glass.")),
+])
+
+
+def hub_col(img, area, name, page, links, book):
+    lk = "".join(f'<a class="menu-row" href="{page}#{h}"><span>{l}</span><b aria-hidden="true">&rarr;</b></a>' for l, h in links)
+    return f"""<article class="fcard reveal">
+      <a class="fcard-img" href="{page}"><img src="{img}" alt="{name}" loading="lazy"></a>
+      <span class="eyebrow">{area}</span>
+      <h3>{name}</h3>
+      <div class="menu-rows">{lk}</div>
+    </article>"""
+
+
+menus_hub = head("Menus — Delamina", "The current menus at Delamina Marylebone, Delamina EAST and Delamina Townhouse: à la carte, brunch, pre-theatre, sharing menus, Christmas and wine.")
+menus_hub += header("menus")
+menus_hub += f"""
+<main>
+<section class="mp-head">
+  <div class="wrap">
+    <span class="eyebrow">Menus</span>
+    <h1>Choose your Delamina</h1>
+    <p class="lede" style="max-width:620px;margin-top:18px">The cooking is the same family kitchen at all three. Each restaurant's menu is a little different.</p>
+  </div>
+</section>
+<section class="find">
+  <div class="wrap find-grid">
+    {hub_col(IMG['burrata'], 'Marylebone', 'Delamina Marylebone', 'menu-marylebone.html', [("À la carte", "a-la-carte"), ("Brunch", "brunch"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")], BOOK['mary'])}
+    {hub_col(IMG['prawns_blue'], 'Shoreditch', 'Delamina EAST', 'menu-east.html', [("À la carte", "a-la-carte"), ("Weekend brunch", "weekend"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")], BOOK['east'])}
+    {hub_col(IMG['fish_table'], 'Covent Garden', 'Delamina Townhouse', 'menu-townhouse.html', [("À la carte", "a-la-carte"), ("Pre-theatre", "pre-theatre"), ("Sharing menu", "sharing"), ("Christmas", "christmas"), ("Cocktails &amp; wine", "drinks")], BOOK['town'])}
+  </div>
+</section>
+</main>
+"""
+menus_hub += FOOTER
+
 pages = {
     "index.html": home, "marylebone.html": marylebone, "east.html": east, "townhouse.html": townhouse,
     "private-dining.html": pd, "our-story.html": story, "whats-on.html": won, "gift-cards.html": gifts, "privacy.html": privacy,
+    "menus.html": menus_hub, "menu-marylebone.html": menu_marylebone, "menu-east.html": menu_east, "menu-townhouse.html": menu_townhouse,
 }
 here = os.path.dirname(os.path.abspath(__file__))
 for name, html in pages.items():
