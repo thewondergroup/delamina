@@ -1,13 +1,22 @@
 // Delamina — site JS (no dependencies)
 (function () {
-  // Mobile nav
+  // Mobile nav: animated full-screen panel
   var toggle = document.querySelector('.nav-toggle');
   var mobile = document.querySelector('.mobile-nav');
-  if (toggle && mobile) {
-    toggle.addEventListener('click', function () {
-      var open = mobile.classList.toggle('open');
+  var siteHeader = document.querySelector('.site-header');
+  if (toggle && mobile && siteHeader) {
+    var setMenu = function (open) {
+      if (open) mobile.style.height = Math.max(0, window.innerHeight - siteHeader.getBoundingClientRect().bottom) + 'px';
+      mobile.classList.toggle('open', open);
+      siteHeader.classList.toggle('menu-open', open);
+      document.body.classList.toggle('menu-lock', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+    };
+    toggle.addEventListener('click', function () { setMenu(!mobile.classList.contains('open')); });
+    mobile.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 960) setMenu(false); });
   }
 
   // Scroll reveal
