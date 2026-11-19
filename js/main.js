@@ -6,6 +6,7 @@
   var siteHeader = document.querySelector('.site-header');
   if (toggle && mobile && siteHeader) {
     var setMenu = function (open) {
+      if (!open && typeof closeSubs === 'function') closeSubs(null);
       if (open) mobile.style.height = Math.max(0, window.innerHeight - siteHeader.getBoundingClientRect().bottom) + 'px';
       mobile.classList.toggle('open', open);
       siteHeader.classList.toggle('menu-open', open);
@@ -14,6 +15,23 @@
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
     };
     toggle.addEventListener('click', function () { setMenu(!mobile.classList.contains('open')); });
+    // Dropdowns inside the phone menu: one open at a time
+    var mnItems = mobile.querySelectorAll('.mn-item');
+    var closeSubs = function (except) {
+      mnItems.forEach(function (it) {
+        if (it === except) return;
+        it.classList.remove('open');
+        var b = it.querySelector('button.mn-top'); if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    };
+    mobile.querySelectorAll('button.mn-top').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var it = b.parentNode, open = !it.classList.contains('open');
+        closeSubs(it);
+        it.classList.toggle('open', open);
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
     mobile.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
     window.addEventListener('resize', function () { if (window.innerWidth > 960) setMenu(false); });

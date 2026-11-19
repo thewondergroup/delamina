@@ -76,6 +76,14 @@ NAV = [
     ("gifts", "gift-cards.html", "Gift Cards"),
 ]
 
+# Dropdowns in the phone menu (the last link in each is the "see all" link)
+MOBILE_SUBS = {
+    "restaurants": [("Delamina Marylebone", "marylebone.html"), ("Delamina EAST", "east.html"), ("Delamina Townhouse", "townhouse.html"), ("All restaurants", "restaurants.html")],
+    "menus": [("Marylebone menus", "menu-marylebone.html"), ("EAST menus", "menu-east.html"), ("Townhouse menus", "menu-townhouse.html"), ("All menus", "menus.html")],
+    "private-dining": [("Marylebone", "private-dining.html#marylebone"), ("Shoreditch", "private-dining.html#shoreditch"), ("Covent Garden", "private-dining.html#covent-garden"), ("Make an enquiry", "private-dining.html#enquire"), ("Private dining overview", "private-dining.html")],
+    "whats-on": [("Christmas at Delamina", "christmas.html"), ("Brunch at Delamina", "brunch.html"), ("Pour &amp; Plate", "pour-and-plate.html"), ("New Year's Eve", "whats-on.html#new-year"), ("Everything that's on", "whats-on.html")],
+}
+
 T = "images/thumb/"
 
 
@@ -92,7 +100,7 @@ MEGA = {
     "restaurants": '<div class="mega-grid mega-3">' + mcard("marylebone.html", "mary-exterior", "Marylebone", "Delamina Marylebone", "56–58 Marylebone Lane, W1") + mcard("east.html", "east_2", "Shoreditch", "Delamina EAST", "151–153 Commercial Street, E1") + mcard("townhouse.html", "drawing", "Covent Garden", "Delamina Townhouse", "13–15 Tavistock Street, WC2") + "</div>",
     "menus": '<div class="mega-grid mega-3">' + mcol("burrata", "Marylebone", "Delamina Marylebone", "menu-marylebone.html", [("À la carte", "a-la-carte"), ("Brunch", "brunch"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")]) + mcol("prawns-blue", "Shoreditch", "Delamina EAST", "menu-east.html", [("À la carte", "a-la-carte"), ("Weekend brunch", "weekend"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")]) + mcol("fish-table", "Covent Garden", "Delamina Townhouse", "menu-townhouse.html", [("À la carte", "a-la-carte"), ("Pre-theatre", "pre-theatre"), ("Sharing menu", "sharing"), ("Christmas", "christmas"), ("Cocktails &amp; wine", "drinks")]) + "</div>",
     "private-dining": '<div class="mega-grid mega-4">' + mcard("private-dining.html#marylebone", "mary-interior", "Marylebone", "Up to 120 guests", "The Family Room, or both floors") + mcard("private-dining.html#shoreditch", "garden", "Shoreditch", "Up to 30 guests", "Green Room, Family Room, Garden Room") + mcard("private-dining.html#covent-garden", "snug", "Covent Garden", "Up to 50 guests", "Big Snug, Drawing Room, Arts Room") + '<div class="mega-cta"><span class="mega-title">Planning something?</span><span class="mega-text">Tell us the occasion and the numbers and we\'ll suggest the room.</span><a class="btn btn-solid btn-sm" href="private-dining.html#enquire">Make an enquiry</a><a class="btn btn-sm" href="private-dining.html#brochure">Get the brochure</a></div></div>',
-    "whats-on": '<div class="mega-grid mega-4">' + mcard("whats-on.html#christmas", "xmas-table", "Now booking", "Christmas at Delamina", "Feast menus from £64 per guest") + mcard("whats-on.html#new-year", "cheers", "31 December", "New Year\'s Eve", "See the year out at the table") + mcard("whats-on.html#brunch", "brunch", "Every weekend", "Weekend brunch", "Marylebone and EAST") + mcard("whats-on.html#pour-and-plate", "wine", "Wine dinners", "Pour &amp; Plate", "One producer, one long table") + "</div>",
+    "whats-on": '<div class="mega-grid mega-4">' + mcard("christmas.html", "xmas-table", "Now booking", "Christmas at Delamina", "Feast menus from £64 per guest") + mcard("whats-on.html#new-year", "cheers", "31 December", "New Year\'s Eve", "See the year out at the table") + mcard("brunch.html", "brunch", "Every weekend", "Weekend brunch", "Marylebone and EAST") + mcard("pour-and-plate.html", "wine", "Wine dinners", "Pour &amp; Plate", "One producer, one long table") + "</div>",
 }
 
 
@@ -120,16 +128,22 @@ def header(current="", book=BOOK["mary"], announce=True):
             links += f'<div class="nav-item has-mega"><a class="nav-link" href="{h}"{cur} aria-haspopup="true">{t}</a><div class="mega"><div class="wrap">{MEGA[k]}</div></div></div>'
         else:
             links += f'<div class="nav-item"><a class="nav-link" href="{h}"{cur}>{t}</a></div>'
-    mlinks = "".join(f'<a href="{h}">{t}</a>' for k, h, t in NAV)
-    ann = '<div class="announce">Christmas 2026 at Delamina — festive menus and parties for 8 to 120 now booking <a href="whats-on.html#christmas">See the menus</a></div>\n' if announce else ''
+    mlinks = ""
+    for k, h, t in NAV:
+        if k in MOBILE_SUBS:
+            sub = "".join(f'<a href="{sh}">{st}</a>' for st, sh in MOBILE_SUBS[k])
+            mlinks += f'<div class="mn-item"><button class="mn-top" type="button" aria-expanded="false">{t}<span class="mn-ico" aria-hidden="true"></span></button><div class="mn-sub"><div>{sub}</div></div></div>'
+        else:
+            mlinks += f'<div class="mn-item"><a class="mn-top" href="{h}">{t}</a></div>'
+    ann = '<div class="announce">The Christmas Feast, 23 November to 24 December. Now booking <a href="christmas.html">See the Feast</a></div>\n' if announce else ''
     return ann + f"""<header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Delamina home">{LOGO}</a>
     <nav class="nav" aria-label="Main">{links}</nav>
-    <a class="btn btn-dark btn-sm hdr-cta" href="{book}" target="_blank" rel="noopener">Book a table</a>
+    <a class="btn btn-dark btn-sm hdr-cta" href="{book}" target="_blank" rel="noopener" aria-label="Book a table">Book<span>&nbsp;a table</span></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
-  <nav class="mobile-nav" aria-label="Mobile">{mlinks}<a href="{book}" target="_blank" rel="noopener">Book a table</a></nav>
+  <nav class="mobile-nav" aria-label="Mobile"><div class="mn-list">{mlinks}</div><a class="mn-book" href="{book}" target="_blank" rel="noopener">Book a table</a></nav>
 </header>
 """
 
@@ -138,7 +152,7 @@ FOOTER = f"""<footer class="site-footer" id="contact">
   <div class="wrap">
     <div class="foot-grid">
       <div class="col">
-        <p style="font-weight:300;max-width:300px">Seasonal dishes inspired by our Eastern Mediterranean home cooking. Family run, three London restaurants.</p>
+        <p style="max-width:300px">Seasonal dishes inspired by our Eastern Mediterranean home cooking. Family run, three London restaurants.</p>
         <div class="foot-links" style="margin-top:10px"><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a><a href="our-story.html#join">Join the team</a><a href="{NEWSLETTER}" target="_blank" rel="noopener">Newsletter</a></div>
       </div>
       <div class="col">
@@ -182,7 +196,7 @@ def venue_card(key, area, name, blurb, addr, hrs, img, page):
   <div class="body">
     <span class="eyebrow">{area}</span>
     <h3 style="font-size:26px">{name}</h3>
-    <p style="font-weight:300">{blurb}</p>
+    <p>{blurb}</p>
     <p class="small muted">{addr}<br>{hrs}</p>
     <div class="btn-row" style="padding-top:4px">
       <a class="btn btn-solid btn-sm" href="{BOOK[key]}" target="_blank" rel="noopener">Book</a>
@@ -274,10 +288,10 @@ home += f"""
       <a class="link" href="whats-on.html">Everything that's on</a>
     </div>
     <div class="won-grid">
-      {wcard('wcard-feature','whats-on.html#christmas',IMG['xmas_table'],'Now booking','Christmas at Delamina','Feast sharing menus from £64 per guest, for tables of eight up to the whole restaurant.','Festive menus &amp; parties')}
-      {wcard('','menu-marylebone.html#brunch',IMG['brunch'],'Weekends &amp; bank holidays','Weekend brunch','Shakshuka, the Jaffa–Tel Aviv breakfast and halva French toast, at Marylebone and EAST.','Brunch menu')}
+      {wcard('wcard-feature','christmas.html',IMG['xmas_table'],'Now booking','Christmas at Delamina','Feast sharing menus from £64 per guest, for tables of eight up to the whole restaurant.','Festive menus &amp; parties')}
+      {wcard('','brunch.html',IMG['brunch'],'Weekends &amp; bank holidays','Weekend brunch','Shakshuka, the Jaffa–Tel Aviv breakfast and halva French toast, at Marylebone and EAST.','Brunch at Delamina')}
       {wcard('','menu-townhouse.html#pre-theatre',IMG['fish_table'],'Before the show','Pre-theatre, £27.5','Two courses before the curtain at the Townhouse, moments from the Royal Opera House.','Pre-theatre menu')}
-      {wcard('','whats-on.html#pour-and-plate',IMG['wine'],'Wine dinners','Pour &amp; Plate','One producer, one long table, and a menu to match the bottles.','Next edition')}
+      {wcard('','pour-and-plate.html',IMG['wine'],'Wine dinners','Pour &amp; Plate','One producer, one long table, and a menu to match the bottles.','Next edition')}
       {wcard('','whats-on.html#new-year',IMG['cheers'],'31 December','New Year\u2019s Eve','See the year out around the table, with a feast menu made for sharing and a glass raised at midnight.','Details &amp; booking','center 60%')}
     </div>
   </div>
@@ -697,7 +711,7 @@ restaurants += FOOTER
 
 # ---------------------------------------------------------------- PRIVATE DINING
 def room_block(anchor, area, name, page, intro, rooms, phone, img):
-    rm = "".join(f'<div class="card card-plain reveal"><div class="img"><img src="{im}" alt="{rn}, {name}" loading="lazy"></div><div class="body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><h3 style="font-size:24px">{rn}</h3><span class="muted small">{cap}</span></div><p style="font-weight:300;font-size:15px">{rd}</p></div></div>' for rn, cap, rd, im in rooms)
+    rm = "".join(f'<div class="card card-plain reveal"><div class="img"><img src="{im}" alt="{rn}, {name}" loading="lazy"></div><div class="body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><h3 style="font-size:24px">{rn}</h3><span class="muted small">{cap}</span></div><p style="font-size:15px">{rd}</p></div></div>' for rn, cap, rd, im in rooms)
     return f"""
 <section id="{anchor}" class="section" style="padding-top:0">
   <div class="wrap">
@@ -754,7 +768,7 @@ pd += f"""
 
 <section id="menus" class="section-tight bg-olive band">
   <div class="wrap">
-    <div class="stack" style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Group menus</span><h2 style="color:var(--charcoal)">Sharing menus built for a crowd.</h2><p style="max-width:600px;font-weight:300">Everything comes to the middle of the table: dips and warm bread, the cauliflower, salads, grills and desserts. Set price per guest, menus for every diet, and a drinks package if you'd like one.</p></div>
+    <div class="stack" style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Group menus</span><h2 style="color:var(--charcoal)">Sharing menus built for a crowd.</h2><p style="max-width:600px;font-weight:400">Everything comes to the middle of the table: dips and warm bread, the cauliflower, salads, grills and desserts. Set price per guest, menus for every diet, and a drinks package if you'd like one.</p></div>
     <a class="btn btn-dark" href="#enquire">Ask for the menus</a>
   </div>
 </section>
@@ -772,7 +786,7 @@ pd += f"""
       <div id="brochure" class="panel panel-dark" style="margin-top:8px">
         <span class="eyebrow">Brochure</span>
         <h3 style="font-size:24px">The private dining brochure</h3>
-        <p style="font-weight:300;font-size:15px">Every room, capacity, floor plan and sample menu in one PDF. Leave your details and it's yours.</p>
+        <p style="font-size:15px">Every room, capacity, floor plan and sample menu in one PDF. Leave your details and it's yours.</p>
         <form data-demo class="form-row" style="margin-top:4px">
           <label class="sr-only" for="b-name">Name</label><input id="b-name" type="text" placeholder="Name" required>
           <label class="sr-only" for="b-email">Email</label><input id="b-email" type="email" placeholder="Email" required>
@@ -799,103 +813,355 @@ pd += f"""
 pd += FOOTER
 
 
+# ---------------------------------------------------------------- SHARED PARTS FOR STORY + EVENT PAGES
+EMAIL = {"mary": "info@delaminamarylebone.co.uk", "east": "info@delaminaeast.co.uk", "town": "info@delaminatownhouse.co.uk"}
+VIMG = {"mary": "mary_exterior", "east": "east_2", "town": "drawing"}
+
+
+def kb_img(src, pos="center"):
+    """Still photo for a hero, with a slow drift so it never sits dead."""
+    return f'<img class="hero-video kb" src="{src}" alt="" fetchpriority="high" style="object-position:{pos}">'
+
+
+def bar(cells):
+    """Strip along the bottom of a hero. cells: (label, value, href, small?)"""
+    out = ""
+    for k, v, href, small in cells:
+        ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+        out += f'<a href="{href}"{ext}><span class="bb-k">{k}</span><span class="bb-v{" bb-s" if small else ""}">{v}</span><b aria-hidden="true">&rarr;</b></a>'
+    return f'<nav class="bookbar infobar bar-{len(cells)}">{out}</nav>'
+
+
+def page_hero(media, eyebrow, title, sub, strip="", low=False):
+    return f"""<section class="hx vp-hero{" hx-low" if low else ""}">
+  {media}
+  <div class="hx-shade ev-shade"></div>
+  <div class="hx-center">
+    <span class="vp-area">{eyebrow}</span>
+    <h1 class="vp-name ev-title">{title}</h1>
+    <p class="hx-sub">{sub}</p>
+  </div>
+  {strip}
+</section>"""
+
+
+def intro(eyebrow, statement, paras, card_title, rows, buttons):
+    """Opening statement on the left, the practical details in an olive card on the right."""
+    ps = "".join(f'<p class="reveal">{p}</p>' for p in paras)
+    rs = "".join(f'<div class="hr-row"><span>{k}</span><span>{v}</span></div>' for k, v in rows)
+    return f"""<section class="vp-intro ev-intro">
+  <div class="wrap vp-intro-grid">
+    <div class="vp-about">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 class="reveal">{statement}</h2>
+      {ps}
+    </div>
+    <aside class="vp-hours reveal">
+      <span class="eyebrow">{card_title}</span>
+      {rs}
+      <div class="btn-row">{buttons}</div>
+    </aside>
+  </div>
+</section>"""
+
+
+def dimg(src, alt="", wide=False, pos="center"):
+    return f'<figure class="duo-media{" wide" if wide else ""} reveal"><img src="{src}" alt="{alt}" loading="lazy" style="object-position:{pos}"></figure>'
+
+
+def dvid(name):
+    return (f'<figure class="duo-media reveal"><video muted loop playsinline preload="none" poster="video/reel-{name}.jpg" '
+            f'data-lazy="video/reel-{name}.mp4" aria-hidden="true"></video></figure>')
+
+
+def duo(media, eyebrow, title, paras, buttons="", cls="", id_="", extra=""):
+    ps = "".join(f"<p>{p}</p>" for p in paras)
+    bt = f'<div class="btn-row">{buttons}</div>' if buttons else ""
+    return f"""<section{f' id="{id_}"' if id_ else ''} class="duo {cls}">
+  <div class="wrap duo-grid">
+    {media}
+    <div class="duo-body">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2>{title}</h2>
+      {ps}{extra}{bt}
+    </div>
+  </div>
+</section>"""
+
+
+def newsband(title="Hear it first", text="New menus, Pour &amp; Plate dates and first word on Christmas and New Year, once or twice a month."):
+    return f"""<section class="newsx">
+  <div class="wrap newsx-inner">
+    <div><h2>{title}</h2><p>{text}</p></div>
+    <a class="btn btn-dark" href="{NEWSLETTER}" target="_blank" rel="noopener">Join the mailing list</a>
+  </div>
+</section>"""
+
+
 # ---------------------------------------------------------------- OUR STORY
-story = head("Our Story — Limor & Amir, Delamina", "Delamina is run by husband and wife Limor and Amir. Limor's self-taught Eastern Mediterranean cooking, a residency at Shoreditch House, three restaurants and a cookbook, My Tel Aviv Table.")
+def road_step(num, img, eyebrow, title, text, href="", cta=""):
+    pic = f'<img src="{img}" alt="{title}" loading="lazy">'
+    pic = f'<a class="fcard-img" href="{href}">{pic}</a>' if href else f'<span class="fcard-img">{pic}</span>'
+    link = f'<a class="go" href="{href}">{cta} <b aria-hidden="true">&rarr;</b></a>' if href else ""
+    return f"""<article class="fcard reveal">
+      {pic}
+      <span class="st-num">{num} &nbsp;·&nbsp; {eyebrow}</span>
+      <h3>{title}</h3>
+      <p>{text}</p>
+      {link}
+    </article>"""
+
+
+story = head("Our Story — Limor & Amir, Delamina", "Delamina is run by husband and wife Limor and Amir. It began with a residency at Shoreditch House and is now three London restaurants and a cookbook, My Tel Aviv Table.")
 story += header("story")
 story += f"""
 <main>
-<section class="wrap hero" style="padding-bottom:40px">
-  <div class="stack">
-    <span class="eyebrow">Our story</span>
-    <h1>Home cooking, taken out to dinner.</h1>
-    <p class="lede" style="max-width:540px">Delamina is Limor and Amir — a husband and wife who started with a residency at Shoreditch House and a menu of the dishes Limor grew up eating.</p>
-  </div>
-  <img class="hero-img" src="{IMG['limor']}" alt="Limor bringing dishes out from the kitchen" fetchpriority="high">
-</section>
+{page_hero(kb_img(IMG['limor_townhouse']), "Our story", "Home cooking, taken out to dinner", "Limor and Amir, husband and wife, and three London restaurants.", low=True)}
 
-<section class="section-tight">
-  <div class="wrap" style="max-width:820px;display:flex;flex-direction:column;gap:24px">
-    <p class="lede">Limor's cooking is self-taught and intuitive. It comes from her father's kitchen — Middle Eastern and European heritage, a lot of vegetables, grilling and roasting, herbs and spices used generously — and from the simple idea that food should be wholesome, nutritious and full of flavour at the same time.</p>
-    <p style="font-weight:300;font-size:17px">The first Delamina opened in Marylebone. Shoreditch followed — Delamina EAST, big and bright on Commercial Street — and then the Townhouse in Covent Garden, a restored Georgian house with drawing rooms upstairs. Ten years on, Limor still writes every menu, the restaurants are still family run, and the welcome is still the point.</p>
-    <p style="font-weight:300;font-size:17px">The drinks follow the same logic: wines from small producers around the eastern Mediterranean, and house cocktails made with the same herbs and spices as the kitchen.</p>
-  </div>
-</section>
+{duo(dimg(IMG['founders'], "Limor and Amir at the table"), "Limor &amp; Amir",
+     "It began with a residency at Shoreditch House, and the food Limor grew up with.",
+     ["Delamina is run by husband and wife Limor and Amir. The residency became Delamina EAST in Shoreditch, then Delamina in Marylebone, and most recently the Townhouse in Covent Garden.",
+      "Ten years on the restaurants are still family run, and Limor is still the driving force behind every menu."])}
 
-<section class="section bg-dark">
-  <div class="wrap split">
-    <img src="{IMG['founders']}" alt="Limor and Amir at the table" loading="lazy">
-    <div class="stack">
-      <span class="eyebrow">The cookbook</span>
-      <h2>My Tel Aviv Table</h2>
-      <p class="lede" style="font-size:17px;max-width:520px">Limor's debut cookbook: the recipes behind the restaurants, written for home kitchens. On the shelf at all three Delaminas, and the right present for anyone who's ever asked how we make the cauliflower.</p>
-      <div class="btn-row"><a class="btn btn-light" href="gift-cards.html#book">Buy the book</a></div>
+<section class="find st-road">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">The journey</span><h2>From one residency to three restaurants</h2></div>
+    </div>
+    <div class="find-4">
+      {road_step("01", IMG['limor'], "Where it started", "Shoreditch House", "Limor's cooking, first served as a residency at Shoreditch House.")}
+      {road_step("02", IMG['east_2'], "Shoreditch", "Delamina EAST", "The first restaurant, on Commercial Street, moments from Spitalfields Market.", "east.html", "Visit EAST")}
+      {road_step("03", IMG['mary_exterior'], "Marylebone", "Delamina Marylebone", "A second home on Marylebone Lane, with brunch every weekend.", "marylebone.html", "Visit Marylebone")}
+      {road_step("04", IMG['drawing'], "Covent Garden", "Delamina Townhouse", "The latest opening: a Georgian townhouse in the theatre district, full of period features and artworks.", "townhouse.html", "Visit the Townhouse")}
     </div>
   </div>
 </section>
 
-{reels([("fish", "Seabass on the charcoal grill"), ("lamb", "Lamb, off the grill"), ("egg", "Egg shawarma, weekend brunch"), ("dessert", "Save room")], "From the kitchen", "Cooked over charcoal, every day")}
+{duo('<div class="duo-pair">' + reel("fish", "Seabass on the charcoal grill") + reel("lamb", "Lamb, off the grill") + '</div>', "Limor's kitchen",
+     "Self-taught, intuitive, and generous with herbs and spice.",
+     ["Limor was born to a family of Middle Eastern and European origin, and learned to love food from her father, a passionate cook who introduced her to the flavours, herbs and spices of the region.",
+      "Her recipes follow her interest in healthy eating: grilling and roasting, letting the raw ingredients lead, with plenty for vegetarians. Food that is wholesome and nutritious, with flavour combinations of its own."],
+     '<a class="btn" href="menus.html">See the menus</a>', "duo-dark flip")}
 
-<section id="join" class="section">
-  <div class="wrap grid-2" style="align-items:center">
-    <div class="stack" style="display:flex;flex-direction:column;gap:20px">
-      <span class="eyebrow">Join us</span>
-      <h2>Come and work with us.</h2>
-      <p class="lede" style="font-size:17px">Front of house, kitchen, management — across three restaurants we're nearly always looking for good people who like looking after other people. Send us a note and a CV.</p>
-      <div class="btn-row"><a class="btn btn-solid" href="https://www.delaminakitchen.co.uk/join-us/" target="_blank" rel="noopener">Current roles</a></div>
-    </div>
-    <img src="{IMG['limor_townhouse']}" alt="Limor setting the table at Delamina Townhouse" loading="lazy" style="aspect-ratio:4/5;object-fit:cover;width:100%">
-  </div>
-</section>
+{duo(dimg(IMG['pour'], "Wine being poured at the table"), "The drinks",
+     "Wines from the eastern Mediterranean, cocktails from the spice rack.",
+     ["The drinks list is chosen with the same care as the menu: wines from across the eastern Mediterranean, and house cocktails made with the same aromatic ingredients the kitchen uses."],
+     '<a class="btn btn-dark" href="menu-marylebone.html#wine">The wine list</a><a class="btn" href="menu-townhouse.html#drinks">House cocktails</a>')}
+
+{duo(dimg(IMG['cauliflower'], "Charred cauliflower, a Delamina signature"), "The cookbook", "My Tel Aviv Table",
+     ["Limor's debut cookbook, and a Publishers Weekly Top 10 Food &amp; Cookery Pick for 2023. Recipes for every occasion and ability, brought to life by her family stories. Signed copies are available at the restaurants."],
+     '<a class="btn btn-dark" href="gift-cards.html#book">Order the book</a>', "duo-olive flip",
+     extra='<blockquote class="duo-quote">&ldquo;Limor&rsquo;s beautiful book bursts with exciting combinations and enticing flavours&rdquo;<cite>Claudia Roden</cite></blockquote>')}
+
+{reels([("mazetim", "The whole table"), ("egg", "Egg shawarma, weekend brunch"), ("cheers", "To a good evening"), ("dessert", "Save room")], "At the table", "Made to share, every day")}
+
+{duo(dimg(IMG['limor'], "Limor bringing dishes out from the kitchen"), "Join us", "Come and work with us.",
+     ["We're looking for people as colourful and interesting as the flavours on the menu. Front of house and kitchen roles, across all three restaurants."],
+     '<a class="btn btn-solid" href="https://www.delaminakitchen.co.uk/join-us/" target="_blank" rel="noopener">Current roles</a>', "duo-light", "join")}
 </main>
 """
 story += FOOTER
 
 
-# ---------------------------------------------------------------- WHAT'S ON
-won = head("What's On — Delamina", "Christmas 2026 and New Year's Eve at Delamina, Pour & Plate wine dinners, and weekend brunch in Marylebone and Shoreditch.")
+# ---------------------------------------------------------------- WHAT'S ON (index)
+def wo_card(cls, href, img, when, title, text, cta, pos="center", id_=""):
+    ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+    return f"""<a class="wcard {cls}"{f' id="{id_}"' if id_ else ''} href="{href}"{ext}>
+      <img src="{img}" alt="" loading="lazy" style="object-position:{pos}">
+      <div class="wcard-text">
+        <span class="wcard-when">{when}</span>
+        <h3>{title}</h3>
+        <p>{text}</p>
+        <span class="go">{cta} <b aria-hidden="true">&rarr;</b></span>
+      </div>
+    </a>"""
+
+
+won = head("What's On — Delamina", "Christmas at Delamina, weekend brunch, Pour & Plate wine dinners, New Year's Eve and pre-theatre at the Townhouse.")
 won += header("whats-on")
 won += f"""
+<main class="rest">
+<section class="rest-head">
+  <div class="wrap">
+    <div><span class="eyebrow">What's on</span><h1>This season at Delamina</h1></div>
+    <p>The Christmas Feast, brunch every weekend, wine dinners and a table before the theatre.</p>
+  </div>
+</section>
+<section class="wo-grid">
+  {wo_card('wcard-feature', 'christmas.html', IMG['xmas_table'], '23 November to 24 December &nbsp;·&nbsp; Now booking', 'Christmas at Delamina', 'The Christmas Feast: charcoal-grilled sirloin, salmon and duck for the whole table, from £64 per guest.', 'See the Christmas Feast')}
+  {wo_card('', 'brunch.html', IMG['brunch'], 'Weekends &amp; bank holidays', 'Brunch at Delamina', 'Shakshuka, mazetim and the all-day classics, at Marylebone and EAST.', 'Brunch times &amp; menus')}
+  {wo_card('', 'pour-and-plate.html', IMG['wine'], 'Wine dinners', 'Pour &amp; Plate', 'One producer, their wines, and a menu written to match.', 'About the series')}
+  {wo_card('', NEWSLETTER, IMG['cheers'], '31 December', 'New Year&rsquo;s Eve', 'See the year out around the table. Details go to the mailing list first.', 'Join the mailing list', 'center 60%', 'new-year')}
+  {wo_card('', 'menu-townhouse.html#pre-theatre', IMG['fish_table'], 'Before the show', 'Pre-theatre, £27.5', 'Kubaneh to share, then a starter and a main, at the Townhouse in Covent Garden.', 'Pre-theatre menu')}
+</section>
+{newsband()}
+</main>
+"""
+won += FOOTER
+
+
+# ---------------------------------------------------------------- CHRISTMAS
+XMAS_PRICE = {"mary": "£67", "east": "£64", "town": "£69"}
+
+
+def xmas_card(key):
+    v = VENUES[key]
+    return f"""<article class="fcard evc reveal">
+      <a class="fcard-img" href="{v["menu"]}#christmas"><img src="{IMG[VIMG[key]]}" alt="{v["name"]}" loading="lazy"></a>
+      <span class="eyebrow">{v["area"]}</span>
+      <h3>{v["name"]}</h3>
+      <p class="evc-price">{XMAS_PRICE[key]}<small>per guest</small></p>
+      <p>{v["addr"]}, {v["post"]}</p>
+      <div class="btn-row"><a class="btn btn-solid btn-sm" href="{v["menu"]}#christmas">Christmas menu</a><a class="btn btn-sm" href="mailto:{EMAIL[key]}?subject=Christmas%20booking">Email to book</a></div>
+    </article>"""
+
+
+xmas = head("Christmas at Delamina — the Christmas Feast 2026", "The Delamina Christmas Feast: a sharing menu of charcoal-grilled sirloin, salmon and duck, 23 November to 24 December at Marylebone, EAST and the Townhouse. Groups of 8 to exclusive hire.")
+xmas += header("whats-on")
+xmas += f"""
 <main>
-<section class="wrap hero" style="padding-bottom:40px">
-  <div class="stack">
-    <span class="eyebrow">What's on</span>
-    <h1>Reasons to come back.</h1>
-    <p class="lede" style="max-width:540px">Festive menus, New Year's Eve, wine dinners and the weekend brunch that never stops.</p>
-  </div>
-  <video class="hero-img" autoplay muted loop playsinline preload="auto" poster="video/reel-xmas.jpg" src="video/reel-xmas.mp4" aria-label="Christmas at Delamina"></video>
-</section>
+{page_hero(kb_img(IMG['xmas_cheers']), "Christmas 2026 &nbsp;·&nbsp; Now booking", "Christmas at Delamina", "The Christmas Feast: abundant dishes, bold flavours and the joy of sharing.",
+           bar([("Delamina Marylebone", "£67 per guest", "menu-marylebone.html#christmas", False), ("Delamina EAST", "£64 per guest", "menu-east.html#christmas", False), ("Delamina Townhouse", "£69 per guest", "menu-townhouse.html#christmas", False), ("Parties &amp; exclusive hire", "Make an enquiry", "private-dining.html#enquire", False)]))}
 
-<section id="christmas" class="section bg-olive">
-  <div class="wrap split" style="grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)">
-    <div class="stack">
-      <span class="eyebrow">Now booking</span>
-      <h2 style="color:var(--charcoal)">Christmas 2026</h2>
-      <p style="font-weight:300;font-size:17px;max-width:560px">Festive sharing menus across all three restaurants from late November to Christmas Eve, parties from 8 to 120, and exclusive hires of the Garden Room, the Drawing Room, the Arts Room and both floors at Marylebone. Menus for every diet, drinks packages if you want them.</p>
-      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#enquire">Book a party</a><a class="btn" href="menu-marylebone.html#christmas">Marylebone menu · £67</a><a class="btn" href="menu-east.html#christmas">EAST menu · £64</a><a class="btn" href="menu-townhouse.html#christmas">Townhouse menu · £69</a></div>
+{intro("The Christmas Feast", "A feast for the middle of the table, for colleagues, friends and family.",
+       ["The Feast is built from the dishes people come back for. It opens with the classic Delamina starters, moves on to platters of house-seasoned, charcoal-grilled sirloin, salmon and duck breast with fragrantly spiced vegetables, and finishes with a spread of desserts.",
+        "Vegetarian and vegan guests are looked after at every course."],
+       "The details",
+       [("Dates", "23 November to 24 December"), ("For", "Groups of 8, up to exclusive hire"), ("Price", "£64 to £69 per guest, by restaurant"), ("To book", "Email the restaurant directly")],
+       '<a class="btn btn-dark" href="#restaurants">Choose a restaurant</a>')}
+
+{duo(dimg(IMG['xmas_dish'], "A dish from the Christmas Feast"), "On the Feast menu", "Four courses, all of it shared.", [], "", "duo-light",
+     extra='''<div class="feast">
+       <div><h3>To begin</h3><ul><li>House dips with fluffy pita</li><li>Hummus, tahini with zhoug, smokey aubergine</li></ul></div>
+       <div><h3>Then</h3><ul><li>Grilled courgette two-ways, labneh</li><li>Seared tuna</li></ul></div>
+       <div><h3>The platters</h3><ul><li>Dry aged sirloin tagliata, vine leaf chimichurri</li><li>Duck breast, wine &amp; orange jus</li><li>Charcoal roasted salmon, miso-tahini</li><li>Charred cauliflower, caramelised Violina pumpkin</li></ul></div>
+       <div><h3>To finish</h3><ul><li>Kadayif nest, vanilla cheesecake cream</li><li>Chocolate, praline and olive oil</li></ul></div>
+     </div><p class="feast-note">Dishes vary a little between the three restaurants. Each menu has the full line-up.</p>''')}
+
+<section id="restaurants" class="find" style="scroll-margin-top:80px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Where to celebrate</span><h2>Choose your Delamina</h2></div>
+      <p>The Feast is served at all three. Email the restaurant with your date and numbers and the team will take it from there.</p>
     </div>
-    <img src="{IMG['xmas_table']}" alt="A Christmas table at Delamina" loading="lazy">
+    <div class="find-grid">{xmas_card("mary")}{xmas_card("east")}{xmas_card("town")}</div>
   </div>
 </section>
 
-{reels([("cheers", "To a good evening"), ("xmas", "Christmas in Covent Garden"), ("champagne", "House cocktails"), ("mazetim", "The whole table")])}
+{reels([("cheers", "To a good evening"), ("lamb", "Off the charcoal grill"), ("champagne", "A glass to start"), ("mazetim", "The whole table")])}
 
-<section id="pour-and-plate" class="section">
-  <div class="wrap grid-3">
-    <div class="tile reveal"><span class="eyebrow">Wine dinners</span><h3>Pour &amp; Plate</h3><p>Our numbered wine dinner series — one producer from around the eastern Mediterranean, one long table, a menu Limor builds around their bottles. Tickets go to the mailing list first.</p><a class="link" href="{NEWSLETTER}" target="_blank" rel="noopener">Get the next date</a></div>
-    <div id="new-year" class="tile reveal"><span class="eyebrow">31 December</span><h3>New Year's Eve</h3><p>See the year out around the table, with a feast menu made for sharing and a glass raised at midnight. Details go to the mailing list first.</p><a class="link" href="{NEWSLETTER}" target="_blank" rel="noopener">Details &amp; booking</a></div>
-    <div id="brunch" class="tile reveal"><span class="eyebrow">Every weekend</span><h3>Weekend brunch</h3><p>Shakshuka, sabich, the dips board and fresh juices. Saturdays, Sundays and bank holidays at Marylebone (from 10.30am) and EAST (from 11am).</p><a class="link" href="menu-marylebone.html#brunch">Brunch menu</a></div>
+{duo(dimg(IMG['garden'], "The Garden Room at Delamina EAST", True), "Private rooms &amp; exclusive hire", "Taking a room, or the whole restaurant?",
+     ["The Garden Room at EAST, the Family Room in Marylebone, and the Drawing Room and Arts Room at the Townhouse are all available for Christmas parties, with exclusive hire at each restaurant."],
+     '<a class="btn btn-solid" href="private-dining.html#enquire">Make an enquiry</a><a class="btn" href="private-dining.html">See the rooms</a>', "duo-dark flip")}
+</main>
+"""
+xmas += FOOTER
+
+
+# ---------------------------------------------------------------- BRUNCH
+def brunch_list(venue, key, limit):
+    out = ""
+    for it in _MENUS[venue][key][0]["items"][:limit]:
+        tg = "".join(f'<abbr class="tg" title="{_TAGNAME[t]}">{t}</abbr>' for t in it.get("tags", []))
+        text = it["text"]
+        if len(text) > 120:  # the breakfast plates list every mazetim: keep the page readable
+            text = text.split(". ")[0].split(" with mazetim")[0] + ", with a table of mazetim, pita and bread"
+        out += f'<div class="ml-item"><div class="ml-text"><span class="ml-name">{it["name"]} {tg}</span><span>{text}</span></div><div class="ml-price">{it.get("price", "")}</div></div>'
+    return out
+
+
+brunch = head("Brunch at Delamina — weekend brunch in Marylebone and Shoreditch", "An Eastern Mediterranean brunch feast alongside the all-day Delamina classics. Saturdays, Sundays and bank holidays at Delamina Marylebone and Delamina EAST.")
+brunch += header("whats-on")
+brunch += f"""
+<main>
+{page_hero(bgvideo("hero-marylebone"), "Saturdays, Sundays &amp; bank holidays", "Brunch at Delamina", "An Eastern Mediterranean brunch feast, alongside the all-day Delamina classics.",
+           bar([("Delamina Marylebone", "From 10.30am", BOOK["mary"], False), ("Delamina EAST", "From 11am", BOOK["east"], False), ("What we serve", "The brunch menus", "#menus", False)]))}
+
+{intro("Weekend brunch", "Shakshuka in the pan, mazetim across the table, and nowhere you need to be.",
+       ["Brunch at Delamina is built for sharing: eggs every way, a spread of mazetim with warm pita, and halva French toast for the table. The all-day Delamina classics are on too, for anyone who would rather have lunch.",
+        "It is served at Marylebone and at EAST in Shoreditch, every Saturday and Sunday and on bank holidays."],
+       "Booking times",
+       [("Delamina Marylebone", "10.30am – 3.15pm"), ("Delamina EAST", "11am – 3.30pm"), ("Days", "Saturdays, Sundays and bank holidays")],
+       f'<a class="btn btn-dark" href="{BOOK["mary"]}" target="_blank" rel="noopener">Book Marylebone</a><a class="btn" href="{BOOK["east"]}" target="_blank" rel="noopener">Book EAST</a>')}
+
+<section id="menus" class="bm">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">On the brunch menu</span><h2>A taste of the weekend</h2></div>
+      <p>A few of the brunch specials at each restaurant. The full menus have the mazetim, the classics and the drinks.</p>
+    </div>
+    <div class="bm-grid">
+      <div class="bm-col reveal">
+        <h3>Delamina Marylebone</h3>
+        <p class="bm-when">Saturday, Sunday &amp; bank holidays &nbsp;·&nbsp; 10.30am – 3.15pm</p>
+        <div class="ml">{brunch_list("marylebone", "brunch", 6)}</div>
+        <div class="btn-row"><a class="btn btn-solid btn-sm" href="menu-marylebone.html#brunch">Full brunch menu</a><a class="btn btn-sm" href="{BOOK["mary"]}" target="_blank" rel="noopener">Book a table</a></div>
+      </div>
+      <div class="bm-col reveal">
+        <h3>Delamina EAST</h3>
+        <p class="bm-when">Saturday, Sunday &amp; bank holidays &nbsp;·&nbsp; 11am – 3.30pm</p>
+        <div class="ml">{brunch_list("east", "weekend", 6)}</div>
+        <div class="btn-row"><a class="btn btn-solid btn-sm" href="menu-east.html#weekend">Full weekend menu</a><a class="btn btn-sm" href="{BOOK["east"]}" target="_blank" rel="noopener">Book a table</a></div>
+        <figure class="bm-pic"><img src="{IMG['brunch']}" alt="Shakshuka and brunch drinks at Delamina" loading="lazy"></figure>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section-tight bg-light">
-  <div class="wrap panel" style="padding:0;flex-direction:row;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px">
-    <div class="stack" style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow">Newsletter</span><h3 style="font-size:26px">Hear about it first.</h3><p style="font-weight:300">One or two emails a month: new menus, Pour &amp; Plate dates and the odd table-only offer.</p></div>
-    <a class="btn btn-dark" href="{NEWSLETTER}" target="_blank" rel="noopener">Join the mailing list</a>
+{reels([("egg", "Egg shawarma"), ("coffee", "Weekend mornings"), ("mazetim", "The whole table"), ("cocktail", "Plates to share")], "Weekends at Delamina", "Long, slow and shared")}
+
+{duo(dimg(IMG['table_overhead'], "A full table of sharing plates", True), "Brunch for a crowd", "Bringing the whole table?",
+     ["Marylebone has two brunch sharing menus for groups, at £33 and £39 per guest, and the Family Room for anything bigger."],
+     '<a class="btn btn-dark" href="menu-marylebone.html#sharing">Brunch sharing menus</a><a class="btn" href="private-dining.html">Private dining</a>', "flip")}
+
+<section class="find vp-others">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Where to find it</span><h2>Two places for brunch</h2></div></div>
+    <div class="find-grid find-2">
+      {"".join(find_card(k, VENUES[k]["area"], VENUES[k]["name"], IMG[VIMG[k]], VENUES[k]["addr"] + ", " + VENUES[k]["post"], "Brunch: " + t, VENUES[k]["phone"], VENUES[k]["slug"]) for k, t in (("mary", "Saturday, Sunday &amp; bank holidays, 10.30am – 3.15pm"), ("east", "Saturday, Sunday &amp; bank holidays, 11am – 3.30pm")))}
+    </div>
   </div>
 </section>
 </main>
 """
-won += FOOTER
+brunch += FOOTER
+
+
+# ---------------------------------------------------------------- POUR & PLATE
+pour = head("Pour & Plate — wine dinners at Delamina", "Pour & Plate is Delamina's series of wine dinners: one producer, their wines, and a menu written to match. Dates are announced to the mailing list first.")
+pour += header("whats-on")
+pour += f"""
+<main>
+{page_hero(kb_img(IMG['wine'], "center 60%"), "Wine dinners", "Pour &amp; Plate", "One producer, their wines, and a menu written to match.",
+           bar([("Next edition", "Announced to the mailing list first", NEWSLETTER, True), ("Between editions", "The wine lists", "#wine", True)]))}
+
+{intro("The series", "An evening built around the bottles.",
+       ["Pour &amp; Plate is our numbered series of wine dinners. Each edition takes a single producer and pours their wines through the evening, alongside a menu from Limor's kitchen written for those bottles.",
+        "It is the Delamina table at its best: good wine, food made to share, and the story behind what is in the glass."],
+       "Good to know",
+       [("The series", "Numbered editions through the year"), ("Places", "Limited at every edition"), ("Tickets", "Offered to the mailing list first")],
+       f'<a class="btn btn-dark" href="{NEWSLETTER}" target="_blank" rel="noopener">Join the mailing list</a>')}
+
+<section class="steps">
+  <div class="wrap steps-grid">
+    <div class="step reveal"><b>01</b><h3>The producer</h3><p>One winemaker or estate for the whole evening, so you get to know how they work.</p></div>
+    <div class="step reveal"><b>02</b><h3>The pour</h3><p>Their wines, poured course by course.</p></div>
+    <div class="step reveal"><b>03</b><h3>The plate</h3><p>A one-off menu from Limor's kitchen, built around what is in the glass.</p></div>
+  </div>
+</section>
+
+{duo(dvid("cheers"), "Next edition", "The next date goes to the mailing list first.",
+     ["Each Pour &amp; Plate is announced by email before it appears anywhere else. Join the list and you will hear the producer, the date and the menu as soon as they are set."],
+     f'<a class="btn btn-solid" href="{NEWSLETTER}" target="_blank" rel="noopener">Join the mailing list</a>', "", "next")}
+
+{duo(dimg(IMG['wine_glass'], "A glass of white wine at the table"), "Between editions", "What we pour every day.",
+     ["The wine lists lean towards the eastern Mediterranean, with plenty by the glass and carafe. The house cocktails use the same herbs and spices as the kitchen."],
+     '<a class="btn btn-dark" href="menu-marylebone.html#wine">Marylebone wine list</a><a class="btn" href="menu-east.html#wine">EAST wine list</a><a class="btn" href="menu-townhouse.html#drinks">Townhouse cocktails &amp; wine</a>', "duo-light flip", "wine")}
+
+{reels([("champagne", "A glass to start"), ("fish", "From the charcoal grill"), ("mazetim", "One long evening"), ("dessert", "Save room")])}
+</main>
+"""
+pour += FOOTER
 
 
 # ---------------------------------------------------------------- GIFT CARDS
@@ -1115,7 +1381,7 @@ menus_hub += FOOTER
 pages = {
     "index.html": home, "marylebone.html": marylebone, "east.html": east, "townhouse.html": townhouse,
     "private-dining.html": pd, "our-story.html": story, "whats-on.html": won, "gift-cards.html": gifts, "privacy.html": privacy,
-    "restaurants.html": restaurants, "menus.html": menus_hub, "menu-marylebone.html": menu_marylebone, "menu-east.html": menu_east, "menu-townhouse.html": menu_townhouse,
+    "restaurants.html": restaurants, "christmas.html": xmas, "brunch.html": brunch, "pour-and-plate.html": pour, "menus.html": menus_hub, "menu-marylebone.html": menu_marylebone, "menu-east.html": menu_east, "menu-townhouse.html": menu_townhouse,
 }
 here = os.path.dirname(os.path.abspath(__file__))
 for name, html in pages.items():

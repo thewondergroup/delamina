@@ -7,7 +7,11 @@ Static site, no build step needed to deploy. Upload the folder to a GitHub repo 
 - `marylebone.html`, `east.html`, `townhouse.html` — one per restaurant (menus, hours, private rooms, map)
 - `private-dining.html` — all nine rooms, enquiry form, brochure request
 - `our-story.html` — Limor & Amir, the cookbook, Join us
-- `whats-on.html` — Christmas 2026, Pour & Plate, Founders' Dinners, brunch
+- `whats-on.html` — index of everything on, linking to the pages below
+- `christmas.html` — the Christmas Feast: dates, prices per restaurant, menu links, email to book
+- `brunch.html` — weekend brunch at Marylebone and EAST: times, dishes, booking
+- `pour-and-plate.html` — the wine dinner series (next date still to be added)
+- `restaurants.html` — the three restaurants
 - `gift-cards.html` — Toast gift card links + cookbook
 - `menus.html`, `menu-marylebone.html`, `menu-east.html`, `menu-townhouse.html` — full menus with prices
 - `privacy.html` — stub; paste the current policy in
