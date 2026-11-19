@@ -34,6 +34,7 @@ IMG = {
     "cauliflower": "images/cauliflower.jpg",
     "limor": "images/limor.jpg",
     "founders": "images/founders.jpg",
+    "founders_door": "images/founders-door.jpg",
     "cheers": "images/cheers.jpg",
     "prawns_spread": "images/prawns-spread.jpg",
     "table_overhead": "images/table-overhead.jpg",
@@ -376,7 +377,7 @@ home += f"""
 </section>
 
 <section id="story" class="storyx">
-  <div class="storyx-img"><img src="{IMG['founders']}" alt="Limor and Amir, founders of Delamina" loading="lazy"></div>
+  <div class="storyx-img"><img src="{IMG['founders_door']}" alt="Limor and Amir, founders of Delamina" loading="lazy"></div>
   <div class="storyx-text">
     <span class="eyebrow">Our story</span>
     <h2 class="reveal">Delamina is Limor and Amir: a husband and wife cooking the food they grew up on.</h2>
@@ -452,6 +453,13 @@ def reel(name, caption):
 def reels(items, eyebrow="", title=""):
     head_ = f'<div class="wrap reels-head"><span class="eyebrow">{eyebrow}</span><h2>{title}</h2></div>' if title else ""
     return f'<section class="reels">{head_}<div class="reels-row">{"".join(reel(n, c) for n, c in items)}</div></section>'
+
+
+def tour(name, label, length):
+    """A film with sound: shows a still and a play button, plays with controls once clicked."""
+    return (f'<figure class="tour reveal"><video playsinline preload="none" poster="video/{name}.jpg" src="video/{name}.mp4"></video>'
+            f'<button class="tour-play" type="button" aria-label="Play: {label}"><span class="tour-ico" aria-hidden="true"></span>'
+            f'<span class="tour-label">{label}<small>{length} &nbsp;·&nbsp; with sound</small></span></button></figure>')
 
 
 def pick_dishes(venue, wanted):
@@ -549,7 +557,7 @@ VENUES = {
                ("The Drawing Room", "up to 50 guests", "Tall windows over Tavistock Street. Seated, or standing with drinks."),
                ("The Arts Room", "up to 50 guests", "Launches, Christmas parties, wedding breakfasts."),
                ("Exclusive hire", "the whole house", "Every room, for your party.")],
-        pd_img="drawing", pd_anchor="covent-garden",
+        pd_img="drawing", pd_anchor="covent-garden", tour="tour-townhouse",
         find="Two minutes from the Royal Opera House",
         travel="Covent Garden station (Piccadilly line) is a few minutes' walk. Charing Cross and Temple are also close.",
         mapq="Delamina+Townhouse+13-15+Tavistock+Street+London+WC2E+7PS",
@@ -635,7 +643,7 @@ def venue_page(key):
       <div class="rrs">{rooms_}</div>
       <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#enquire">Make an enquiry</a><a class="btn" href="private-dining.html#{v["pd_anchor"]}">See the rooms</a><a class="btn" href="{v["menu"]}#sharing">Sharing menus</a></div>
     </div>
-    <div class="vp-pd-img"><img src="{IMG[v["pd_img"]]}" alt="Private dining at {v["name"]}" loading="lazy"></div>
+    {tour(v["tour"], "Take the tour", "1 min 28") if v.get("tour") else f'<div class="vp-pd-img"><img src="{IMG[v["pd_img"]]}" alt="Private dining at {v["name"]}" loading="lazy"></div>'}
   </div>
 </section>
 
@@ -710,16 +718,27 @@ restaurants += FOOTER
 
 
 # ---------------------------------------------------------------- PRIVATE DINING
-def room_block(anchor, area, name, page, intro, rooms, phone, img):
-    rm = "".join(f'<div class="card card-plain reveal"><div class="img"><img src="{im}" alt="{rn}, {name}" loading="lazy"></div><div class="body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><h3 style="font-size:24px">{rn}</h3><span class="muted small">{cap}</span></div><p style="font-size:15px">{rd}</p></div></div>' for rn, cap, rd, im in rooms)
+def pd_venue(anchor, key, area, name, intro, rooms, img, flip=False, extra="", pos="center"):
+    """One restaurant on the private dining page: a green name block beside its photo, then its rooms."""
+    v = VENUES[key]
+    cards = ""
+    for rn, cap, rd, im in rooms:
+        pic = f'<div class="prc-img"><img src="{im}" alt="{rn}, {name}" loading="lazy"></div>' if im else ""
+        cards += f'<article class="prc reveal">{pic}<div class="prc-body"><span class="prc-venue">{name}</span><h3>{rn}</h3><span class="cap">{cap}</span><p>{rd}</p></div></article>'
     return f"""
-<section id="{anchor}" class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head" style="align-items:end">
-      <div class="stack"><span class="eyebrow">{area}</span><h2>{name}</h2></div>
-      <div style="display:flex;flex-direction:column;gap:16px"><p class="lede" style="font-size:17px">{intro}</p><div class="btn-row"><a class="btn btn-solid btn-sm" href="#enquire">Enquire</a><a class="btn btn-sm" href="tel:{phone[1]}">{phone[0]}</a><a class="btn btn-sm" href="{page}">Restaurant page</a></div></div>
+<section id="{anchor}" class="pdv{' flip' if flip else ''}">
+  <div class="pdv-head">
+    <div class="pdv-id">
+      <span class="eyebrow">{area}</span>
+      <h2>{name}</h2>
+      <p>{intro}</p>
+      <div class="btn-row"><a class="btn btn-dark btn-sm" href="#enquire">Enquire</a><a class="btn btn-sm" href="tel:{v["phone"][1]}">{v["phone"][0]}</a><a class="btn btn-sm" href="{v["slug"]}">Restaurant page</a></div>
     </div>
-    <div class="grid-3">{rm}</div>
+    <div class="pdv-img"><img src="{img}" alt="{name}" loading="lazy" style="object-position:{pos}"></div>
+  </div>
+  <div class="wrap pdv-body">
+    {extra}
+    <div class="pdv-rooms">{cards}</div>
   </div>
 </section>"""
 
@@ -740,31 +759,40 @@ pd += f"""
 </section>
 
 <section class="section-tight bg-light">
-  <div class="wrap" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px" id="occasions">
+  <div class="wrap stats-row" id="occasions">
     <div class="stat"><b>9</b><span>Private rooms</span></div>
     <div class="stat"><b>8 – 120</b><span>Guests</span></div>
     <div class="stat"><b>3</b><span>Neighbourhoods</span></div>
-    <div class="stat"><b>1</b><span>Enquiry form for all of them</span></div>
   </div>
 </section>
 
-<section class="section" style="padding-bottom:40px">
+<section class="section" style="padding-bottom:clamp(48px,6vw,80px)">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head" style="margin-bottom:0">
       <div class="stack"><span class="eyebrow">Occasions</span><h2>Birthdays, launches, Christmas, the whole family.</h2></div>
       <p class="lede" style="font-size:17px">Seated dinners, drinks receptions, team lunches, engagement parties, wedding breakfasts and exclusive hires. Sharing menus from a set price per guest, with vegetarian, vegan and gluten-free covered as standard. Tell us the occasion and the number and we'll suggest the room.</p>
     </div>
   </div>
 </section>
 
-{room_block('marylebone','Marylebone · 56–58 Marylebone Lane','Delamina Marylebone','marylebone.html','The Family Room downstairs seats 25 to 35. Take both floors and it is 75 seated or 120 standing — the largest space in the group.',
-  [("The Green Room","8 – 10 guests","A snug corner for a small dinner: one table, the door closed.",IMG['green']),("The Family Room","25 – 35 guests","Downstairs, long tables, sharing menus. Birthdays, team dinners, the family.",IMG['family']),("Exclusive hire","75 seated · 120 standing","Both floors, the bar and the kitchen, all yours.",IMG['mary_interior'])],("020 3026 6810","+442030266810"),IMG['family'])}
+{pd_venue('marylebone', 'mary', 'Marylebone &nbsp;·&nbsp; 56–58 Marylebone Lane', 'Delamina Marylebone',
+  'The Family Room downstairs seats 25 to 35. Take both floors and it is 75 seated or 120 standing, the largest space in the group.',
+  [("The Green Room", "8 – 10 guests", "A snug corner for a small dinner: one table, the door closed.", ""),
+   ("The Family Room", "25 – 35 guests", "Downstairs, long tables, sharing menus. Birthdays, team dinners, the family.", ""),
+   ("Exclusive hire", "75 seated · 120 standing", "Both floors, the bar and the kitchen, all yours.", "")], IMG['mary_interior'])}
 
-{room_block('shoreditch','Shoreditch · 151–153 Commercial Street','Delamina EAST','east.html','Three rooms — the Green Room for ten, the semi-private Family Room for fourteen, the Garden Room for thirty — or the whole restaurant for a launch or a Christmas party.',
-  [("The Green Room","up to 10 guests","One table, tucked away. Dinners, meetings, small birthdays.",IMG['green']),("The Family Room","up to 14 guests","Semi-private, in the thick of it. Long-table lunches and dinners.",IMG['family']),("The Garden Room","up to 30 guests","The big one. Seated dinners for thirty, or drinks and canapés standing.",IMG['garden'])],("020 3026 6810","+442030266810"),IMG['garden'])}
+{pd_venue('shoreditch', 'east', 'Shoreditch &nbsp;·&nbsp; 151–153 Commercial Street', 'Delamina EAST',
+  'Three rooms: the Green Room for ten, the semi-private Family Room for fourteen and the Garden Room for thirty. Or the whole restaurant, for a launch or a Christmas party.',
+  [("The Green Room", "Up to 10 guests", "One table, tucked away. Dinners, meetings, small birthdays.", IMG['green']),
+   ("The Family Room", "Up to 14 guests", "Semi-private, in the thick of it. Long-table lunches and dinners.", IMG['family']),
+   ("The Garden Room", "Up to 30 guests", "The big one. Seated dinners for thirty, or drinks and canapés standing.", IMG['garden'])], IMG['east_2'], flip=True, pos="center 62%")}
 
-{room_block('covent-garden','Covent Garden · 13–15 Tavistock Street','Delamina Townhouse','townhouse.html','One of the few proper Georgian townhouses left in Covent Garden. The Big Snug for twenty, the Drawing Room and the Arts Room for fifty each, or exclusive hire of the house. Video tours available on request.',
-  [("The Big Snug","up to 20 guests","Low light, one long table, the door closed. Birthdays and board dinners.",IMG['snug']),("The Drawing Room","up to 50 guests","Tall windows over Tavistock Street. Seated dinners, or standing with drinks and canapés.",IMG['drawing']),("The Arts Room","up to 50 guests","The top floor. Launches, Christmas parties, wedding breakfasts.",IMG['arts'])],("020 4586 5555","+442045865555"),IMG['drawing'])}
+{pd_venue('covent-garden', 'town', 'Covent Garden &nbsp;·&nbsp; 13–15 Tavistock Street', 'Delamina Townhouse',
+  'One of the few proper Georgian townhouses left in Covent Garden. The Big Snug for twenty, the Drawing Room and the Arts Room for fifty each, or exclusive hire of the house.',
+  [("The Big Snug", "Up to 20 guests", "Low light, one long table, the door closed. Birthdays and board dinners.", IMG['snug']),
+   ("The Drawing Room", "Up to 50 guests", "Tall windows over Tavistock Street. Seated dinners, or standing with drinks and canapés.", IMG['drawing']),
+   ("The Arts Room", "Up to 50 guests", "The top floor. Launches, Christmas parties, wedding breakfasts.", IMG['arts'])], IMG['town_2'],
+  extra=f'''<div class="tour-row">{tour("tour-townhouse", "Take the tour", "1 min 28")}<div class="tour-text"><span class="eyebrow">Video tour &nbsp;·&nbsp; Delamina Townhouse</span><h3>Walk through the Townhouse before you book it.</h3><p>From the front door on Tavistock Street and up through the rooms, in a minute and a half.</p><div class="btn-row"><a class="btn btn-solid" href="#enquire">Enquire about the Townhouse</a></div></div></div>''')}
 
 <section id="menus" class="section-tight bg-olive band">
   <div class="wrap">

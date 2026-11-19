@@ -37,6 +37,18 @@
     window.addEventListener('resize', function () { if (window.innerWidth > 960) setMenu(false); });
   }
 
+  // Films with sound: play on click, then hand over to the normal controls
+  document.querySelectorAll('.tour').forEach(function (t) {
+    var v = t.querySelector('video'), b = t.querySelector('.tour-play');
+    if (!v || !b) return;
+    b.addEventListener('click', function () {
+      t.classList.add('playing');
+      v.controls = true;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+    v.addEventListener('ended', function () { t.classList.remove('playing'); v.controls = false; });
+  });
+
   // Scroll reveal
   var els = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
