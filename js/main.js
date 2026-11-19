@@ -171,6 +171,22 @@
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
 
+  // Private dining: floating brochure shortcut, hidden while a form is on screen
+  var broFloat = document.querySelector('.bro-float');
+  if (broFloat && 'IntersectionObserver' in window) {
+    var onScreen = new Set(), broTop = document.getElementById('brochure');
+    var broSync = function () {
+      var past = broTop ? broTop.getBoundingClientRect().bottom < 0 : window.scrollY > 600;
+      broFloat.classList.toggle('show', past && onScreen.size === 0);
+    };
+    var broIO = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) onScreen.add(e.target); else onScreen.delete(e.target); });
+      broSync();
+    });
+    document.querySelectorAll('#brochure, #enquire, .site-footer').forEach(function (el) { broIO.observe(el); });
+    window.addEventListener('scroll', broSync, { passive: true });
+  }
+
   // Forms: placeholder handler until a form endpoint is wired up
   document.querySelectorAll('form[data-demo]').forEach(function (f) {
     f.addEventListener('submit', function (ev) {

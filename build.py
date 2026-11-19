@@ -377,7 +377,7 @@ home += f"""
 </section>
 
 <section id="story" class="storyx">
-  <div class="storyx-img"><img src="{IMG['founders_door']}" alt="Limor and Amir, founders of Delamina" loading="lazy"></div>
+  <div class="storyx-img"><img src="{IMG['founders']}" alt="Limor and Amir, founders of Delamina" loading="lazy"></div>
   <div class="storyx-text">
     <span class="eyebrow">Our story</span>
     <h2 class="reveal">Delamina is Limor and Amir: a husband and wife cooking the food they grew up on.</h2>
@@ -393,7 +393,7 @@ home += f"""
     <h2 class="pdx-big reveal">A room of your own, and a table to share</h2>
     <div class="pdx-sub reveal">
       <p>Birthdays, launches, Christmas parties and long family lunches. Private rooms for eight guests up to a hundred and twenty, in Marylebone, Shoreditch and Covent Garden, with sharing menus from £48 per guest.</p>
-      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#enquire">Make an enquiry</a><a class="btn" href="private-dining.html">See every room</a></div>
+      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#brochure">Get the brochure</a><a class="btn" href="private-dining.html#enquire">Make an enquiry</a><a class="btn" href="private-dining.html">See every room</a></div>
     </div>
   </div>
   <div class="rooms-rail" tabindex="0" aria-label="Private rooms, scroll sideways">
@@ -641,7 +641,7 @@ def venue_page(key):
       <h2 class="pdx-big reveal">{v["pd_title"]}</h2>
       <p class="vp-pd-text">{v["pd_text"]}</p>
       <div class="rrs">{rooms_}</div>
-      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#enquire">Make an enquiry</a><a class="btn" href="private-dining.html#{v["pd_anchor"]}">See the rooms</a><a class="btn" href="{v["menu"]}#sharing">Sharing menus</a></div>
+      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#brochure">Get the brochure</a><a class="btn" href="private-dining.html#enquire">Make an enquiry</a><a class="btn" href="private-dining.html#{v["pd_anchor"]}">See the rooms</a><a class="btn" href="{v["menu"]}#sharing">Sharing menus</a></div>
     </div>
     {tour(v["tour"], "Take the tour", "1 min 28") if v.get("tour") else f'<div class="vp-pd-img"><img src="{IMG[v["pd_img"]]}" alt="Private dining at {v["name"]}" loading="lazy"></div>'}
   </div>
@@ -732,7 +732,7 @@ def pd_venue(anchor, key, area, name, intro, rooms, img, flip=False, extra="", p
       <span class="eyebrow">{area}</span>
       <h2>{name}</h2>
       <p>{intro}</p>
-      <div class="btn-row"><a class="btn btn-dark btn-sm" href="#enquire">Enquire</a><a class="btn btn-sm" href="tel:{v["phone"][1]}">{v["phone"][0]}</a><a class="btn btn-sm" href="{v["slug"]}">Restaurant page</a></div>
+      <div class="btn-row"><a class="btn btn-dark btn-sm" href="#brochure">Get the brochure</a><a class="btn btn-sm" href="#enquire">Enquire</a><a class="btn btn-sm" href="tel:{v["phone"][1]}">{v["phone"][0]}</a><a class="btn btn-sm" href="{v["slug"]}">Restaurant page</a></div>
     </div>
     <div class="pdv-img"><img src="{img}" alt="{name}" loading="lazy" style="object-position:{pos}"></div>
   </div>
@@ -754,7 +754,7 @@ pd += f"""
     <span class="eyebrow">Private dining &amp; events</span>
     <h1>Three private dining destinations, one warm Eastern Mediterranean table.</h1>
     <p class="lede" style="max-width:640px">Nine private rooms across Marylebone, Shoreditch and Covent Garden. Eight guests or a hundred and twenty, seated or standing, with sharing menus built for a crowd and a team who'll tailor the details.</p>
-    <div class="btn-row" style="margin-top:8px"><a class="btn btn-solid" href="#enquire">Make an enquiry</a><a class="btn btn-light" href="#brochure">Download the brochure</a></div>
+    <div class="btn-row" style="margin-top:8px"><a class="btn btn-solid" href="#brochure">Get the brochure</a><a class="btn btn-light" href="#enquire">Make an enquiry</a></div>
   </div>
 </section>
 
@@ -763,6 +763,35 @@ pd += f"""
     <div class="stat"><b>9</b><span>Private rooms</span></div>
     <div class="stat"><b>8 – 120</b><span>Guests</span></div>
     <div class="stat"><b>3</b><span>Neighbourhoods</span></div>
+  </div>
+</section>
+
+<section id="brochure" class="bro">
+  <div class="wrap bro-grid">
+    <div class="bro-cover reveal" aria-hidden="true">
+      <div class="bro-page">
+        <img src="{IMG['drawing']}" alt="" loading="lazy">
+        <div>{LOGO}<b>Private dining<br>&amp; events</b><span>Marylebone &nbsp;·&nbsp; Shoreditch &nbsp;·&nbsp; Covent Garden</span></div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">The private dining brochure</span>
+      <h2>Every room, every menu, in one place.</h2>
+      <p class="bro-lede">The quickest way to plan an event at Delamina. Leave your details and the brochure is yours.</p>
+      <ul class="bro-list">
+        <li>All nine rooms across the three restaurants</li>
+        <li>Capacities, seated and standing</li>
+        <li>Floor plans for each space</li>
+        <li>Sample sharing menus</li>
+      </ul>
+      <form data-demo class="bro-form">
+        <label class="sr-only" for="b-name">Name</label><input id="b-name" type="text" placeholder="Name" autocomplete="name" required>
+        <label class="sr-only" for="b-email">Email</label><input id="b-email" type="email" placeholder="Email" autocomplete="email" required>
+        <label class="sr-only" for="b-phone">Phone</label><input id="b-phone" type="tel" placeholder="Phone" autocomplete="tel">
+        <button class="btn btn-solid" type="submit">Send me the brochure</button>
+        <p class="form-msg small"></p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -797,7 +826,7 @@ pd += f"""
 <section id="menus" class="section-tight bg-olive band">
   <div class="wrap">
     <div class="stack" style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Group menus</span><h2 style="color:var(--charcoal)">Sharing menus built for a crowd.</h2><p style="max-width:600px;font-weight:400">Everything comes to the middle of the table: dips and warm bread, the cauliflower, salads, grills and desserts. Set price per guest, menus for every diet, and a drinks package if you'd like one.</p></div>
-    <a class="btn btn-dark" href="#enquire">Ask for the menus</a>
+    <div class="btn-row"><a class="btn btn-dark" href="#brochure">Get the brochure</a><a class="btn" href="#enquire" style="border-color:var(--charcoal)">Ask for the menus</a></div>
   </div>
 </section>
 
@@ -811,14 +840,15 @@ pd += f"""
         <div class="k"><span class="eyebrow">Marylebone &amp; EAST events</span><a href="tel:+442030266810">020 3026 6810</a></div>
         <div class="k"><span class="eyebrow">Townhouse events</span><a href="tel:+442045865555">020 4586 5555</a></div>
       </div>
-      <div id="brochure" class="panel panel-dark" style="margin-top:8px">
-        <span class="eyebrow">Brochure</span>
-        <h3 style="font-size:24px">The private dining brochure</h3>
-        <p style="font-size:15px">Every room, capacity, floor plan and sample menu in one PDF. Leave your details and it's yours.</p>
+      <div class="panel bro-mini" style="margin-top:8px">
+        <span class="eyebrow">Not ready to enquire?</span>
+        <h3>Take the brochure first.</h3>
+        <p>Every room, capacity, floor plan and sample menu in one PDF.</p>
         <form data-demo class="form-row" style="margin-top:4px">
-          <label class="sr-only" for="b-name">Name</label><input id="b-name" type="text" placeholder="Name" required>
-          <label class="sr-only" for="b-email">Email</label><input id="b-email" type="email" placeholder="Email" required>
-          <button class="btn btn-light" type="submit">Send me the brochure</button>
+          <label class="sr-only" for="b2-name">Name</label><input id="b2-name" type="text" placeholder="Name" autocomplete="name" required>
+          <label class="sr-only" for="b2-email">Email</label><input id="b2-email" type="email" placeholder="Email" autocomplete="email" required>
+          <label class="sr-only" for="b2-phone">Phone</label><input id="b2-phone" type="tel" placeholder="Phone" autocomplete="tel">
+          <button class="btn btn-solid" type="submit" style="flex:1 1 100%">Send me the brochure</button>
           <p class="form-msg small" style="width:100%"></p>
         </form>
       </div>
@@ -836,6 +866,7 @@ pd += f"""
     </form>
   </div>
 </section>
+<a class="bro-float" href="#brochure" aria-label="Get the private dining brochure"><span>Private dining brochure</span><b aria-hidden="true">Get it &darr;</b></a>
 </main>
 """
 pd += FOOTER
@@ -946,7 +977,7 @@ story += f"""
 <main>
 {page_hero(kb_img(IMG['limor_townhouse']), "Our story", "Home cooking, taken out to dinner", "Limor and Amir, husband and wife, and three London restaurants.", low=True)}
 
-{duo(dimg(IMG['founders'], "Limor and Amir at the table"), "Limor &amp; Amir",
+{duo(dimg(IMG['founders_door'], "Limor and Amir outside the restaurant", pos="center 20%"), "Limor &amp; Amir",
      "It began with a residency at Shoreditch House, and the food Limor grew up with.",
      ["Delamina is run by husband and wife Limor and Amir. The residency became Delamina EAST in Shoreditch, then Delamina in Marylebone, and most recently the Townhouse in Covent Garden.",
       "Ten years on the restaurants are still family run, and Limor is still the driving force behind every menu."])}
