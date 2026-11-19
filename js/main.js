@@ -68,6 +68,20 @@
     lazyVids.forEach(function (v) { vio.observe(v); });
   }
 
+  // Restaurants page: play that restaurant's video while its panel is hovered
+  if (!reduce && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.rpanel').forEach(function (p) {
+      var pv = p.querySelector('video[data-hover]');
+      if (!pv) return;
+      p.addEventListener('mouseenter', function () {
+        if (!pv.src) pv.src = pv.dataset.hover;
+        var pr = pv.play(); if (pr && pr.catch) pr.catch(function () {});
+        p.classList.add('playing');
+      });
+      p.addEventListener('mouseleave', function () { p.classList.remove('playing'); pv.pause(); });
+    });
+  }
+
   // Restaurant pages: show today's booking times (London time)
   document.querySelectorAll('[data-today]').forEach(function (el) {
     try {

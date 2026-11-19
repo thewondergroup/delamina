@@ -68,7 +68,7 @@ INSTAGRAM = "https://www.instagram.com/delaminakitchen/"
 LOGO = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "delamina-logo.svg")).read().replace("<svg ", '<svg class="logo" ')
 
 NAV = [
-    ("restaurants", "index.html#restaurants", "Restaurants"),
+    ("restaurants", "restaurants.html", "Restaurants"),
     ("menus", "menus.html", "Menus"),
     ("private-dining", "private-dining.html", "Private Dining"),
     ("whats-on", "whats-on.html", "What's On"),
@@ -654,6 +654,47 @@ east = venue_page("east")
 townhouse = venue_page("town")
 
 
+# ---------------------------------------------------------------- RESTAURANTS (directory)
+def rpanel(key):
+    v = VENUES[key]
+    img = IMG[{"mary": "mary_exterior", "east": "east_2", "town": "drawing"}[key]]
+    today = _json.dumps(v["today"]).replace('"', "&quot;")
+    return f"""<article class="rpanel">
+      <img src="{img}" alt="{v["name"]}" loading="lazy">
+      <video muted loop playsinline preload="none" data-hover="video/{v["video"]}-mobile.mp4" aria-hidden="true"></video>
+      <div class="rpanel-body">
+        <span class="rpanel-area">{v["area"]}</span>
+        <h2><a class="rpanel-link" href="{v["slug"]}">{v["name"]}</a></h2>
+        <p class="rpanel-tag">{v["tag"]}</p>
+        <dl class="rpanel-info">
+          <div><dt>Address</dt><dd>{v["addr"]}, {v["post"]}</dd></div>
+          <div><dt>Bookings today</dt><dd data-today="{today}">See the restaurant page</dd></div>
+        </dl>
+        <div class="rpanel-actions"><a class="btn btn-solid btn-sm" href="{BOOK[key]}" target="_blank" rel="noopener">Book a table</a><span class="go">Visit {v["name"].replace("Delamina ", "")} <b aria-hidden="true">&rarr;</b></span></div>
+      </div>
+    </article>"""
+
+
+restaurants = head("Our restaurants — Delamina Marylebone, EAST and Townhouse", "Delamina's three London restaurants: Marylebone, EAST in Shoreditch and the Townhouse in Covent Garden. Addresses, booking times and links to each.")
+restaurants += header("restaurants")
+restaurants += f"""
+<main class="rest">
+<section class="rest-head">
+  <div class="wrap">
+    <div><span class="eyebrow">Our restaurants</span><h1>Three neighbourhoods, one table</h1></div>
+    <p>Each Delamina has its own character and its own rooms. The cooking, and the welcome, are the same.</p>
+  </div>
+</section>
+<section class="rpanels">
+  {rpanel("mary")}
+  {rpanel("east")}
+  {rpanel("town")}
+</section>
+</main>
+"""
+restaurants += FOOTER
+
+
 # ---------------------------------------------------------------- PRIVATE DINING
 def room_block(anchor, area, name, page, intro, rooms, phone, img):
     rm = "".join(f'<div class="card card-plain reveal"><div class="img"><img src="{im}" alt="{rn}, {name}" loading="lazy"></div><div class="body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><h3 style="font-size:24px">{rn}</h3><span class="muted small">{cap}</span></div><p style="font-weight:300;font-size:15px">{rd}</p></div></div>' for rn, cap, rd, im in rooms)
@@ -1074,7 +1115,7 @@ menus_hub += FOOTER
 pages = {
     "index.html": home, "marylebone.html": marylebone, "east.html": east, "townhouse.html": townhouse,
     "private-dining.html": pd, "our-story.html": story, "whats-on.html": won, "gift-cards.html": gifts, "privacy.html": privacy,
-    "menus.html": menus_hub, "menu-marylebone.html": menu_marylebone, "menu-east.html": menu_east, "menu-townhouse.html": menu_townhouse,
+    "restaurants.html": restaurants, "menus.html": menus_hub, "menu-marylebone.html": menu_marylebone, "menu-east.html": menu_east, "menu-townhouse.html": menu_townhouse,
 }
 here = os.path.dirname(os.path.abspath(__file__))
 for name, html in pages.items():
