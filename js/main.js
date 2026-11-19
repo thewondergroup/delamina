@@ -34,14 +34,13 @@
   // Safety net: never leave content hidden
   setTimeout(function () { els.forEach(function (el) { el.classList.add('in'); }); }, 1500);
 
-  // Hero video: phone gets the vertical cut; respect reduced motion; pause control
-  var v = document.querySelector('.hero-video');
-  if (v) {
-    var mq = window.matchMedia('(max-width: 760px)');
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Background videos: phones get the vertical cut; reduced motion shows the still
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mqv = window.matchMedia('(max-width: 760px)');
+  document.querySelectorAll('video[data-desktop]').forEach(function (v) {
     var pick = function () {
-      var want = mq.matches ? v.dataset.mobile : v.dataset.desktop;
-      if (mq.matches && v.dataset.posterMobile) v.poster = v.dataset.posterMobile;
+      var want = mqv.matches ? v.dataset.mobile : v.dataset.desktop;
+      if (mqv.matches && v.dataset.posterMobile) v.poster = v.dataset.posterMobile;
       if (v.getAttribute('data-current') !== want) {
         v.setAttribute('data-current', want);
         v.src = want;
@@ -49,17 +48,35 @@
       }
     };
     pick();
-    if (mq.addEventListener) mq.addEventListener('change', pick);
-    var btn = document.querySelector('.hero-pause');
-    var setBtn = function () {
-      if (!btn) return;
-      btn.classList.toggle('paused', v.paused);
-      btn.setAttribute('aria-label', v.paused ? 'Play background video' : 'Pause background video');
-    };
+    if (mqv.addEventListener) mqv.addEventListener('change', pick);
     if (reduce) { v.removeAttribute('autoplay'); v.pause(); }
-    if (btn) btn.addEventListener('click', function () { if (v.paused) { v.play(); } else { v.pause(); } });
-    v.addEventListener('play', setBtn); v.addEventListener('pause', setBtn); setBtn();
+  });
+  if (reduce) document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+
+  // Reels: load and play only while on screen
+  var lazyVids = document.querySelectorAll('video[data-lazy]');
+  if (lazyVids.length && 'IntersectionObserver' in window && !reduce) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) {
+          if (!v.src) v.src = v.dataset.lazy;
+          var p = v.play(); if (p && p.catch) p.catch(function () {});
+        } else if (v.src) { v.pause(); }
+      });
+    }, { rootMargin: '150px 0px', threshold: 0.15 });
+    lazyVids.forEach(function (v) { vio.observe(v); });
   }
+
+  // Restaurant pages: show today's booking times (London time)
+  document.querySelectorAll('[data-today]').forEach(function (el) {
+    try {
+      var hrs = JSON.parse(el.getAttribute('data-today'));
+      var day = new Date().toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'Europe/London' });
+      var i = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(day);
+      if (i > -1 && hrs[i]) el.textContent = hrs[i];
+    } catch (err) {}
+  });
 
   // Homepage: header turns olive after the hero
   if (document.body.classList.contains('home')) {

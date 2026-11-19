@@ -15,7 +15,7 @@ Static site, no build step needed to deploy. Upload the folder to a GitHub repo 
 `css/style.css` and `js/main.js` are shared. `build.py` regenerates the pages from one template if you want to change the header/footer everywhere at once (`python3 build.py`) — otherwise just edit the HTML directly.
 
 ## Before launch
-1. **Images** — `/images` are web-sized (2000px) versions of the shoot photos, plus a few earlier shots from the current site (venue heroes, private rooms). `/video/hero.mp4` (desktop, 1280×720) and `hero-mobile.mp4` (phone, vertical) are the 20s homepage loop cut from the Instagram reels.
+1. **Images and video** — `/images` are web-sized (2000px) versions of the shoot photos, plus a few shots from the old site (private rooms, venue interiors). `/video` holds the looping clips cut from the Instagram reels: `hero*.mp4` are the full-width page heroes (each has a `-mobile` vertical version for phones) and `reel-*.mp4` are the short vertical clips, which only load when scrolled into view.
 2. **Forms** — the enquiry and brochure forms have a placeholder handler (`data-demo`). Point them at Formspree / a Google Sheets script / SevenRooms as preferred.
 3. **Menus** — the menus are proper pages (`menu-marylebone.html`, `menu-east.html`, `menu-townhouse.html`, plus the `menus.html` hub), built from `data/menus.json`. That file holds every dish, price and wine taken from the restaurants' current menus. To change a menu, edit the JSON and run `python3 build.py`. The homepage Menus section has its own short selection of dishes in `build.py`.
 4. **Pre-theatre / group menu prices** — marked "set price"; add the numbers.

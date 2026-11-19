@@ -418,169 +418,240 @@ home += FOOTER
 
 
 # ---------------------------------------------------------------- VENUE PAGES
-def menu_pane(pid, hidden, sections, note):
-    secs = ""
-    for title, items in sections:
-        rows = "".join(f'<div class="item"><span>{n}</span><span>{d}</span></div>' for n, d in items)
-        secs += f"<div><h4>{title}</h4>{rows}</div>"
-    return f'<div class="menu-list" data-menu-pane="{pid}"{" hidden" if hidden else ""}>{secs}<p class="note">{note}</p></div>'
+import json as _json
+_MENUS = _json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "menus.json"), encoding="utf-8"))
+_TAGNAME = {"VG": "Vegan and dairy free", "V": "Vegetarian", "GF": "Gluten free", "DF": "Dairy free"}
 
 
-def venue_page(key, slug, area, name, title, desc, intro, hero, addr, hours, phone, menus, menu_pdf, gallery, rooms_intro, rooms, rooms_img, band, map_q, alt_imgs):
-    sw = ""
-    for k, s, label in (("mary", "marylebone.html", "Marylebone"), ("east", "east.html", "EAST · Shoreditch"), ("town", "townhouse.html", "Townhouse · Covent Garden")):
-        cur = ' aria-current="page"' if k == key else ""
-        sw += f'<a class="tab" href="{s}"{cur}>{label}</a>'
-    gal = "".join(f'<img src="{g}" alt="{name}" loading="lazy">' for g in gallery)
-    rm = "".join(f'<div class="card card-plain reveal"><div class="img"><img src="{im}" alt="{rn}, {name}" loading="lazy"></div><div class="body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><h3 style="font-size:24px">{rn}</h3><span class="muted small">{cap}</span></div><p style="font-weight:300;font-size:15px">{rd}</p></div></div>' for rn, cap, rd, im in rooms)
-    h = head(title, desc)
+def bgvideo(name, cls="hero-video"):
+    """Looping background video: wide cut on desktop, vertical cut on phones."""
+    return (f'<video class="{cls}" autoplay muted loop playsinline preload="auto" poster="video/{name}.jpg" aria-hidden="true" '
+            f'data-desktop="video/{name}.mp4" data-mobile="video/{name}-mobile.mp4" data-poster-mobile="video/{name}-mobile.jpg"></video>')
+
+
+def reel(name, caption):
+    """Vertical clip that loads and plays only when scrolled into view."""
+    return (f'<figure class="reel"><video muted loop playsinline preload="none" poster="video/reel-{name}.jpg" data-lazy="video/reel-{name}.mp4" aria-hidden="true"></video>'
+            f'<figcaption>{caption}</figcaption></figure>')
+
+
+def reels(items, eyebrow="", title=""):
+    head_ = f'<div class="wrap reels-head"><span class="eyebrow">{eyebrow}</span><h2>{title}</h2></div>' if title else ""
+    return f'<section class="reels">{head_}<div class="reels-row">{"".join(reel(n, c) for n, c in items)}</div></section>'
+
+
+def pick_dishes(venue, wanted):
+    out = ""
+    for sec in _MENUS[venue]["alc"]:
+        for it in sec["items"]:
+            if any(it["text"].startswith(w) for w in wanted):
+                tg = "".join(f'<abbr class="tg" title="{_TAGNAME[t]}">{t}</abbr>' for t in it.get("tags", []))
+                out += f'<div class="ml-item"><div class="ml-text"><span>{it["text"]} {tg}</span></div><div class="ml-price">{it.get("price", "")}</div></div>'
+    return out
+
+
+VENUES = {
+    "mary": dict(
+        slug="marylebone.html", menu="menu-marylebone.html", data="marylebone", video="hero-marylebone",
+        area="Marylebone", name="Delamina Marylebone",
+        title="Delamina Marylebone — Eastern Mediterranean restaurant, Marylebone Lane",
+        desc="Delamina Marylebone: Eastern Mediterranean brunch, lunch and dinner on Marylebone Lane, with private dining for 8 to 120.",
+        tag="The original Delamina, a step off Marylebone High Street",
+        statement="Where Delamina started: two floors on Marylebone Lane, a charcoal grill, and a table that fills up with plates.",
+        about="Come for a long lunch, a candlelit dinner or brunch at the weekend, when the shakshuka and the Jaffa–Tel Aviv breakfast take over until mid-afternoon. Downstairs, the Family Room seats up to 35 for parties.",
+        facts=["Lunch &amp; dinner daily", "Brunch at weekends &amp; bank holidays", "Private rooms for 8 to 120", "Card payments only"],
+        addr="56–58 Marylebone Lane", post="London W1U 2NX", phone=("020 3026 6810", "+442030266810"),
+        hours=[("Monday – Friday", "12 – 3.30pm · 5 – 9.30pm"), ("Saturday", "Brunch 10.30am – 3.15pm · 5 – 9.30pm"), ("Sunday", "Brunch 10.30am – 3.15pm · 5 – 9pm")],
+        today=["10.30am – 3.15pm and 5 – 9pm", "12 – 3.30pm and 5 – 9.30pm", "12 – 3.30pm and 5 – 9.30pm", "12 – 3.30pm and 5 – 9.30pm", "12 – 3.30pm and 5 – 9.30pm", "12 – 3.30pm and 5 – 9.30pm", "10.30am – 3.15pm and 5 – 9.30pm"],
+        dishes=["Smokey aubergine", "Charred cauliflower", "House beef shawarma", "Lamb baharat", "Seabass chermoula", "Grilled tiger prawns"],
+        menu_reel=("lamb", "Lamb, off the grill"),
+        menus=[("À la carte", "a-la-carte"), ("Brunch", "brunch"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")],
+        reels=[("egg", "Egg shawarma, weekend brunch"), ("fish", "Seabass on the charcoal grill"), ("cocktail", "Something to start"), ("dessert", "Save room")],
+        won=[("menu-marylebone.html#brunch", "brunch", "Weekends &amp; bank holidays", "Weekend brunch", "From 10.30am: shakshuka, the Jaffa–Tel Aviv breakfast and halva French toast.", "Brunch menu", "center"),
+             ("menu-marylebone.html#christmas", "xmas_table", "Now booking", "Christmas feast", "A feast sharing menu at £67 per guest, for tables and private parties.", "Christmas menu", "center"),
+             ("whats-on.html#new-year", "cheers", "31 December", "New Year’s Eve", "See the year out around the table.", "Details", "center 60%")],
+        pd_title="The Family Room downstairs, or both floors to yourselves",
+        pd_text="Sharing menus from £54 per guest, with brunch sharing menus from £33.",
+        rooms=[("The Green Room", "8 – 10 guests", "One table and a closed door, for a small dinner."),
+               ("The Family Room", "25 – 35 guests", "Downstairs, at long tables. Birthdays, team dinners, the whole family."),
+               ("Exclusive hire", "75 seated · 120 standing", "Both floors, the bar and the kitchen.")],
+        pd_img="mary_interior", pd_anchor="marylebone",
+        find="A step off Marylebone High Street",
+        travel="Bond Street station (Elizabeth, Central and Jubilee lines) is about five minutes' walk.",
+        mapq="Delamina+Marylebone+56-58+Marylebone+Lane+London+W1U+2NX",
+    ),
+    "east": dict(
+        slug="east.html", menu="menu-east.html", data="east", video="hero-east",
+        area="Shoreditch", name="Delamina EAST",
+        title="Delamina EAST — Eastern Mediterranean restaurant, Shoreditch",
+        desc="Delamina EAST on Commercial Street, Shoreditch: Eastern Mediterranean sharing plates, weekend brunch and three private rooms.",
+        tag="Big, bright and lively on Commercial Street",
+        statement="Delamina's home in the east: a big, bright room on Commercial Street, between Spitalfields and Shoreditch High Street.",
+        about="Open all day from noon, with brunch specials at the weekend and the charcoal grill going through to dinner. Three private rooms sit off the main restaurant, the largest seating thirty.",
+        facts=["Open all day from noon", "Brunch specials at weekends", "Three private rooms", "Card payments only"],
+        addr="151–153 Commercial Street", post="London E1 6BJ", phone=("020 7078 0770", "+442070780770"),
+        hours=[("Monday – Friday", "12 – 9.30pm"), ("Saturday", "11am – 9.30pm"), ("Sunday", "11am – 8.30pm")],
+        today=["11am – 8.30pm", "12 – 9.30pm", "12 – 9.30pm", "12 – 9.30pm", "12 – 9.30pm", "12 – 9.30pm", "11am – 9.30pm"],
+        dishes=["Carpaccio of golden beetroot", "Lettuce cups", "Charred cauliflower", "Angus beef koftas", "House beef rump shawarma", "Whole crispy seabass"],
+        menu_reel=("fish", "Seabass on the charcoal grill"),
+        menus=[("À la carte", "a-la-carte"), ("Weekend brunch", "weekend"), ("Sharing menus", "sharing"), ("Christmas", "christmas"), ("Wine", "wine")],
+        reels=[("coffee", "Behind the bar"), ("lamb", "Lamb, off the grill"), ("mazetim", "Dinner at EAST"), ("dessert", "Save room")],
+        won=[("menu-east.html#weekend", "brunch", "Saturdays &amp; Sundays", "Weekend brunch", "Brunch specials until 3.30pm, alongside the full menu.", "Weekend menu", "center"),
+             ("menu-east.html#christmas", "xmas_table", "Now booking", "Christmas feast", "A feast sharing menu at £64 per guest, for tables and private parties.", "Christmas menu", "center"),
+             ("whats-on.html#new-year", "cheers", "31 December", "New Year’s Eve", "See the year out around the table.", "Details", "center 60%")],
+        pd_title="Three private rooms, or the whole restaurant",
+        pd_text="Sharing menus from £48 per guest.",
+        rooms=[("The Green Room", "up to 10 guests", "One table, tucked away. Dinners, meetings, small birthdays."),
+               ("The Family Room", "up to 14 guests", "Semi-private, for long-table lunches and dinners."),
+               ("The Garden Room", "up to 30 guests", "Seated dinners for thirty, or drinks and canapés standing."),
+               ("Exclusive hire", "the whole restaurant", "For launches and Christmas parties.")],
+        pd_img="garden", pd_anchor="shoreditch",
+        find="Between Spitalfields and Shoreditch High Street",
+        travel="Shoreditch High Street (Overground) and Liverpool Street (Elizabeth, Central, Circle and Metropolitan lines, National Rail) are both a short walk.",
+        mapq="Delamina+EAST+151-153+Commercial+Street+London+E1+6BJ",
+    ),
+    "town": dict(
+        slug="townhouse.html", menu="menu-townhouse.html", data="townhouse", video="hero-townhouse",
+        area="Covent Garden", name="Delamina Townhouse",
+        title="Delamina Townhouse — Eastern Mediterranean restaurant, Covent Garden",
+        desc="Delamina Townhouse: a restored Georgian townhouse on Tavistock Street, Covent Garden. Pre-theatre menu, cocktails and private rooms for up to 50.",
+        tag="A Georgian townhouse in the heart of theatreland",
+        statement="A restored Georgian townhouse on Tavistock Street, moments from the Royal Opera House.",
+        about="Lunch, dinner and a pre-theatre menu at £27.5, with house cocktails made from the same herbs and spices as the kitchen. The private rooms, the Big Snug, the Drawing Room and the Arts Room, host dinners and parties for up to fifty.",
+        facts=["Pre-theatre menu, £27.5", "House cocktails", "Private rooms for up to 50", "Open Monday to Sunday"],
+        addr="13–15 Tavistock Street", post="London WC2E 7PS", phone=("020 4586 5555", "+442045865555"),
+        hours=[("Monday – Saturday", "12 – 9.30pm"), ("Sunday", "12 – 4pm")],
+        today=["12 – 4pm", "12 – 9.30pm", "12 – 9.30pm", "12 – 9.30pm", "12 – 9.30pm", "12 – 9.30pm", "12 – 9.30pm"],
+        dishes=["Kubaneh", "Roasted cauliflower", "Beef & lamb koftas", "Beef shawarma", "Whole crispy seabass", "Za’atar giant prawns"],
+        menu_reel=("champagne", "House cocktails at the bar"),
+        menus=[("À la carte", "a-la-carte"), ("Pre-theatre", "pre-theatre"), ("Sharing menu", "sharing"), ("Christmas", "christmas"), ("Cocktails &amp; wine", "drinks")],
+        reels=[("fish", "Seabass on the charcoal grill"), ("cheers", "To a good evening"), ("lamb", "Lamb, off the grill"), ("dessert", "Save room")],
+        won=[("menu-townhouse.html#pre-theatre", "fish_table", "Before the show", "Pre-theatre, £27.5", "Two courses before the curtain. Tell us your show time when you book.", "Pre-theatre menu", "center"),
+             ("menu-townhouse.html#christmas", "xmas_table", "Now booking", "Christmas feast", "A feast sharing menu at £69 per guest, for tables and private parties.", "Christmas menu", "center"),
+             ("whats-on.html#new-year", "cheers", "31 December", "New Year’s Eve", "See the year out around the table.", "Details", "center 60%")],
+        pd_title="Three private rooms, or the whole house",
+        pd_text="The Classics sharing menu is £59 per guest.",
+        rooms=[("The Big Snug", "up to 20 guests", "One long table and a closed door. Birthdays and board dinners."),
+               ("The Drawing Room", "up to 50 guests", "Tall windows over Tavistock Street. Seated, or standing with drinks."),
+               ("The Arts Room", "up to 50 guests", "Launches, Christmas parties, wedding breakfasts."),
+               ("Exclusive hire", "the whole house", "Every room, for your party.")],
+        pd_img="drawing", pd_anchor="covent-garden",
+        find="Two minutes from the Royal Opera House",
+        travel="Covent Garden station (Piccadilly line) is a few minutes' walk. Charing Cross and Temple are also close.",
+        mapq="Delamina+Townhouse+13-15+Tavistock+Street+London+WC2E+7PS",
+    ),
+}
+
+
+def venue_page(key):
+    v = VENUES[key]
+    hours_rows = "".join(f'<div class="hr-row"><span>{d}</span><span>{t}</span></div>' for d, t in v["hours"])
+    today = _json.dumps(v["today"]).replace('"', "&quot;")
+    facts = "".join(f"<li>{f}</li>" for f in v["facts"])
+    mlinks = "".join(f'<a class="mlink" href="{v["menu"]}#{h}">{l}</a>' for l, h in v["menus"])
+    cards = "".join(wcard("", href, IMG[img], when, ttl, txt, cta, pos) for href, img, when, ttl, txt, cta, pos in v["won"])
+    rooms_ = "".join(f'<div class="rr"><div class="rr-top"><h3>{n}</h3><span>{c}</span></div><p>{d}</p></div>' for n, c, d in v["rooms"])
+    others = "".join(find_card(k, o["area"], o["name"], IMG[{"mary": "mary_exterior", "east": "east_2", "town": "drawing"}[k]], o["addr"] + ", " + o["post"], "<br>".join(f"{d}: {t}" for d, t in o["hours"]), o["phone"], o["slug"]) for k, o in VENUES.items() if k != key)
+    short = "EAST" if key == "east" else ("the Townhouse" if key == "town" else "Marylebone")
+    h = head(v["title"], v["desc"])
     h += header("restaurants", BOOK[key])
     h += f"""
-<main>
-<section class="venue-hero">
-  <img src="{hero}" alt="{name}" fetchpriority="high">
-  <div class="wrap">
-    <span class="eyebrow">{area}</span>
-    <h1>{name}</h1>
-    <p class="lede" style="max-width:640px">{intro}</p>
-    <div class="btn-row" style="margin-top:8px"><a class="btn btn-solid" href="{BOOK[key]}" target="_blank" rel="noopener">Book a table</a><a class="btn btn-light" href="#menus">Menus</a><a class="btn btn-light" href="#rooms">Private rooms</a></div>
+<main class="vp">
+<section class="hx vp-hero">
+  {bgvideo(v["video"])}
+  <div class="hx-shade"></div>
+  <div class="hx-center">
+    <span class="vp-area">{v["area"]}</span>
+    <h1 class="vp-name">{v["name"]}</h1>
+    <p class="hx-sub">{v["tag"]}</p>
+  </div>
+  <nav class="bookbar infobar" aria-label="{v["name"]} essentials">
+    <a href="{BOOK[key]}" target="_blank" rel="noopener"><span class="bb-k">Reserve</span><span class="bb-v">Book a table</span><b aria-hidden="true">&rarr;</b></a>
+    <a href="#hours"><span class="bb-k">Bookings today</span><span class="bb-v bb-s" data-today="{today}">See opening hours</span><b aria-hidden="true">&rarr;</b></a>
+    <a href="#find"><span class="bb-k">Find us</span><span class="bb-v bb-s">{v["addr"]}</span><b aria-hidden="true">&rarr;</b></a>
+    <a href="tel:{v["phone"][1]}"><span class="bb-k">Call</span><span class="bb-v bb-s">{v["phone"][0]}</span><b aria-hidden="true">&rarr;</b></a>
+  </nav>
+</section>
+
+<section class="vp-intro">
+  <div class="wrap vp-intro-grid">
+    <div class="vp-about">
+      <span class="eyebrow">The restaurant</span>
+      <h2 class="reveal">{v["statement"]}</h2>
+      <p class="reveal">{v["about"]}</p>
+      <ul class="vp-facts reveal">{facts}</ul>
+    </div>
+    <aside class="vp-hours reveal" id="hours">
+      <span class="eyebrow">Booking times</span>
+      {hours_rows}
+      <p class="vp-hours-note">We stay open for two hours after the last booking.</p>
+      <div class="btn-row"><a class="btn btn-dark" href="{BOOK[key]}" target="_blank" rel="noopener">Book a table</a><a class="btn" href="tel:{v["phone"][1]}">{v["phone"][0]}</a></div>
+    </aside>
   </div>
 </section>
-<div class="wrap"><div class="switcher"><span class="lbl">Our restaurants</span>{sw}</div></div>
 
-<section class="section-tight">
-  <div class="wrap split" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start">
-    <div class="gallery">{gal}</div>
-    <div class="info">
-      <div class="k"><span class="eyebrow">Address</span><span>{addr}</span></div>
-      <div class="k"><span class="eyebrow">Booking times</span><span>{hours}</span><span class="small muted">We stay open two hours after the last booking. Last orders 15 minutes after.</span></div>
-      <div class="k"><span class="eyebrow">Contact</span><a href="tel:{phone[1]}">{phone[0]}</a><a href="private-dining.html#enquire">Private dining enquiries</a></div>
-      <div class="btn-row" style="padding-top:8px"><a class="btn btn-solid btn-sm" href="{BOOK[key]}" target="_blank" rel="noopener">Book a table</a><a class="btn btn-sm" href="#map">Directions</a><a class="btn btn-sm" href="{GIFT[key]}" target="_blank" rel="noopener">Gift card</a></div>
+<section id="menus" class="vp-menu">
+  <div class="wrap vp-menu-grid">
+    {reel(*v["menu_reel"])}
+    <div class="vp-menu-body">
+      <span class="eyebrow">On the menu</span>
+      <h2>A taste of {short}</h2>
+      <div class="ml vp-dishes">{pick_dishes(v["data"], v["dishes"])}</div>
+      <p class="mnote">A few dishes from the à la carte. Menus change with the seasons.</p>
+      <div class="mlinks"><span>Full menus</span>{mlinks}</div>
     </div>
   </div>
 </section>
 
-<section id="menus" class="section">
+{reels(v["reels"])}
+
+<section class="won vp-won">
   <div class="wrap">
-    <div class="section-head">
-      <div class="stack"><span class="eyebrow">Menus</span><h2>What's cooking at {area.split(' ·')[0] if key!='east' else 'EAST'}.</h2></div>
-      <p class="lede" style="font-size:17px">Menus change with the seasons. The cauliflower and the dips never leave.</p>
+    <div class="sec-head"><div><span class="eyebrow">What's on</span><h2>Happening at {short}</h2></div><a class="link" href="whats-on.html">Everything that's on</a></div>
+    <div class="won-grid won-3">{cards}</div>
+  </div>
+</section>
+
+<section id="rooms" class="pdx vp-pd">
+  <div class="wrap vp-pd-grid">
+    <div>
+      <span class="eyebrow">Private dining at {short}</span>
+      <h2 class="pdx-big reveal">{v["pd_title"]}</h2>
+      <p class="vp-pd-text">{v["pd_text"]}</p>
+      <div class="rrs">{rooms_}</div>
+      <div class="btn-row"><a class="btn btn-dark" href="private-dining.html#enquire">Make an enquiry</a><a class="btn" href="private-dining.html#{v["pd_anchor"]}">See the rooms</a><a class="btn" href="{v["menu"]}#sharing">Sharing menus</a></div>
     </div>
-    <div class="menu-rows">{"".join(f'<a class="menu-row" href="{f}"><span>{l}</span><b aria-hidden="true">&rarr;</b></a>' for l, f in menu_pdf)}</div>
-    <div class="btn-row" style="margin-top:32px"><a class="btn btn-solid" href="{BOOK[key]}" target="_blank" rel="noopener">Book a table</a><a class="btn" href="private-dining.html#enquire">Enquire about a group</a></div>
+    <div class="vp-pd-img"><img src="{IMG[v["pd_img"]]}" alt="Private dining at {v["name"]}" loading="lazy"></div>
   </div>
 </section>
 
-<section class="section-tight band {'band-img' if band[5] else 'bg-olive'}"{(' style="background-image:linear-gradient(rgba(33,37,41,.74),rgba(33,37,41,.74)),url(' + band[5] + ');background-size:cover;background-position:center"') if band[5] else ''}>
-  <div class="wrap">
-    <div class="stack" style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">{band[0]}</span><h2>{band[1]}</h2><p style="max-width:560px;font-weight:300">{band[2]}</p></div>
-    <a class="btn {'btn-light' if band[5] else 'btn-dark'}" href="{band[3]}" target="_blank" rel="noopener">{band[4]}</a>
-  </div>
-</section>
-
-<section id="rooms" class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="stack"><span class="eyebrow">Private dining at {name.replace('Delamina ','')}</span><h2>{rooms_intro[0]}</h2></div>
-      <div style="display:flex;flex-direction:column;gap:20px"><p class="lede" style="font-size:17px">{rooms_intro[1]}</p><div class="btn-row"><a class="btn btn-solid" href="private-dining.html#enquire">Enquire</a><a class="btn" href="private-dining.html">Brochure &amp; all venues</a></div></div>
-    </div>
-    <div class="grid-3">{rm}</div>
-  </div>
-</section>
-
-<section id="map" class="section bg-light">
+<section id="find" class="vp-find">
   <div class="wrap map">
-    <div class="stack" style="display:flex;flex-direction:column;gap:20px;justify-content:center">
+    <div class="vp-find-text">
       <span class="eyebrow">Find us</span>
-      <h2>{map_q[0]}</h2>
-      <p style="font-weight:300">{map_q[1]}</p>
-      <div class="btn-row"><a class="btn btn-solid btn-sm" href="https://www.google.com/maps/search/?api=1&query={map_q[2]}" target="_blank" rel="noopener">Open in Maps</a><a class="btn btn-sm" href="tel:{phone[1]}">{phone[0]}</a></div>
+      <h2>{v["find"]}</h2>
+      <p class="vp-addr">{v["addr"]}<br>{v["post"]}</p>
+      <p>{v["travel"]}</p>
+      <div class="btn-row"><a class="btn btn-solid btn-sm" href="https://www.google.com/maps/search/?api=1&query={v["mapq"]}" target="_blank" rel="noopener">Open in Maps</a><a class="btn btn-sm" href="tel:{v["phone"][1]}">{v["phone"][0]}</a></div>
     </div>
-    <iframe title="Map — {name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={map_q[2]}&output=embed"></iframe>
+    <iframe title="Map — {v["name"]}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={v["mapq"]}&output=embed"></iframe>
+  </div>
+</section>
+
+<section class="find vp-others">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Our other restaurants</span><h2>Same kitchen, two more neighbourhoods</h2></div></div>
+    <div class="find-grid find-2">{others}</div>
   </div>
 </section>
 </main>
 """
-    h += FOOTER
-    return h
+    return h + FOOTER
 
 
-ALC_NOTE = "Sample dishes shown — the full seasonal menu with prices is in the PDF. Dishes marked (v) are vegetarian; most of the menu can be made vegan or gluten-free, just ask."
-
-marylebone = venue_page(
-    "mary", "marylebone", "Marylebone", "Delamina Marylebone",
-    "Delamina Marylebone — Eastern Mediterranean restaurant, Marylebone Lane",
-    "Delamina Marylebone: seasonal Eastern Mediterranean brunch, lunch and dinner on Marylebone Lane, with private dining for 8 to 120.",
-    "The original Delamina, a step off Marylebone High Street. Weekend brunch, long lunches and candlelit dinners over two floors — and the Family Room downstairs for parties.",
-    IMG["mary_interior"], "56–58 Marylebone Lane<br>London W1U 2NX",
-    "Mon – Fri 12 – 3.30pm &amp; 5 – 9.30pm<br>Sat 10.30am – 3.15pm &amp; 5 – 9.30pm<br>Sun 10.30am – 3.15pm &amp; 5 – 9pm",
-    ("020 3026 6810", "+442030266810"),
-    [
-        ("À la carte", [("To start & share", [("The dips, warm pitta (v)", "all day"), ("Whole roasted cauliflower, tahini, pomegranate (v)", "signature"), ("Seasonal salads from the counter (v)", "")]), ("From the grill", [("Shawarma, carved to share", "signature"), ("Whole sea bass, herbs, lemon", ""), ("Lamb, chicken and vegetable skewers", "")])], ALC_NOTE),
-        ("Brunch", [("Saturday, Sunday & bank holidays, 10.30am – 3.15pm", [("Shakshuka, green or red (v)", ""), ("Sabich, eggs and aubergine (v)", ""), ("Brunch dips board for the table (v)", ""), ("Fresh juices, house cocktails and mocktails", "")])], "Brunch is served Saturdays, Sundays and bank holidays. Booking recommended."),
-        ("Wine list", [("Eastern Mediterranean & small producers", [("Wines from Greece, Lebanon, Israel, Turkey and Cyprus", ""), ("House cocktails made with the kitchen's own herbs and spices", ""), ("Mocktails and soft drinks", "")])], "Ask the team for what's open by the glass."),
-    ],
-    [("À la carte","menu-marylebone.html#a-la-carte"),("Brunch","menu-marylebone.html#brunch"),("Sharing menus","menu-marylebone.html#sharing"),("Christmas feast","menu-marylebone.html#christmas"),("Wine list","menu-marylebone.html#wine")],
-    [IMG["mary_exterior"], IMG["burrata"], IMG["pour"], IMG["window_table"]],
-    ("One room for the family. Both floors for everyone.", "The Family Room downstairs seats 25 to 35 around long tables. Take both floors and it's 75 seated or 120 standing — the largest space in the group."),
-    [("The Green Room", "8 – 10 guests", "A snug corner for a small dinner: one table, the door closed.", IMG["green"]),
-     ("The Family Room", "25 – 35 guests", "Downstairs, long tables, sharing menus. Birthdays, team dinners, the family.", IMG["family"]),
-     ("Exclusive hire", "75 seated · 120 standing", "Both floors, the bar and the kitchen, all yours.", IMG["mary_interior"])],
-    IMG["family"],
-    ("Weekend brunch", "Saturdays, Sundays and bank holidays from 10.30am.", "Shakshuka, dips, warm bread and fresh juices — the full spread until 3.15pm, then dinner from 5.", BOOK["mary"], "Book brunch", ""),
-    ("A step off Marylebone High Street.", "56–58 Marylebone Lane, W1U 2NX. Bond Street (Elizabeth, Central, Jubilee) and Baker Street are both a few minutes' walk. Step-free access to the ground floor; please call ahead for the lower floor.", "Delamina+Marylebone+56-58+Marylebone+Lane+London+W1U+2NX"),
-    [],
-)
-
-east = venue_page(
-    "east", "east", "Shoreditch", "Delamina EAST",
-    "Delamina EAST — Eastern Mediterranean restaurant, Shoreditch",
-    "Delamina EAST on Commercial Street, Shoreditch: Eastern Mediterranean brunch, sharing plates and dinner, with three private rooms and exclusive hire.",
-    "Big, bright and lively on Commercial Street, by Spitalfields. Brunch every weekend, sharing plates all day, and three private rooms including the Garden Room for thirty.",
-    IMG["east_hero"], "151–153 Commercial Street<br>Shoreditch, London E1 6BJ",
-    "Mon – Fri 12 – 9.30pm<br>Sat 11am – 9.30pm<br>Sun 11am – 8.30pm",
-    ("020 7078 0770", "+442070780770"),
-    [
-        ("À la carte", [("To start & share", [("The dips, warm pitta (v)", "all day"), ("Whole roasted cauliflower, tahini, pomegranate (v)", "signature"), ("Seasonal salads from the counter (v)", "")]), ("From the grill", [("Shawarma, carved to share", "signature"), ("Whole sea bass, herbs, lemon", ""), ("Lamb, chicken and vegetable skewers", "")])], ALC_NOTE),
-        ("Weekend menu", [("Saturday & Sunday from 11am, bank holidays too", [("Shakshuka, green or red (v)", ""), ("Sabich, eggs and aubergine (v)", ""), ("Brunch dips board for the table (v)", ""), ("Fresh juices, house cocktails and mocktails", "")])], "The weekend à la carte runs all day Saturday and Sunday."),
-        ("Wine list", [("Small producers", [("A list built around small producers across the eastern Mediterranean", ""), ("House cocktails made with the kitchen's own aromatics", ""), ("Mocktails and soft drinks", "")])], "Ask the team for what's open by the glass."),
-    ],
-    [("À la carte","menu-east.html#a-la-carte"),("Weekend brunch","menu-east.html#weekend"),("Sharing menus","menu-east.html#sharing"),("Christmas feast","menu-east.html#christmas"),("Wine list","menu-east.html#wine")],
-    [IMG["east_1"], IMG["prawns_blue"], IMG["east_2"], IMG["table_overhead"]],
-    ("Three rooms, or the whole restaurant.", "The Green Room for ten, the semi-private Family Room for fourteen, and the Garden Room for thirty. Or take the whole of EAST for a launch or a Christmas party."),
-    [("The Green Room", "up to 10 guests", "One table, tucked away. Dinners, meetings, small birthdays.", IMG["green"]),
-     ("The Family Room", "up to 14 guests", "Semi-private, in the thick of it. Long-table lunches and dinners.", IMG["family"]),
-     ("The Garden Room", "up to 30 guests", "The big one. Seated dinners for thirty, or drinks and canapés standing.", IMG["garden"])],
-    IMG["garden"],
-    ("Weekend brunch", "Saturdays and Sundays from 11am. Bank holidays too.", "The full brunch spread until mid-afternoon, then straight into the evening menu — no gap, no rush.", BOOK["east"], "Book brunch", ""),
-    ("Between Spitalfields and Shoreditch High Street.", "151–153 Commercial Street, E1 6BJ. Liverpool Street (Elizabeth, Central, Circle, Met, National Rail) is five minutes on foot; Shoreditch High Street Overground is three. Step-free access to the ground floor.", "Delamina+EAST+151-153+Commercial+Street+London+E1+6BJ"),
-    [],
-)
-
-townhouse = venue_page(
-    "town", "townhouse", "Covent Garden", "Delamina Townhouse",
-    "Delamina Townhouse — Eastern Mediterranean restaurant, Covent Garden",
-    "Delamina Townhouse: a restored Georgian townhouse on Tavistock Street, Covent Garden. Pre-theatre menus, à la carte dinner and private rooms for up to 50.",
-    "A restored Georgian townhouse on Tavistock Street, two minutes from the Royal Opera House. Pre-theatre suppers and long lunches downstairs; drawing rooms for parties of fifty upstairs.",
-    IMG["town_hero"], "13–15 Tavistock Street<br>Covent Garden, London WC2E 7PS",
-    "Mon – Sat 12 – 9.30pm<br>Sun 12 – 4pm",
-    ("020 4586 5555", "+442045865555"),
-    [
-        ("À la carte", [("To start & share", [("The dips, warm pitta (v)", "all day"), ("Whole roasted cauliflower, tahini, pomegranate (v)", "signature"), ("Seasonal salads from the counter (v)", "")]), ("From the grill", [("Whole sea bass, herbs, lemon", "signature"), ("Lamb, chicken and vegetable skewers", ""), ("Slow-roast lamb shoulder, for two", "")])], ALC_NOTE),
-        ("Lunch & pre-theatre", [("Set menu, served until 6.30pm Monday – Saturday", [("Two courses", "set price"), ("Three courses", "set price"), ("A glass of wine or a house cocktail to go with it", "")])], "Tell us your curtain time when you book and we'll have you out in good time."),
-        ("Drinks", [("Wines & cocktails", [("Wines from the eastern Mediterranean and small producers", ""), ("House cocktails made with the kitchen's own aromatics", ""), ("Mocktails and soft drinks", "")])], "Ask the team for what's open by the glass."),
-    ],
-    [("À la carte","menu-townhouse.html#a-la-carte"),("Pre-theatre","menu-townhouse.html#pre-theatre"),("Sharing menu","menu-townhouse.html#sharing"),("Christmas feast","menu-townhouse.html#christmas"),("Cocktails &amp; wine","menu-townhouse.html#drinks")],
-    [IMG["wine"], IMG["town_1"], IMG["limor_townhouse"], IMG["town_2"]],
-    ("Three rooms upstairs, and the whole house if you want it.", "One of the few proper Georgian townhouses left in Covent Garden. The Big Snug for twenty, the Drawing Room and the Arts Room for fifty each — or exclusive hire of the whole house."),
-    [("The Big Snug", "up to 20 guests", "Low light, one long table, the door closed. Birthdays and board dinners.", IMG["snug"]),
-     ("The Drawing Room", "up to 50 guests", "Tall windows over Tavistock Street. Seated dinners, or standing with drinks and canapés.", IMG["drawing"]),
-     ("The Arts Room", "up to 50 guests", "The top floor. Launches, Christmas parties, wedding breakfasts.", IMG["arts"])],
-    IMG["drawing"],
-    ("Theatre district", "Curtain up at 7.30? Sit down at 5.30.", "A set pre-theatre menu served from midday to 6.30pm, Monday to Saturday — and we'll have you out in time.", BOOK["town"], "Book pre-theatre", IMG["town_3"]),
-    ("Two minutes from Covent Garden tube.", "13–15 Tavistock Street, WC2E 7PS. Covent Garden (Piccadilly) and Charing Cross (Northern, Bakerloo, National Rail) are both a short walk. Step-free access to the ground floor; please call ahead for the upstairs rooms.", "Delamina+Townhouse+13-15+Tavistock+Street+London+WC2E+7PS"),
-    [],
-)
+marylebone = venue_page("mary")
+east = venue_page("east")
+townhouse = venue_page("town")
 
 
 # ---------------------------------------------------------------- PRIVATE DINING
@@ -604,7 +675,7 @@ pd += header("private-dining")
 pd += f"""
 <main>
 <section class="venue-hero" style="min-height:56vh">
-  <img src="{IMG['xmas_cheers']}" alt="A private dining party raising a toast" fetchpriority="high">
+  {bgvideo("hero-private")}
   <div class="wrap">
     <span class="eyebrow">Private dining &amp; events</span>
     <h1>Three private dining destinations, one warm Eastern Mediterranean table.</h1>
@@ -721,6 +792,8 @@ story += f"""
   </div>
 </section>
 
+{reels([("fish", "Seabass on the charcoal grill"), ("lamb", "Lamb, off the grill"), ("egg", "Egg shawarma, weekend brunch"), ("dessert", "Save room")], "From the kitchen", "Cooked over charcoal, every day")}
+
 <section id="join" class="section">
   <div class="wrap grid-2" style="align-items:center">
     <div class="stack" style="display:flex;flex-direction:column;gap:20px">
@@ -748,7 +821,7 @@ won += f"""
     <h1>Reasons to come back.</h1>
     <p class="lede" style="max-width:540px">Festive menus, New Year's Eve, wine dinners and the weekend brunch that never stops.</p>
   </div>
-  <img class="hero-img" src="{IMG['xmas_dish']}" alt="A festive dish at Delamina" fetchpriority="high">
+  <video class="hero-img" autoplay muted loop playsinline preload="auto" poster="video/reel-xmas.jpg" src="video/reel-xmas.mp4" aria-label="Christmas at Delamina"></video>
 </section>
 
 <section id="christmas" class="section bg-olive">
@@ -762,6 +835,8 @@ won += f"""
     <img src="{IMG['xmas_table']}" alt="A Christmas table at Delamina" loading="lazy">
   </div>
 </section>
+
+{reels([("cheers", "To a good evening"), ("xmas", "Christmas in Covent Garden"), ("champagne", "House cocktails"), ("mazetim", "The whole table")])}
 
 <section id="pour-and-plate" class="section">
   <div class="wrap grid-3">
@@ -793,7 +868,7 @@ gifts += f"""
     <h1>Give someone the table.</h1>
     <p class="lede" style="max-width:540px">E-gift cards for any Delamina, sent by email instantly or on the day you choose. Pick the restaurant they'd love.</p>
   </div>
-  <img class="hero-img" src="{IMG['cheers']}" alt="Two glasses raised at Delamina" fetchpriority="high">
+  <video class="hero-img" autoplay muted loop playsinline preload="auto" poster="video/reel-cheers.jpg" src="video/reel-cheers.mp4" aria-label="Glasses raised at Delamina"></video>
 </section>
 <section class="section-tight">
   <div class="wrap grid-3">
