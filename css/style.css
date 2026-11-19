@@ -384,7 +384,7 @@ a:hover .go b{transform:translateX(5px)}
 /* Founders */
 .storyx{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;background:var(--charcoal)}
 .storyx-img{position:relative;overflow:hidden}
-.storyx-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.storyx-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 82%}
 .storyx-text{display:flex;flex-direction:column;justify-content:center;gap:24px;padding:clamp(48px,7vw,120px)}
 .storyx-text .eyebrow{color:#C9D39A}
 .storyx-text h2{color:var(--offwhite);font-size:clamp(26px,2.8vw,42px);line-height:1.15;text-transform:none;letter-spacing:0;font-weight:300}
